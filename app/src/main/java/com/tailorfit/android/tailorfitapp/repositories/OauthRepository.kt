@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tailorfit.android.gingerapp.repositories
+package com.tailorfit.android.tailorfitapp.repositories
 
 import com.tailorfit.android.BuildConfig
-import com.tailorfit.android.gingerapp.apis.ExampleAPIAuthService
-import com.tailorfit.android.gingerapp.models.request.AccessTokenRequest
-import com.tailorfit.android.gingerapp.models.response.AccessToken
+import com.tailorfit.android.tailorfitapp.apis.ExampleAPIAuthService
+import com.tailorfit.android.tailorfitapp.models.request.AccessTokenRequest
+import com.tailorfit.android.tailorfitapp.models.response.AccessToken
 import com.tailorfit.android.networkutils.GENERIC_ERROR_CODE
 import com.tailorfit.android.networkutils.GENERIC_ERROR_MESSAGE
 import com.tailorfit.android.networkutils.getAPIResult

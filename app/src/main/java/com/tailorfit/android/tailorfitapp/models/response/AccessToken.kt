@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tailorfit.android.gingerapp.apis
+package com.tailorfit.android.tailorfitapp.models.response
 
-import com.tailorfit.android.networkutils.BaseAPIResponse
-import com.tailorfit.android.gingerapp.models.request.AccessTokenRequest
-import com.tailorfit.android.gingerapp.models.response.AccessToken
-import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.POST
+import com.google.gson.annotations.SerializedName
 
-interface ExampleAPIAuthService {
-
-    @POST("/oauth/token")
-    fun getAccessToken(@Body body: AccessTokenRequest): Call<BaseAPIResponse<AccessToken>>
-}
+data class AccessToken(
+    @SerializedName("access_token")
+    val accessToken: String,
+    @SerializedName("expires_in")
+    val expiresIn: Int,
+    @SerializedName("scope")
+    val scope: String,
+    @SerializedName("token_type")
+    val tokenType: String
+)

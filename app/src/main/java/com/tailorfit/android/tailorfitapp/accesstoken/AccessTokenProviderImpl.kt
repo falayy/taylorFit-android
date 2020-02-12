@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tailorfit.android.gingerapp.accesstoken
+package com.tailorfit.android.tailorfitapp.accesstoken
 
 import com.tailorfit.android.auth.AccessTokenProvider
-import com.tailorfit.android.gingerapp.PrefsValueHelper
-import com.tailorfit.android.gingerapp.repositories.OauthRepository
+import com.tailorfit.android.tailorfitapp.PrefsValueHelper
+import com.tailorfit.android.tailorfitapp.repositories.OauthRepository
 import javax.inject.Inject
 import javax.inject.Singleton
 import com.tailorfit.android.networkutils.Result

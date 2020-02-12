@@ -13,14 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tailorfit.android.gingerapp
+package com.tailorfit.android.tailorfitapp.apis
 
-import android.widget.TextView
-import com.tailorfit.android.extensions.validate
-
-fun validateTextLayouts(vararg textLayouts: TextView): Boolean {
-    for (textLayout in textLayouts) {
-        if (!textLayout.validate()) return false
-    }
-    return true
-}
+interface ExampleApiService

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tailorfit.android.gingerapp.models.request
+package com.tailorfit.android.tailorfitapp.models.request
 
 import com.google.gson.annotations.SerializedName
 

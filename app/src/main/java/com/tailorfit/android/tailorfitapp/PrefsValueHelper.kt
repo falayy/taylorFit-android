@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tailorfit.android.gingerapp
+package com.tailorfit.android.tailorfitapp
 
 import com.tailorfit.android.utils.PrefsUtils
 import javax.inject.Inject

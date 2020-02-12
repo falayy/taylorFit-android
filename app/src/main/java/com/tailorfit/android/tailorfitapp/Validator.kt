@@ -13,17 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tailorfit.android.gingerapp.models.response
+package com.tailorfit.android.tailorfitapp
 
-import com.google.gson.annotations.SerializedName
+import android.widget.TextView
+import com.tailorfit.android.extensions.validate
 
-data class AccessToken(
-    @SerializedName("access_token")
-    val accessToken: String,
-    @SerializedName("expires_in")
-    val expiresIn: Int,
-    @SerializedName("scope")
-    val scope: String,
-    @SerializedName("token_type")
-    val tokenType: String
-)
+fun validateTextLayouts(vararg textLayouts: TextView): Boolean {
+    for (textLayout in textLayouts) {
+        if (!textLayout.validate()) return false
+    }
+    return true
+}
