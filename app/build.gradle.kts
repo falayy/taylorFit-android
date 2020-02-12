@@ -95,7 +95,7 @@ android {
             variant.outputs.map { it as BaseVariantOutputImpl }
                 .forEach { output ->
                     println("The variant is: ${variant.versionName}")
-                    output.outputFileName = "BaseProjApp-${variant.versionName}.apk"
+                    output.outputFileName = "taylorFit-${variant.versionName}.apk"
                 }
         }
     })
