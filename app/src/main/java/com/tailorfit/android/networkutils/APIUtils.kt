@@ -15,10 +15,6 @@
  */
 package com.tailorfit.android.networkutils
 
-import androidx.annotation.CheckResult
-import io.reactivex.Observable
-import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
 import org.json.JSONObject
 import retrofit2.Response
 import timber.log.Timber

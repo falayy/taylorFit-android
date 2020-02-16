@@ -2,20 +2,14 @@ package com.tailorfit.android.tailorfitapp.screens
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.tailorfit.android.base.BaseViewModel
 import com.tailorfit.android.networkutils.LoadingStatus
-import com.tailorfit.android.tailorfitapp.models.request.SignUpRequest
-import com.tailorfit.android.tailorfitapp.repositories.AccountsRepository
-import kotlinx.coroutines.launch
 import com.tailorfit.android.networkutils.Result
 import com.tailorfit.android.networkutils.disposeBy
+import com.tailorfit.android.tailorfitapp.models.request.SignUpRequest
 import com.tailorfit.android.tailorfitapp.models.request.SignUpRespone
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
+import com.tailorfit.android.tailorfitapp.repositories.AccountsRepository
 import io.reactivex.rxkotlin.subscribeBy
-import io.reactivex.schedulers.Schedulers
-
 import javax.inject.Inject
 
 class SignUpViewModel @Inject constructor(

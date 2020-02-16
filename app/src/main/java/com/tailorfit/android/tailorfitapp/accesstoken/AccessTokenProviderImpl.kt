@@ -16,11 +16,11 @@
 package com.tailorfit.android.tailorfitapp.accesstoken
 
 import com.tailorfit.android.auth.AccessTokenProvider
+import com.tailorfit.android.networkutils.Result
 import com.tailorfit.android.tailorfitapp.PrefsValueHelper
 import com.tailorfit.android.tailorfitapp.repositories.OauthRepository
 import javax.inject.Inject
 import javax.inject.Singleton
-import com.tailorfit.android.networkutils.Result
 
 @Singleton
 class AccessTokenProviderImpl @Inject constructor(

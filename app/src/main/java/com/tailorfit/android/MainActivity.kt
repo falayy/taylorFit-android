@@ -24,10 +24,10 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.afollestad.materialdialogs.MaterialDialog
+import com.google.android.material.snackbar.Snackbar
 import com.tailorfit.android.base.BaseFragment
 import com.tailorfit.android.base.LoadingCallback
 import com.tailorfit.android.extensions.*
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.loading_indicator.*
 import kotlinx.android.synthetic.main.toolbar_layout.*
