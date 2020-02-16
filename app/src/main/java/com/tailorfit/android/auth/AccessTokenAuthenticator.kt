@@ -29,24 +29,24 @@ class AccessTokenAuthenticator(
     }
 
     override fun authenticate(route: Route?, response: Response): Request? {
-        // Get the token in sharedPref. Will be null for a new user
-        val token = tokenProvider.token() ?: ""
-
-        // Need to be thread-safe because of possibilities of concurrent requests authentication.
+        val token = tokenProvider.token() ?: return null
         synchronized(this) {
-            // Get a new token
-            val newToken = tokenProvider.refreshToken()
+            val newToken = tokenProvider.token()
 
-            // use the new token if the previous url already used the token in prefUtils
-            val tokenToUse = if (response.request.url.queryParameter(AUTH_KEY) == token) newToken else token
+            if (response.request.url.queryParameter(AUTH_KEY) != null) {
 
-            // remove any access token added before
-            val urlBuilder = response.request.url.newBuilder().removeAllQueryParameters(AUTH_KEY)
+                val requestBuilder = response.request.newBuilder()
+                val urlBuilder = response.request.url.newBuilder().removeAllQueryParameters(AUTH_KEY)
 
-            return response.request
-                .newBuilder()
-                .url(urlBuilder.addQueryParameter(AUTH_KEY, tokenToUse).build())
-                .build()
+                if (newToken != token) {
+                    return requestBuilder.url(urlBuilder.addQueryParameter(AUTH_KEY, newToken).build()).build()
+                }
+
+                val updatedToken = tokenProvider.refreshToken() ?: return null
+
+                return requestBuilder.url(urlBuilder.addQueryParameter(AUTH_KEY, updatedToken).build()).build()
+            }
         }
+        return null
     }
 }

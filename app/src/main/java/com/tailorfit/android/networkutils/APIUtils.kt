@@ -15,6 +15,10 @@
  */
 package com.tailorfit.android.networkutils
 
+import androidx.annotation.CheckResult
+import io.reactivex.Observable
+import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
 import org.json.JSONObject
 import retrofit2.Response
 import timber.log.Timber
@@ -28,9 +32,7 @@ fun <T : Any> getAPIResult(response: Response<BaseAPIResponse<T>>): Result<T> {
         if (body?.data != null) {
             return Result.Success(body.data!!)
         }
-    }
-
-    else {
+    } else {
         val errorBody = response.errorBody()
         if (errorBody != null) {
             val errorBodyString = errorBody.string()
@@ -62,3 +64,4 @@ fun getErrorCode(errorBody: String): String {
         GENERIC_ERROR_CODE
     }
 }
+

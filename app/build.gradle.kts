@@ -15,7 +15,7 @@ android {
     compileSdkVersion(Config.SdkVersions.compile)
 
     defaultConfig {
-        applicationId = "com.cottacush.android.ginger"
+        applicationId = "com.tailorfit.android.tailorfit"
         minSdkVersion(Config.SdkVersions.min)
         targetSdkVersion(Config.SdkVersions.target)
         versionCode = Config.PublishVersion.code
@@ -123,6 +123,7 @@ dependencies {
     implementation(Config.Libs.AndroidX.recyclerView)
     implementation(Config.Libs.AndroidX.legacySupportLib)
     implementation(Config.Libs.AndroidX.viewPager2)
+    implementation(Config.Libs.AndroidX.lifeCycleReactive)
 
     //DI with Dagger
     kapt(Config.Libs.DI.daggerCompiler)
@@ -141,6 +142,12 @@ dependencies {
     implementation(Config.Libs.Misc.timber)
     implementation(Config.Libs.Misc.countryCodePicker)
     implementation(Config.Libs.Misc.googlePlayServices)
+
+    //Rx
+    implementation(Config.Libs.Reactive.rxJava)
+    implementation(Config.Libs.Reactive.rxAndroid)
+    implementation(Config.Libs.Reactive.rxKotlin)
+    implementation(Config.Libs.Reactive.rxRetrofitAdapter)
 }
 
 apply(from = "../spotless.gradle")

@@ -48,8 +48,9 @@ object Config {
         object AndroidX {
             internal const val navigationVersion = "1.0.0"
             private const val lifeCycleVersion = "2.1.0-alpha01"
-
             const val lifeCycleExt = "androidx.lifecycle:lifecycle-extensions:$lifeCycleVersion"
+            const val lifeCycleReactive = "android.arch.lifecycle:reactivestreams:$lifeCycleVersion"
+
             const val lifeCycleViewModel =
                 "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifeCycleVersion"
             const val navigationFragment =
@@ -77,6 +78,13 @@ object Config {
                 "com.squareup.retrofit2:converter-gson:$retrofitVersion"
             const val retrofitMock = "com.squareup.retrofit2:retrofit-mock:$retrofitVersion"
             const val okhttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.0.1"
+        }
+
+        object Reactive {
+            const val rxJava = "io.reactivex.rxjava2:rxjava:2.2.17"
+            const val rxAndroid = "io.reactivex.rxjava2:rxandroid:2.1.1"
+            const val rxKotlin = "io.reactivex.rxjava2:rxkotlin:2.4.0"
+            const val rxRetrofitAdapter = "com.squareup.retrofit2:adapter-rxjava2:2.7.1"
         }
 
         object Misc {
