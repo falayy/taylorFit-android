@@ -9,7 +9,20 @@
     <color name="textColorPrimaryWhite">#ffffff</color>
     <color name="textColorSecondaryWhite">#dcffffff</color>
 
-    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@android:color/transparent</color>
+    <color name="backgroundPrimaryWhite">#F9F9F9</color>
+    <color name="textColorPrimaryGrey">#848484</color>
+    <color name="textColorSecondaryGrey">#0000008F</color>
+    <color name="textColorDark">#000000DB</color>
+    <color name="textColorLightGrey">#B5B5B5</color>
+
+    <color name="secondaryColorChocolate">#3D1818</color>
+    <color name="primaryColorChocolate">#5E2E00</color>
+
+
+
+
+    <color name="mtrl_textinput_default_box_stroke_color"
+        tools:override="true">@android:color/transparent</color>
 
 
 </resources>
