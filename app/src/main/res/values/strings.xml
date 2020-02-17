@@ -10,4 +10,10 @@
     <string name="sign_in">SIGN IN</string>
     <string name="sign_up">SIGN UP</string>
     <string name="name">NAME</string>
+    <string name="store_name">STORE NAME</string>
+    <string name="password">PASSWORD</string>
+    <string name="phone_number">PHONE NUMBER</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="sign_in_here">Sign in here</string>
+    <string name="don_t_have_an_account">DON\'T HAVE AN ACCOUNT?</string>
 </resources>
