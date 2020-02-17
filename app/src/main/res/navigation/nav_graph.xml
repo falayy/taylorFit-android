@@ -2,6 +2,19 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/signUpFragment">
 
+    <fragment
+        android:id="@+id/signUpFragment"
+        android:name="com.tailorfit.android.tailorfitapp.signup.SignUpFragment"
+        android:label="SignUpFragment" >
+        <action
+            android:id="@+id/action_signUpFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.tailorfit.android.tailorfitapp.signin.SignInFragment"
+        android:label="SignInFragment" />
 </navigation>

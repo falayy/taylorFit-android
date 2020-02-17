@@ -16,7 +16,6 @@
             android:fontFamily="@font/lato_bold"
             android:text="@string/welcome_back"
             android:textColor="@color/textColorDark"
-            android:layout_marginTop="88dp"
             android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@id/sign_in_here_text"
             app:layout_constraintLeft_toLeftOf="parent"

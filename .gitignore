@@ -158,6 +158,7 @@ fabric.properties
 .idea/**/dbnavigator.xml
 .idea/kotlinScripting.xml
 keystore.properties
+TAYLOR_ANDROID_KEYSTORE
 
 # Gradle
 .idea/**/gradle.xml
