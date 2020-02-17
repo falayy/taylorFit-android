@@ -1,5 +1,13 @@
 <resources>
-    <string name="app_name">BaseProj</string>
+    <string name="app_name">TaylorFit</string>
     <string name="default_loading_message">Loading, Please wait . . .</string>
     <string name="ok">OK</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hi_there">Hi there!</string>
+    <string name="sign_up_here">Sign up here</string>
+    <string name="already_have_an_account">ALREADY HAVE AN ACCOUNT?</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="name">NAME</string>
 </resources>

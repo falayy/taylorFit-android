@@ -11,8 +11,8 @@
 
     <color name="backgroundPrimaryWhite">#F9F9F9</color>
     <color name="textColorPrimaryGrey">#848484</color>
-    <color name="textColorSecondaryGrey">#0000008F</color>
-    <color name="textColorDark">#000000DB</color>
+    <color name="textColorSecondaryGrey">#8F000000</color>
+    <color name="textColorDark">#DB000000</color>
     <color name="textColorLightGrey">#B5B5B5</color>
 
     <color name="secondaryColorChocolate">#3D1818</color>
