@@ -18,11 +18,4 @@
     <color name="secondaryColorChocolate">#3D1818</color>
     <color name="primaryColorChocolate">#5E2E00</color>
 
-
-
-
-    <color name="mtrl_textinput_default_box_stroke_color"
-        tools:override="true">@android:color/transparent</color>
-
-
 </resources>

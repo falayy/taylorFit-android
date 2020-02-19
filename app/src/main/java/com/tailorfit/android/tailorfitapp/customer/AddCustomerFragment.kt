@@ -6,11 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.tailorfit.android.R
 
-import com.tailorfit.android.tailorfit.R
-/**
- * A simple [Fragment] subclass.
- */
+
 class AddCustomerFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

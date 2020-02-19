@@ -49,18 +49,15 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/nameTextInputLayout"
+                style="@style/TextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/name"
-                app:boxStrokeColor="@color/textColorLightGrey"
-                app:boxStrokeWidth="2dp"
-                android:textColorHint="@color/textColorPrimaryGrey">
+                android:hint="@string/name">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/name_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/textColorPrimaryWhite"
                     android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -79,16 +76,15 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/phoneTextInputLayout"
+                style="@style/TextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/phone_number"
-                android:textColorHint="@color/textColorPrimaryGrey">
+                android:hint="@string/phone_number">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/phone_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/textColorPrimaryWhite"
                     android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -107,16 +103,15 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/passwordTextInputLayout"
+                style="@style/TextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/password"
-                android:textColorHint="@color/textColorPrimaryGrey">
+                android:hint="@string/password">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/textColorPrimaryWhite"
                     android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -135,16 +130,16 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/storeTextInputLayout"
+                style="@style/TextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/store_name"
-                android:textColorHint="@color/textColorPrimaryGrey">
+                android:background="@color/textColorSecondaryWhite"
+                android:hint="@string/store_name">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/store_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/textColorPrimaryWhite"
                     android:inputType="text" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -157,7 +152,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/sign_up"
-            android:textColor="@color/textColorPrimaryWhite"
             app:layout_constraintBottom_toTopOf="@id/already_have_account_text"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"

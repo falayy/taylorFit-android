@@ -9,7 +9,10 @@ plugins {
     kotlin("android")
     kotlin("kapt")
     id("kotlin-android-extensions")
+    id("kotlin-android")
 }
+
+Config.Plugins
 
 android {
     compileSdkVersion(Config.SdkVersions.compile)
@@ -100,6 +103,7 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
 
     //Tests
     testImplementation(Config.Libs.Test.jUnit)
