@@ -120,14 +120,19 @@ dependencies {
     implementation(Config.Libs.AndroidX.constraintLayout)
     implementation(Config.Libs.AndroidX.browser)
     implementation(Config.Libs.AndroidX.core)
-    implementation(Config.Libs.AndroidX.lifeCycleExt)
     implementation(Config.Libs.AndroidX.lifeCycleViewModel)
+    implementation(Config.Libs.AndroidX.lifeCycleExt)
     implementation(Config.Libs.AndroidX.navigationFragment)
     implementation(Config.Libs.AndroidX.navigationUI)
     implementation(Config.Libs.AndroidX.recyclerView)
     implementation(Config.Libs.AndroidX.legacySupportLib)
     implementation(Config.Libs.AndroidX.viewPager2)
     implementation(Config.Libs.AndroidX.lifeCycleReactive)
+    implementation(Config.Libs.AndroidX.room)
+    kapt(Config.Libs.AndroidX.roomCompiler)
+
+    //work manager
+    implementation(Config.Libs.AndroidX.workManager)
 
     //DI with Dagger
     kapt(Config.Libs.DI.daggerCompiler)
@@ -145,6 +150,7 @@ dependencies {
     implementation(Config.Libs.Misc.materialDialogs)
     implementation(Config.Libs.Misc.timber)
     implementation(Config.Libs.Misc.countryCodePicker)
+    implementation(Config.Libs.Misc.glide)
     implementation(Config.Libs.Misc.googlePlayServices)
 
     //Rx

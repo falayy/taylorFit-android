@@ -43,6 +43,7 @@ object Config {
             const val mockito = "org.mockito:mockito-core:2.25.0"
             const val androidXTestRunner = "androidx.test:runner:1.2.0"
             const val espressoCore = "androidx.test.espresso:espresso-core:3.2.0"
+            const val truth = "com.google.truth:truth:1.0.1"
         }
 
         object AndroidX {
@@ -62,6 +63,10 @@ object Config {
             const val browser = "androidx.browser:browser:1.0.0"
             const val legacySupportLib = "androidx.legacy:legacy-support-v4:1.0.0"
             const val viewPager2 = "androidx.viewpager2:viewpager2:1.0.0"
+            const val room = "androidx.room:room-runtime:2.0.0"
+            const val roomCompiler = "androidx.room:room-compiler:2.0.0"
+            const val workManager = "android.arch.work:work-runtime-ktx:1.0.0-alpha11"
+
         }
 
         object DI {
@@ -92,6 +97,7 @@ object Config {
             const val timber = "com.jakewharton.timber:timber:4.7.1"
             const val materialDialogs = "com.afollestad.material-dialogs:core:3.0.0-rc1"
             const val countryCodePicker = "com.github.joielechong:countrycodepicker:2.3.3"
+            const val glide = "com.github.bumptech.glide:glide:4.8.0"
             const val googlePlayServices = "com.google.android.gms:play-services-location:17.0.0"
         }
     }
