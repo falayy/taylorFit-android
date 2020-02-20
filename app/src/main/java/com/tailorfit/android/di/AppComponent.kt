@@ -2,6 +2,8 @@
 package com.tailorfit.android.di
 
 import android.app.Application
+import com.tailorfit.android.tailorfitapp.signin.SignInFragment
+import com.tailorfit.android.tailorfitapp.signup.SignUpFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -11,6 +13,9 @@ import javax.inject.Singleton
 interface AppComponent {
 
     // TODO inject stuff
+    fun inject(target : SignUpFragment)
+    fun inject(target : SignInFragment)
+
 
     @Component.Builder
     interface Builder {

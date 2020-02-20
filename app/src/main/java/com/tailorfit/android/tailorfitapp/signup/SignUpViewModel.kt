@@ -1,4 +1,4 @@
-package com.tailorfit.android.tailorfitapp.screens
+package com.tailorfit.android.tailorfitapp.signup
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
