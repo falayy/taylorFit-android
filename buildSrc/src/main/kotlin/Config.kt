@@ -36,7 +36,6 @@ object Config {
             private const val lifeCycleVersion = "2.1.0-alpha01"
             const val lifeCycleExt = "androidx.lifecycle:lifecycle-extensions:$lifeCycleVersion"
             const val lifeCycleReactive = "android.arch.lifecycle:reactivestreams:$lifeCycleVersion"
-
             const val lifeCycleViewModel =
                 "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifeCycleVersion"
             const val navigationFragment =

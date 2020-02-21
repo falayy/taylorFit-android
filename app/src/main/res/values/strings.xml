@@ -16,4 +16,5 @@
     <string name="welcome_back">Welcome Back</string>
     <string name="sign_in_here">Sign in here</string>
     <string name="don_t_have_an_account">DON\'T HAVE AN ACCOUNT?</string>
+    <string name="proceed">PROCEED</string>
 </resources>
