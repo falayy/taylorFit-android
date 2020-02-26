@@ -17,4 +17,20 @@
     <string name="sign_in_here">Sign in here</string>
     <string name="don_t_have_an_account">DON\'T HAVE AN ACCOUNT?</string>
     <string name="proceed">PROCEED</string>
+    <string name="gig_title_message">Give this Gig a title to remember easily</string>
+    <string name="gig_title_hint">Graduation Dinner</string>
+    <string name="gig_style_message">What type of style does your customer want?</string>
+    <string name="gig_style_hint">Long Gown</string>
+    <string name="customer_hint_name">Olayinka Folashade</string>
+    <string name="customer_name_message">Add your customer\'s name here</string>
+    <string name="customer_number_hint">08031234564</string>
+    <string name="customer_number_message">Add your customer\'s Phone number here</string>
+    <string name="customer_gender_message">What is your customer\'s gender?</string>
+    <string name="customer_gender_hint">Female</string>
+    <string name="empty_field">Empty Field</string>
+    <string name="let_s_get_the_measurement_started_inches">Let\'s get the measurement started (inches)</string>
+    <string name="gig_due_date_message">When are you going to finish sewing the cloth?</string>
+    <string name="gig_due_date_hint">12th November 2020</string>
+    <string name="gig_price_hint">N5,000</string>
+    <string name="gig_price_message">How much are you charging for the gig?</string>
 </resources>

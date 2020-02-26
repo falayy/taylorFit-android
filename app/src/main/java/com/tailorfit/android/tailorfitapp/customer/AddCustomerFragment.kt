@@ -2,20 +2,34 @@ package com.tailorfit.android.tailorfitapp.customer
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.tailorfit.android.R
+import com.tailorfit.android.databinding.FragmentBaseFormBinding
+import com.tailorfit.android.tailorfitapp.baseforms.BaseCustomerFormFragment
+import com.tailorfit.android.tailorfitapp.baseforms.CustomerFormType
+import com.tailorfit.android.tailorfitapp.models.request.CreateCustomerRequest
 
 
-class AddCustomerFragment : Fragment() {
+class AddCustomerFragment : BaseCustomerFormFragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_customer, container, false)
+    private lateinit var customerRequest: CreateCustomerRequest
+
+    override fun getCustomerFormType() = CustomerFormType.AddCustomerFragment
+
+    override fun setDataHints(binding: FragmentBaseFormBinding) {
+        binding.formDescription.text = getString(R.string.customer_name_message)
+        binding.editText.hint = getString(R.string.customer_hint_name)
     }
 
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        //TODO get customerRequest
+
+    }
+
+
+    override fun getCustomerRequest(): CreateCustomerRequest = customerRequest
 
 }

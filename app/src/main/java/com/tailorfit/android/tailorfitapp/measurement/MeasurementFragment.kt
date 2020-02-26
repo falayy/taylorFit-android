@@ -1,4 +1,4 @@
-package com.tailorfit.android.tailorfitapp.forms
+package com.tailorfit.android.tailorfitapp.measurement
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,8 +8,7 @@ import com.tailorfit.android.R
 import com.tailorfit.android.base.BaseFragment
 
 
-open class BaseFormFragment : BaseFragment() {
-
+class MeasurementFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +18,8 @@ open class BaseFormFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_base_form, container, false)
+        return inflater.inflate(R.layout.fragment_measurement, container, false)
     }
+
 
 }

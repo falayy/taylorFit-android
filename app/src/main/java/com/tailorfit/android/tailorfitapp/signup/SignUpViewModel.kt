@@ -7,7 +7,7 @@ import com.tailorfit.android.networkutils.LoadingStatus
 import com.tailorfit.android.networkutils.Result
 import com.tailorfit.android.networkutils.disposeBy
 import com.tailorfit.android.tailorfitapp.models.request.SignUpRequest
-import com.tailorfit.android.tailorfitapp.models.request.SignUpRespone
+import com.tailorfit.android.tailorfitapp.models.response.SignUpResponse
 import com.tailorfit.android.tailorfitapp.repositories.AccountsRepository
 import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
@@ -17,9 +17,9 @@ class SignUpViewModel @Inject constructor(
 ) : BaseViewModel() {
 
 
-    private val _signUpResponse = MutableLiveData<SignUpRespone>()
+    private val _signUpResponse = MutableLiveData<SignUpResponse>()
 
-    val signUpResponse: LiveData<SignUpRespone>
+    val signUpResponse: LiveData<SignUpResponse>
         get() = _signUpResponse
 
     fun signUp(signUpRequest: SignUpRequest) {

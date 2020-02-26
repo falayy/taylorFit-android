@@ -1,19 +1,24 @@
 package com.tailorfit.android.tailorfitapp.gig
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+
 import com.tailorfit.android.R
-import com.tailorfit.android.tailorfitapp.forms.BaseFormFragment
+import com.tailorfit.android.databinding.FragmentBaseFormBinding
+import com.tailorfit.android.tailorfitapp.baseforms.BaseGigFormFragment
+import com.tailorfit.android.tailorfitapp.baseforms.CustomerFormType
+import com.tailorfit.android.tailorfitapp.baseforms.GigFormType
+import com.tailorfit.android.tailorfitapp.models.request.CreateGigRequest
 
-class AddGigStyleFragment : BaseFormFragment() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_gig_style, container, false)
+class AddGigStyleFragment : BaseGigFormFragment() {
+    private lateinit var createGigRequest: CreateGigRequest
+    override fun getGigRequest(): CreateGigRequest = createGigRequest
+
+    override fun getGigFormType(): GigFormType = GigFormType.AddGigStyleFragment
+
+    override fun setDataHints(binding: FragmentBaseFormBinding) {
+        binding.formDescription.text = getString(R.string.gig_style_message)
+        binding.editText.hint = getString(R.string.gig_style_hint)
     }
+
+
 }

@@ -4,13 +4,13 @@ import com.tailorfit.android.networkutils.Result
 import com.tailorfit.android.networkutils.toResult
 import com.tailorfit.android.tailorfitapp.apis.TailorFitApIService
 import com.tailorfit.android.tailorfitapp.models.request.SignUpRequest
-import com.tailorfit.android.tailorfitapp.models.request.SignUpRespone
+import com.tailorfit.android.tailorfitapp.models.response.SignUpResponse
 import io.reactivex.Single
 import javax.inject.Inject
 
 class AccountsRepository @Inject constructor(private val tailorFitApIService: TailorFitApIService) {
 
-    fun signUp(body: SignUpRequest): Single<Result<SignUpRespone>> {
+    fun signUp(body: SignUpRequest): Single<Result<SignUpResponse>> {
         return tailorFitApIService.signUp(body).toResult()
     }
 }

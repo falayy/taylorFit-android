@@ -16,5 +16,52 @@
     <fragment
         android:id="@+id/signInFragment"
         android:name="com.tailorfit.android.tailorfitapp.signin.SignInFragment"
-        android:label="SignInFragment" />
+        android:label="SignInFragment" >
+        <action
+            android:id="@+id/action_signInFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addCustomerFragment"
+        android:name="com.tailorfit.android.tailorfitapp.customer.AddCustomerFragment"
+        android:label="AddCustomerFragment" >
+        <action
+            android:id="@+id/action_addCustomerFragment_to_addCustomerPhoneFragment"
+            app:destination="@id/addCustomerPhoneFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addCustomerPhoneFragment"
+        android:name="com.tailorfit.android.tailorfitapp.customer.AddCustomerPhoneFragment"
+        android:label="AddCustomerPhoneFragment" >
+        <action
+            android:id="@+id/action_addCustomerPhoneFragment_to_addCustomerGenderFragment"
+            app:destination="@id/addCustomerGenderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addCustomerGenderFragment"
+        android:name="com.tailorfit.android.tailorfitapp.customer.AddCustomerGenderFragment"
+        android:label="AddCustomerGenderFragment" />
+    <fragment
+        android:id="@+id/addGigTitleFragment"
+        android:name="com.tailorfit.android.tailorfitapp.gig.AddGigTitleFragment"
+        android:label="fragment_add_gig_title"
+        tools:layout="@layout/fragment_add_gig_title" >
+        <action
+            android:id="@+id/action_addGigTitleFragment_to_addGigStyleFragment"
+            app:destination="@id/addGigStyleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addGigStyleFragment"
+        android:name="com.tailorfit.android.tailorfitapp.gig.AddGigStyleFragment"
+        android:label="fragment_add_gig_style_fragment"
+        tools:layout="@layout/fragment_add_gig_style_fragment" >
+        <action
+            android:id="@+id/action_addGigStyleFragment_to_addGigDueDateFragment"
+            app:destination="@id/addGigDueDateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addGigDueDateFragment"
+        android:name="com.tailorfit.android.tailorfitapp.gig.AddGigDueDateFragment"
+        android:label="fragment_add_gig_due_date"
+        tools:layout="@layout/fragment_add_gig_due_date" />
 </navigation>

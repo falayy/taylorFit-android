@@ -1,7 +1,7 @@
-package com.tailorfit.android.tailorfitapp.models.request
+package com.tailorfit.android.tailorfitapp.models.response
 import com.google.gson.annotations.SerializedName
 
-data class SignUpRespone(
+data class SignUpResponse(
     @SerializedName("id")
     val id: String,
     @SerializedName("name")
