@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_signUpFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_signUpFragment_to_addCustomerFragment"
+            app:destination="@id/addCustomerFragment" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
@@ -63,5 +66,13 @@
         android:id="@+id/addGigDueDateFragment"
         android:name="com.tailorfit.android.tailorfitapp.gig.AddGigDueDateFragment"
         android:label="fragment_add_gig_due_date"
-        tools:layout="@layout/fragment_add_gig_due_date" />
+        tools:layout="@layout/fragment_add_gig_due_date" >
+        <action
+            android:id="@+id/action_addGigDueDateFragment_to_addGigPriceFragment"
+            app:destination="@id/addGigPriceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addGigPriceFragment"
+        android:name="com.tailorfit.android.tailorfitapp.gig.AddGigPriceFragment"
+        android:label="AddGigPriceFragment" />
 </navigation>

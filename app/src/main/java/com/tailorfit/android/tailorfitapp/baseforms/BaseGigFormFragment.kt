@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.tailorfit.android.base.BaseFragment
 import com.tailorfit.android.databinding.FragmentBaseFormBinding
 import com.tailorfit.android.extensions.stringContent
+import com.tailorfit.android.tailorfitapp.gig.AddGigDueDateFragmentDirections
 import com.tailorfit.android.tailorfitapp.gig.AddGigStyleFragmentDirections
 import com.tailorfit.android.tailorfitapp.gig.AddGigTitleFragmentDirections
 import com.tailorfit.android.tailorfitapp.models.request.CreateGigRequest
@@ -57,6 +58,11 @@ abstract class BaseGigFormFragment : BaseFragment() {
             }
             GigFormType.AddGigDueDateFragment -> {
                 getGigRequest().date = DateUtils.formatDateToSQLDate(data)!!
+                findNavController().navigate(AddGigDueDateFragmentDirections.actionAddGigDueDateFragmentToAddGigPriceFragment())
+            }
+            GigFormType.AddGigPriceFragment ->{
+                getGigRequest().price = data
+
             }
         }
     }
