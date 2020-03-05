@@ -81,7 +81,7 @@ android {
             versionNameSuffix = "-production"
         }
         create("staging") {
-            buildConfigField("String", "API_BASE_URL", "\"API\"")
+            buildConfigField("String", "API_BASE_URL", "\"https://taylorfit.herokuapp.com/\"")
             buildConfigField("String", "OAUTH_CLIENT_ID", "\"API\"")
             buildConfigField("String", "OAUTH_CLIENT_SECRET", "\"API\"")
             buildConfigField("String", "OAUTH_GRANT_TYPE", "\"API\"")

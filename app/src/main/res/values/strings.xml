@@ -33,4 +33,6 @@
     <string name="gig_due_date_hint">12th November 2020</string>
     <string name="gig_price_hint">N5,000</string>
     <string name="gig_price_message">How much are you charging for the gig?</string>
+    <string name="upload_pictures_optional">upload pictures (optional)</string>
+    <string name="remove">Remove</string>
 </resources>

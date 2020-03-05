@@ -38,8 +38,9 @@ class SignUpFragment : BaseFragment() {
         daggerAppComponent.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(SignUpViewModel::class.java)
 
-
-
+        binding.signInText.setOnClickListener {
+            findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToSignInFragment())
+        }
         binding.signupButton.setOnClickListener {
             if (validateTextLayouts(
                     binding.nameEditText,
@@ -61,7 +62,7 @@ class SignUpFragment : BaseFragment() {
 
         viewModel.signUpResponse.observe(this, Observer {
             if (it != null) {
-           findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToAddCustomerFragment())
+                findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToAddCustomerFragment())
             }
         })
     }

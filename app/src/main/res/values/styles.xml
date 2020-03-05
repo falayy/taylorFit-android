@@ -20,5 +20,9 @@
 
     </style>
 
+    <style name="TextAppearance.App.TextInputLayout" parent="@android:style/TextAppearance">
+        <!-- Customize your theme here. -->
+        <item name="android:textColor">@color/textColorLightGrey</item>
+    </style>
 
 </resources>
