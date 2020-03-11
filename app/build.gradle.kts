@@ -38,7 +38,7 @@ android {
         isExperimental = true
     }
 
-   /* signingConfigs {
+    signingConfigs {
         val keystorePropertiesPath = "keystore.properties"
         if (rootProject.file(keystorePropertiesPath).exists()) {
             val keystoreProperties = Properties()
@@ -50,7 +50,7 @@ android {
                 keyPassword = keystoreProperties.getProperty("keyPassword")
             }
         }
-    }*/
+    }
 
     buildTypes {
         getByName("release") {
@@ -60,11 +60,11 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
             versionNameSuffix = "-release"
-          //  signingConfig = signingConfigs.getByName("config")
+            signingConfig = signingConfigs.getByName("config")
         }
         getByName("debug") {
             versionNameSuffix = "-debug"
-         //   signingConfig = signingConfigs.getByName("config")
+            signingConfig = signingConfigs.getByName("config")
         }
     }
 
