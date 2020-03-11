@@ -16,7 +16,6 @@ class SignUpViewModel @Inject constructor(
     private val accountRepository: AccountsRepository
 ) : BaseViewModel() {
 
-
     private val _signUpResponse = MutableLiveData<SignUpResponse>()
 
     val signUpResponse: LiveData<SignUpResponse>
