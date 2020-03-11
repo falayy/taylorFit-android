@@ -16,6 +16,7 @@ import com.tailorfit.android.tailorfitapp.models.request.SignUpRequest
 import com.tailorfit.android.tailorfitapp.validateTextLayouts
 import javax.inject.Inject
 
+//TODO Do you know why your loading is not showing?... Figure it out.
 class SignUpFragment : BaseFragment() {
 
     @Inject
@@ -54,7 +55,7 @@ class SignUpFragment : BaseFragment() {
                         binding.storeEditText.stringContent(),
                         binding.nameEditText.stringContent(),
                         binding.passwordEditText.stringContent(),
-                        binding.phoneEditText.stringContent().toLong()
+                        binding.phoneEditText.stringContent().toLong() // TODO. Why Long??. Collect phone number as String 🤨
                     )
                 )
             }

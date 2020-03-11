@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.tailorfit.android.base.BaseFragment
 import com.tailorfit.android.databinding.FragmentBaseFormBinding
@@ -34,7 +35,7 @@ abstract class BaseCustomerFormFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        setDataHints(binding)
         if (validateTextLayouts(binding.editText)) {
             data = binding.editText.stringContent()
             navigate()
@@ -45,13 +46,15 @@ abstract class BaseCustomerFormFragment : BaseFragment() {
         when (getCustomerFormType()) {
             CustomerFormType.AddCustomerFragment -> {
                 getCustomerRequest().name = data
-                findNavController().navigate(AddCustomerFragmentDirections.
-                    actionAddCustomerFragmentToAddCustomerPhoneFragment())
+                findNavController().navigate(
+                    AddCustomerFragmentDirections.actionAddCustomerFragmentToAddCustomerPhoneFragment()
+                )
             }
             CustomerFormType.AddCustomerPhoneFragment -> {
                 getCustomerRequest().phoneNumber = data
-                findNavController().navigate(AddCustomerPhoneFragmentDirections.
-                    actionAddCustomerPhoneFragmentToAddCustomerGenderFragment())
+                findNavController().navigate(
+                    AddCustomerPhoneFragmentDirections.actionAddCustomerPhoneFragmentToAddCustomerGenderFragment()
+                )
             }
             CustomerFormType.AddCustomerGenderFragment -> {
                 getCustomerRequest().gender = data
@@ -61,7 +64,7 @@ abstract class BaseCustomerFormFragment : BaseFragment() {
     }
 
     private fun createCustomer() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        Toast.makeText(mainActivity, "Handle me!", Toast.LENGTH_SHORT).show()
     }
 
 

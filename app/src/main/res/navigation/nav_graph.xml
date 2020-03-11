@@ -78,4 +78,8 @@
         android:id="@+id/addGigPriceFragment"
         android:name="com.tailorfit.android.tailorfitapp.gig.AddGigPriceFragment"
         android:label="AddGigPriceFragment" />
+    <fragment
+        android:id="@+id/blankFragment"
+        android:name="com.tailorfit.android.BlankFragment"
+        android:label="BlankFragment" />
 </navigation>

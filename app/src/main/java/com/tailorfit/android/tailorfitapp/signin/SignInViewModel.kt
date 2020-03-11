@@ -34,8 +34,6 @@ class SignInViewModel @Inject constructor(
                     is Result.Error -> _loadingStatus.value = LoadingStatus.Error(it.errorCode, it.errorMessage)
                 }
             }.disposeBy(disposeBag)
-
-
     }
 
     override fun addAllLiveDataToObservablesList() {

@@ -12,7 +12,6 @@ plugins {
     id("kotlin-android")
 }
 
-Config.Plugins
 
 android {
     compileSdkVersion(Config.SdkVersions.compile)
@@ -72,14 +71,6 @@ android {
     flavorDimensions("implementation")
 
     productFlavors {
-        create("production") {
-            buildConfigField("String", "API_BASE_URL", "\"API-creds\"")
-            buildConfigField("String", "OAUTH_CLIENT_ID", "\"API-creds\"")
-            buildConfigField("String", "OAUTH_CLIENT_SECRET", "\"API-creds\"")
-            buildConfigField("String", "OAUTH_GRANT_TYPE", "\"API-creds\"")
-            setDimension("implementation")
-            versionNameSuffix = "-production"
-        }
         create("staging") {
             buildConfigField("String", "API_BASE_URL", "\"https://taylorfit.herokuapp.com/\"")
             buildConfigField("String", "OAUTH_CLIENT_ID", "\"API\"")
@@ -87,6 +78,14 @@ android {
             buildConfigField("String", "OAUTH_GRANT_TYPE", "\"API\"")
             setDimension("implementation")
             versionNameSuffix = "-staging"
+        }
+        create("production") {
+            buildConfigField("String", "API_BASE_URL", "\"https://taylorfit.herokuapp.com/\"")
+            buildConfigField("String", "OAUTH_CLIENT_ID", "\"API-creds\"")
+            buildConfigField("String", "OAUTH_CLIENT_SECRET", "\"API-creds\"")
+            buildConfigField("String", "OAUTH_GRANT_TYPE", "\"API-creds\"")
+            setDimension("implementation")
+            versionNameSuffix = "-production"
         }
     }
 
@@ -104,6 +103,8 @@ android {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("androidx.appcompat:appcompat:1.1.0")
+    implementation("androidx.constraintlayout:constraintlayout:1.1.3")
 
     //Tests
     testImplementation(Config.Libs.Test.jUnit)

@@ -21,7 +21,6 @@ class AddCustomerFragment : BaseCustomerFormFragment() {
         binding.editText.hint = getString(R.string.customer_hint_name)
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
