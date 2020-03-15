@@ -27,7 +27,8 @@ class SignUpFragment : BaseFragment() {
     private lateinit var binding: FragmentSignUpBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSignUpBinding.inflate(layoutInflater)
@@ -43,28 +44,29 @@ class SignUpFragment : BaseFragment() {
             findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToSignInFragment())
         }
         binding.signupButton.setOnClickListener {
-            if (validateTextLayouts(
-                    binding.nameEditText,
-                    binding.phoneEditText,
-                    binding.storeEditText,
-                    binding.passwordEditText
-                )
-            ) {
-                viewModel.signUp(
-                    SignUpRequest(
-                        binding.storeEditText.stringContent(),
-                        binding.nameEditText.stringContent(),
-                        binding.passwordEditText.stringContent(),
-                        binding.phoneEditText.stringContent().toLong() // TODO. Why Long??. Collect phone number as String 🤨
-                    )
-                )
-            }
+            findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToAddCustomerNameFragment())
+//            if (validateTextLayouts(
+//                    binding.nameEditText,
+//                    binding.phoneEditText,
+//                    binding.storeEditText,
+//                    binding.passwordEditText
+//                )
+//            ) {
+//                viewModel.signUp(
+//                    SignUpRequest(
+//                        binding.storeEditText.stringContent(),
+//                        binding.nameEditText.stringContent(),
+//                        binding.passwordEditText.stringContent(),
+//                        binding.phoneEditText.stringContent().toLong() // TODO. Why Long??. Collect phone number as String 🤨
+//                    )
+//                )
+//            }
         }
 
-        viewModel.signUpResponse.observe(this, Observer {
-            if (it != null) {
-                findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToAddCustomerFragment())
-            }
-        })
+//        viewModel.signUpResponse.observe(this, Observer {
+//            if (it != null) {
+//                findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToAddCustomerFragment())
+//            }
+//        })
     }
 }

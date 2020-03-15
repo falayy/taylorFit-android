@@ -125,13 +125,13 @@
             android:text="@string/don_t_have_an_account"
             android:textColor="@color/textColorPrimaryGrey"
             android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/sign_int_text"
+            app:layout_constraintEnd_toStartOf="@+id/sign_up_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/signin_button"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <TextView
-            android:id="@+id/sign_int_text"
+            android:id="@+id/sign_up_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"

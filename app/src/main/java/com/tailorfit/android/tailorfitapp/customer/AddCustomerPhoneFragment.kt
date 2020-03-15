@@ -10,15 +10,7 @@ import com.tailorfit.android.tailorfitapp.models.request.CreateCustomerRequest
 
 class AddCustomerPhoneFragment : BaseCustomerFormFragment() {
 
-
-
-    override fun getCustomerRequest(): CreateCustomerRequest {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun getCustomerFormType(): CustomerFormType {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getCustomerFormType() = CustomerFormType.AddCustomerPhoneFragment
 
     override fun setDataHints(binding: FragmentBaseFormBinding) {
         binding.formDescription.text = getString(R.string.customer_number_message)

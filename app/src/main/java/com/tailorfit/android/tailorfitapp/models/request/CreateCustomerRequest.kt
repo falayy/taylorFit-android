@@ -1,8 +1,12 @@
 package com.tailorfit.android.tailorfitapp.models.request
 
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+
+@Parcelize
 data class CreateCustomerRequest(
     @SerializedName("gender")
     var gender: String? = null,
@@ -12,4 +16,4 @@ data class CreateCustomerRequest(
     var phoneNumber: String? = null,
     @SerializedName("user_id")
     var userId: String? = null
-)
+) : Parcelable

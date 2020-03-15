@@ -10,13 +10,7 @@ import com.tailorfit.android.tailorfitapp.models.request.CreateCustomerRequest
 class AddCustomerGenderFragment : BaseCustomerFormFragment() {
 
 
-    override fun getCustomerRequest(): CreateCustomerRequest {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun getCustomerFormType(): CustomerFormType {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getCustomerFormType() = CustomerFormType.AddCustomerGenderFragment
 
 
     override fun setDataHints(binding: FragmentBaseFormBinding) {

@@ -9,10 +9,11 @@ import androidx.navigation.fragment.findNavController
 import com.tailorfit.android.base.BaseFragment
 import com.tailorfit.android.databinding.FragmentBaseFormBinding
 import com.tailorfit.android.extensions.stringContent
-import com.tailorfit.android.tailorfitapp.customer.AddCustomerFragmentDirections
+import com.tailorfit.android.tailorfitapp.customer.AddCustomerNameFragmentDirections
 import com.tailorfit.android.tailorfitapp.customer.AddCustomerPhoneFragmentDirections
 import com.tailorfit.android.tailorfitapp.models.request.CreateCustomerRequest
 import com.tailorfit.android.tailorfitapp.validateTextLayouts
+import timber.log.Timber
 
 enum class CustomerFormType {
     AddCustomerFragment,
@@ -23,6 +24,7 @@ enum class CustomerFormType {
 abstract class BaseCustomerFormFragment : BaseFragment() {
 
     private lateinit var binding: FragmentBaseFormBinding
+    private lateinit var createCustomerRequest: CreateCustomerRequest
     private var data = ""
 
     override fun onCreateView(
@@ -36,29 +38,48 @@ abstract class BaseCustomerFormFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setDataHints(binding)
-        if (validateTextLayouts(binding.editText)) {
-            data = binding.editText.stringContent()
-            navigate()
+        navigate()
+        if (!validateTextLayouts(binding.editText)) {
         }
     }
 
     private fun navigate() {
+        var name = ""
+        var phoneNumber = ""
         when (getCustomerFormType()) {
             CustomerFormType.AddCustomerFragment -> {
-                getCustomerRequest().name = data
-                findNavController().navigate(
-                    AddCustomerFragmentDirections.actionAddCustomerFragmentToAddCustomerPhoneFragment()
-                )
+                binding.FormProceedButton.setOnClickListener {
+                    if (!validateTextLayouts(binding.editText)) {
+                        name = binding.editText.stringContent()
+                    }
+                    findNavController().navigate(
+                        AddCustomerNameFragmentDirections.actionAddCustomerNameFragmentToAddCustomerPhoneFragment()
+                    )
+                }
             }
             CustomerFormType.AddCustomerPhoneFragment -> {
-                getCustomerRequest().phoneNumber = data
-                findNavController().navigate(
-                    AddCustomerPhoneFragmentDirections.actionAddCustomerPhoneFragmentToAddCustomerGenderFragment()
-                )
+                binding.FormProceedButton.setOnClickListener {
+                    if (!validateTextLayouts(binding.editText)) {
+                        phoneNumber = binding.editText.stringContent()
+                    }
+                    findNavController().navigate(
+                        AddCustomerPhoneFragmentDirections.actionAddCustomerPhoneFragmentToAddCustomerGenderFragment()
+                    )
+                }
             }
             CustomerFormType.AddCustomerGenderFragment -> {
-                getCustomerRequest().gender = data
-                createCustomer()
+                binding.FormProceedButton.setOnClickListener {
+                    if (!validateTextLayouts(binding.editText)) {
+                        data = binding.editText.stringContent()
+                    }
+                    createCustomerRequest = CreateCustomerRequest(
+                        data,
+                        name,
+                        phoneNumber,
+                        "kfj"
+                    )
+                    createCustomer()
+                }
             }
         }
     }
@@ -67,8 +88,6 @@ abstract class BaseCustomerFormFragment : BaseFragment() {
         Toast.makeText(mainActivity, "Handle me!", Toast.LENGTH_SHORT).show()
     }
 
-
-    protected abstract fun getCustomerRequest(): CreateCustomerRequest
 
     protected abstract fun getCustomerFormType(): CustomerFormType
 

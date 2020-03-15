@@ -3,6 +3,7 @@ package com.tailorfit.android.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.tailorfit.android.tailorfitapp.signin.SignInViewModel
 import com.tailorfit.android.tailorfitapp.signup.SignUpViewModel
 import dagger.Binds
 import dagger.Module
@@ -19,4 +20,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(SignUpViewModel::class)
     abstract fun bindContactSourcesViewModel(viewModel: SignUpViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SignInViewModel::class)
+    abstract fun bindSignInViewModel(viewModel: SignInViewModel) : ViewModel
 }

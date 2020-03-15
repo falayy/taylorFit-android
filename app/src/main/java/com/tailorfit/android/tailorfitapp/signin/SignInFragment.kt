@@ -22,11 +22,11 @@ class SignInFragment : BaseFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private lateinit var viewModel: SignInViewModel
-
     private lateinit var binding: FragmentSignInBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSignInBinding.inflate(layoutInflater)
@@ -39,6 +39,9 @@ class SignInFragment : BaseFragment() {
         daggerAppComponent.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(SignInViewModel::class.java)
 
+        binding.signUpText.setOnClickListener {
+            findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToSignUpFragment())
+        }
         binding.signinButton.setOnClickListener {
             if (validateTextLayouts(
                     binding.phoneEditText,
@@ -56,7 +59,7 @@ class SignInFragment : BaseFragment() {
 
         viewModel.signInResponse.observe(this, Observer {
             if (it!= null){
-              findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToAddCustomerFragment())
+              findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToAddCustomerNameFragment())
             }
         })
     }
