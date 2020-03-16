@@ -6,17 +6,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.tailorfit.android.databinding.FragmentAddGigDetailsBinding
 
-import com.tailorfit.android.tailorfit.R
-/**
- * A simple [Fragment] subclass.
- */
+
 class AddGigDetails : Fragment() {
+
+    private lateinit var binding : FragmentAddGigDetailsBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_gig_details, container, false)
+        binding = FragmentAddGigDetailsBinding.inflate(layoutInflater)
+        return binding.root
     }
 
 

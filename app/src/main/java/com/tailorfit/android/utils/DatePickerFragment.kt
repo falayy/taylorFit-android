@@ -1,4 +1,4 @@
-package com.example.meritflow.utils
+package com.tailorfit.android.utils
 
 import android.app.Activity
 import android.app.DatePickerDialog
@@ -7,7 +7,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.DatePicker
 import androidx.appcompat.app.AppCompatDialogFragment
-import com.example.meritflow.R
 import java.text.SimpleDateFormat
 import java.util.*
 

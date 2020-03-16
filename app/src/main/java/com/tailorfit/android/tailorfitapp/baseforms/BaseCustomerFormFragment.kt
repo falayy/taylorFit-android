@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import com.tailorfit.android.base.BaseFragment
 import com.tailorfit.android.databinding.FragmentBaseFormBinding
 import com.tailorfit.android.extensions.stringContent
+import com.tailorfit.android.tailorfitapp.customer.AddCustomerGenderFragmentDirections
 import com.tailorfit.android.tailorfitapp.customer.AddCustomerNameFragmentDirections
 import com.tailorfit.android.tailorfitapp.customer.AddCustomerPhoneFragmentDirections
 import com.tailorfit.android.tailorfitapp.models.request.CreateCustomerRequest
@@ -86,6 +87,7 @@ abstract class BaseCustomerFormFragment : BaseFragment() {
 
     private fun createCustomer() {
         Toast.makeText(mainActivity, "Handle me!", Toast.LENGTH_SHORT).show()
+        findNavController().navigate(AddCustomerGenderFragmentDirections.actionAddCustomerGenderFragmentToAddGigTitleFragment())
     }
 
 

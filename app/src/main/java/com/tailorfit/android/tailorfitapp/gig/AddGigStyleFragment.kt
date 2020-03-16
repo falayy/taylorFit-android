@@ -10,8 +10,6 @@ import com.tailorfit.android.tailorfitapp.models.request.CreateGigRequest
 
 
 class AddGigStyleFragment : BaseGigFormFragment() {
-    private lateinit var createGigRequest: CreateGigRequest
-    override fun getGigRequest(): CreateGigRequest = createGigRequest
 
     override fun getGigFormType(): GigFormType = GigFormType.AddGigStyleFragment
 
