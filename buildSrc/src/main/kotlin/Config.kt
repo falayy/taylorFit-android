@@ -28,13 +28,14 @@ object Config {
             const val mockito = "org.mockito:mockito-core:2.25.0"
             const val androidXTestRunner = "androidx.test:runner:1.2.0"
             const val espressoCore = "androidx.test.espresso:espresso-core:3.2.0"
+            const val truth = "com.google.truth:truth:1.0.1"
         }
 
         object AndroidX {
             internal const val navigationVersion = "1.0.0"
             private const val lifeCycleVersion = "2.1.0-alpha01"
-
             const val lifeCycleExt = "androidx.lifecycle:lifecycle-extensions:$lifeCycleVersion"
+            const val lifeCycleReactive = "android.arch.lifecycle:reactivestreams:$lifeCycleVersion"
             const val lifeCycleViewModel =
                 "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifeCycleVersion"
             const val navigationFragment =
@@ -46,6 +47,10 @@ object Config {
             const val browser = "androidx.browser:browser:1.0.0"
             const val legacySupportLib = "androidx.legacy:legacy-support-v4:1.0.0"
             const val viewPager2 = "androidx.viewpager2:viewpager2:1.0.0"
+            const val room = "androidx.room:room-runtime:2.0.0"
+            const val roomCompiler = "androidx.room:room-compiler:2.0.0"
+            const val workManager = "android.arch.work:work-runtime-ktx:1.0.0-alpha11"
+
         }
 
         object DI {
@@ -64,11 +69,19 @@ object Config {
             const val okhttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.0.1"
         }
 
+        object Reactive {
+            const val rxJava = "io.reactivex.rxjava2:rxjava:2.2.17"
+            const val rxAndroid = "io.reactivex.rxjava2:rxandroid:2.1.1"
+            const val rxKotlin = "io.reactivex.rxjava2:rxkotlin:2.4.0"
+            const val rxRetrofitAdapter = "com.squareup.retrofit2:adapter-rxjava2:2.7.1"
+        }
+
         object Misc {
             const val materialDesign = "com.google.android.material:material:1.1.0-alpha08"
             const val timber = "com.jakewharton.timber:timber:4.7.1"
             const val materialDialogs = "com.afollestad.material-dialogs:core:3.0.0-rc1"
             const val countryCodePicker = "com.github.joielechong:countrycodepicker:2.3.3"
+            const val glide = "com.github.bumptech.glide:glide:4.8.0"
             const val googlePlayServices = "com.google.android.gms:play-services-location:17.0.0"
         }
     }

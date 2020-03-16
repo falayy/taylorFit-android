@@ -5,18 +5,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.tailorfit.android.networkutils.LoadingStatus
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
+import io.reactivex.disposables.CompositeDisposable
 
 abstract class BaseViewModel : ViewModel() {
+
+    protected val disposeBag = CompositeDisposable()
 
     val observablesList: MutableList<LiveData<*>> = mutableListOf()
 
     protected val _loadingStatus = MutableLiveData<LoadingStatus>()
-
-    private val viewModelBackgroundJob = SupervisorJob()
-    protected val viewModelIOScope = CoroutineScope(viewModelBackgroundJob + Dispatchers.IO)
 
     val loadingStatus: LiveData<LoadingStatus>
         get() = _loadingStatus
@@ -39,6 +36,6 @@ abstract class BaseViewModel : ViewModel() {
 
     override fun onCleared() {
         super.onCleared()
-        viewModelBackgroundJob.cancel()
+        disposeBag.clear()
     }
 }

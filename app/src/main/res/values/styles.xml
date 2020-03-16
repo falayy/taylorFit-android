@@ -2,5 +2,27 @@
 
     <style name="AppTheme" parent="AppThemeParent" />
 
+    <style name="AppTheme.HorizontalButtonAppearance" parent="Widget.MaterialComponents.Button.Icon">
+        <item name="android:fontFamily">@font/lato_bold</item>
+        <item name="fontFamily">@font/lato_bold</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="backgroundTint">@color/secondaryColorChocolate</item>
+    </style>
+
+
+    <style name="TextInputLayoutStyle" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeWidth">3dp</item>
+        <item name="boxStrokeColor">@color/textColorLightGrey</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="android:textColorHint">@color/textColorPrimaryGrey</item>
+
+    </style>
+
+    <style name="TextAppearance.App.TextInputLayout" parent="@android:style/TextAppearance">
+        <!-- Customize your theme here. -->
+        <item name="android:textColor">@color/textColorLightGrey</item>
+    </style>
 
 </resources>

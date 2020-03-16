@@ -2,14 +2,20 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <color name="colorAccent">#ff5a1a</color>
 
-    <color name="colorPrimary">#3b3b3b</color>
+    <color name="colorPrimary">#F9F9F9</color>
     <color name="colorPrimaryDark">#151515</color>
 
 
     <color name="textColorPrimaryWhite">#ffffff</color>
     <color name="textColorSecondaryWhite">#dcffffff</color>
 
-    <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@android:color/transparent</color>
+    <color name="backgroundPrimaryWhite">#F9F9F9</color>
+    <color name="textColorPrimaryGrey">#848484</color>
+    <color name="textColorSecondaryGrey">#8F000000</color>
+    <color name="textColorDark">#DB000000</color>
+    <color name="textColorLightGrey">#B5B5B5</color>
 
+    <color name="secondaryColorChocolate">#3D1818</color>
+    <color name="primaryColorChocolate">#5E2E00</color>
 
 </resources>

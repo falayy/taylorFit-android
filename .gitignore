@@ -63,6 +63,7 @@ obj/
 /out/
 
 # User-specific configurations
+.idea/
 .idea/caches/
 .idea/libraries/
 .idea/shelf/
@@ -101,6 +102,7 @@ Thumbs.db
 .project
 .cproject
 .settings/
+
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
@@ -155,6 +157,9 @@ fabric.properties
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
 .idea/**/dbnavigator.xml
+.idea/kotlinScripting.xml
+keystore.properties
+TAYLOR_ANDROID_KEYSTORE
 
 # Gradle
 .idea/**/gradle.xml

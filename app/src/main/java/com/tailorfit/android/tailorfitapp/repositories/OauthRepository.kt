@@ -16,17 +16,16 @@
 package com.tailorfit.android.tailorfitapp.repositories
 
 import com.tailorfit.android.BuildConfig
-import com.tailorfit.android.tailorfitapp.apis.ExampleAPIAuthService
-import com.tailorfit.android.tailorfitapp.models.request.AccessTokenRequest
-import com.tailorfit.android.tailorfitapp.models.response.AccessToken
 import com.tailorfit.android.networkutils.GENERIC_ERROR_CODE
 import com.tailorfit.android.networkutils.GENERIC_ERROR_MESSAGE
-import com.tailorfit.android.networkutils.getAPIResult
 import com.tailorfit.android.networkutils.Result
-
+import com.tailorfit.android.networkutils.getAPIResult
+import com.tailorfit.android.tailorfitapp.apis.TailorFitApiAuthService
+import com.tailorfit.android.tailorfitapp.models.request.AccessTokenRequest
+import com.tailorfit.android.tailorfitapp.models.response.AccessToken
 import javax.inject.Inject
 
-class OauthRepository @Inject constructor(private val oauthService: ExampleAPIAuthService) {
+class OauthRepository @Inject constructor(private val oauthService: TailorFitApiAuthService) {
 
     fun getAccessToken(): Result<AccessToken> {
         return try {

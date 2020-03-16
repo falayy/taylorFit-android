@@ -9,13 +9,15 @@ plugins {
     kotlin("android")
     kotlin("kapt")
     id("kotlin-android-extensions")
+    id("kotlin-android")
 }
+
 
 android {
     compileSdkVersion(Config.SdkVersions.compile)
 
     defaultConfig {
-        applicationId = "com.cottacush.android.ginger"
+        applicationId = "com.tailorfit.android.tailorfit"
         minSdkVersion(Config.SdkVersions.min)
         targetSdkVersion(Config.SdkVersions.target)
         versionCode = Config.PublishVersion.code
@@ -69,21 +71,21 @@ android {
     flavorDimensions("implementation")
 
     productFlavors {
-        create("production") {
-            buildConfigField("String", "API_BASE_URL", "\"API-creds\"")
-            buildConfigField("String", "OAUTH_CLIENT_ID", "\"API-creds\"")
-            buildConfigField("String", "OAUTH_CLIENT_SECRET", "\"API-creds\"")
-            buildConfigField("String", "OAUTH_GRANT_TYPE", "\"API-creds\"")
-            setDimension("implementation")
-            versionNameSuffix = "-production"
-        }
         create("staging") {
-            buildConfigField("String", "API_BASE_URL", "\"API\"")
+            buildConfigField("String", "API_BASE_URL", "\"https://taylorfit.herokuapp.com/\"")
             buildConfigField("String", "OAUTH_CLIENT_ID", "\"API\"")
             buildConfigField("String", "OAUTH_CLIENT_SECRET", "\"API\"")
             buildConfigField("String", "OAUTH_GRANT_TYPE", "\"API\"")
             setDimension("implementation")
             versionNameSuffix = "-staging"
+        }
+        create("production") {
+            buildConfigField("String", "API_BASE_URL", "\"https://taylorfit.herokuapp.com/\"")
+            buildConfigField("String", "OAUTH_CLIENT_ID", "\"API-creds\"")
+            buildConfigField("String", "OAUTH_CLIENT_SECRET", "\"API-creds\"")
+            buildConfigField("String", "OAUTH_GRANT_TYPE", "\"API-creds\"")
+            setDimension("implementation")
+            versionNameSuffix = "-production"
         }
     }
 
@@ -100,6 +102,9 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("androidx.appcompat:appcompat:1.1.0")
+    implementation("androidx.constraintlayout:constraintlayout:1.1.3")
 
     //Tests
     testImplementation(Config.Libs.Test.jUnit)
@@ -116,13 +121,19 @@ dependencies {
     implementation(Config.Libs.AndroidX.constraintLayout)
     implementation(Config.Libs.AndroidX.browser)
     implementation(Config.Libs.AndroidX.core)
-    implementation(Config.Libs.AndroidX.lifeCycleExt)
     implementation(Config.Libs.AndroidX.lifeCycleViewModel)
+    implementation(Config.Libs.AndroidX.lifeCycleExt)
     implementation(Config.Libs.AndroidX.navigationFragment)
     implementation(Config.Libs.AndroidX.navigationUI)
     implementation(Config.Libs.AndroidX.recyclerView)
     implementation(Config.Libs.AndroidX.legacySupportLib)
     implementation(Config.Libs.AndroidX.viewPager2)
+    implementation(Config.Libs.AndroidX.lifeCycleReactive)
+    implementation(Config.Libs.AndroidX.room)
+    kapt(Config.Libs.AndroidX.roomCompiler)
+
+    //work manager
+    implementation(Config.Libs.AndroidX.workManager)
 
     //DI with Dagger
     kapt(Config.Libs.DI.daggerCompiler)
@@ -140,7 +151,14 @@ dependencies {
     implementation(Config.Libs.Misc.materialDialogs)
     implementation(Config.Libs.Misc.timber)
     implementation(Config.Libs.Misc.countryCodePicker)
+    implementation(Config.Libs.Misc.glide)
     implementation(Config.Libs.Misc.googlePlayServices)
+
+    //Rx
+    implementation(Config.Libs.Reactive.rxJava)
+    implementation(Config.Libs.Reactive.rxAndroid)
+    implementation(Config.Libs.Reactive.rxKotlin)
+    implementation(Config.Libs.Reactive.rxRetrofitAdapter)
 }
 
 apply(from = "../spotless.gradle")

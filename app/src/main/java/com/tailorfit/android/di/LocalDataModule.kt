@@ -4,8 +4,8 @@ package com.tailorfit.android.di
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import com.tailorfit.android.utils.PrefsUtils
 import com.google.gson.Gson
+import com.tailorfit.android.utils.PrefsUtils
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

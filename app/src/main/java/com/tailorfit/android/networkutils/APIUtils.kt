@@ -14,9 +14,7 @@ fun <T : Any> getAPIResult(response: Response<BaseAPIResponse<T>>): Result<T> {
         if (body?.data != null) {
             return Result.Success(body.data!!)
         }
-    }
-
-    else {
+    } else {
         val errorBody = response.errorBody()
         if (errorBody != null) {
             val errorBodyString = errorBody.string()
@@ -48,3 +46,4 @@ fun getErrorCode(errorBody: String): String {
         GENERIC_ERROR_CODE
     }
 }
+

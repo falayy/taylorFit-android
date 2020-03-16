@@ -1,5 +1,38 @@
 <resources>
-    <string name="app_name">BaseProj</string>
+    <string name="app_name">TaylorFit</string>
     <string name="default_loading_message">Loading, Please wait . . .</string>
     <string name="ok">OK</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hi_there">Hi there!</string>
+    <string name="sign_up_here">Sign up here</string>
+    <string name="already_have_an_account">ALREADY HAVE AN ACCOUNT?</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="name">NAME</string>
+    <string name="store_name">STORE NAME</string>
+    <string name="password">PASSWORD</string>
+    <string name="phone_number">PHONE NUMBER</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="sign_in_here">Sign in here</string>
+    <string name="don_t_have_an_account">DON\'T HAVE AN ACCOUNT?</string>
+    <string name="proceed">PROCEED</string>
+    <string name="gig_title_message">Give this Gig a title to remember easily</string>
+    <string name="gig_title_hint">Graduation Dinner</string>
+    <string name="gig_style_message">What type of style does your customer want?</string>
+    <string name="gig_style_hint">Long Gown</string>
+    <string name="customer_hint_name">Olayinka Folashade</string>
+    <string name="customer_name_message">Add your customer\'s name here</string>
+    <string name="customer_number_hint">08031234564</string>
+    <string name="customer_number_message">Add your customer\'s Phone number here</string>
+    <string name="customer_gender_message">What is your customer\'s gender?</string>
+    <string name="customer_gender_hint">Female</string>
+    <string name="empty_field">Empty Field</string>
+    <string name="let_s_get_the_measurement_started_inches">Let\'s get the measurement started (inches)</string>
+    <string name="gig_due_date_message">When are you going to finish sewing the cloth?</string>
+    <string name="gig_due_date_hint">12th November 2020</string>
+    <string name="gig_price_hint">N5,000</string>
+    <string name="gig_price_message">How much are you charging for the gig?</string>
+    <string name="upload_pictures_optional">upload pictures (optional)</string>
+    <string name="remove">Remove</string>
 </resources>
