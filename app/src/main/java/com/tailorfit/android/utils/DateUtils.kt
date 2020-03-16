@@ -1,7 +1,7 @@
-package com.tailorfit.android.utils
+package com.cottacush.android.ginger.utils
 
-import com.tailorfit.android.utils.DateUtils.FormatPattern.DISPLAY_DATE
-import com.tailorfit.android.utils.DateUtils.FormatPattern.MYSQL_DATE
+import com.cottacush.android.ginger.utils.DateUtils.FormatPattern.DISPLAY_DATE
+import com.cottacush.android.ginger.utils.DateUtils.FormatPattern.MYSQL_DATE
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -25,7 +25,7 @@ object DateUtils {
         return formatDate(date, fromFormat, toFormat)
     }
 
-    private fun formatDate(date: String?, fromFormat: SimpleDateFormat, toFormat: SimpleDateFormat): String? {
+    fun formatDate(date: String?, fromFormat: SimpleDateFormat, toFormat: SimpleDateFormat): String? {
         return try {
             toFormat.format(fromFormat.parse(date))
         } catch (e: ParseException) {
