@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_signInFragment_to_addCustomerNameFragment"
             app:destination="@id/addCustomerNameFragment" />
+        <action
+            android:id="@+id/action_signInFragment_to_addGigTitleFragment"
+            app:destination="@id/addGigTitleFragment" />
     </fragment>
     <fragment
         android:id="@+id/addCustomerPhoneFragment"
@@ -42,7 +45,11 @@
     <fragment
         android:id="@+id/addCustomerGenderFragment"
         android:name="com.tailorfit.android.tailorfitapp.customer.AddCustomerGenderFragment"
-        android:label="AddCustomerGenderFragment" />
+        android:label="AddCustomerGenderFragment" >
+        <action
+            android:id="@+id/action_addCustomerGenderFragment_to_addGigTitleFragment"
+            app:destination="@id/addGigTitleFragment" />
+    </fragment>
     <fragment
         android:id="@+id/addGigTitleFragment"
         android:name="com.tailorfit.android.tailorfitapp.gig.AddGigTitleFragment"
@@ -70,7 +77,11 @@
     <fragment
         android:id="@+id/addGigPriceFragment"
         android:name="com.tailorfit.android.tailorfitapp.gig.AddGigPriceFragment"
-        android:label="AddGigPriceFragment" />
+        android:label="AddGigPriceFragment" >
+        <action
+            android:id="@+id/action_addGigPriceFragment_to_addGigDetails"
+            app:destination="@id/addGigDetails" />
+    </fragment>
     <fragment
         android:id="@+id/addCustomerNameFragment"
         android:name="com.tailorfit.android.tailorfitapp.customer.AddCustomerNameFragment"
@@ -79,4 +90,9 @@
             android:id="@+id/action_addCustomerNameFragment_to_addCustomerPhoneFragment"
             app:destination="@id/addCustomerPhoneFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/addGigDetails"
+        android:name="com.tailorfit.android.tailorfitapp.gig.AddGigDetails"
+        android:label="fragment_add_gig_details"
+        tools:layout="@layout/fragment_add_gig_details" />
 </navigation>

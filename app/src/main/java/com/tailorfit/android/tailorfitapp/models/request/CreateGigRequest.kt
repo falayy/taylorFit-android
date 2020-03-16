@@ -7,17 +7,17 @@ data class CreateGigRequest(
     @SerializedName("customer_id")
     var customerId: String,
     @SerializedName("date")
-    var date: String,
+    var date: String?,
     @SerializedName("notes")
-    var notes: String,
+    var notes: String?,
     @SerializedName("price")
-    var price: String,
+    var price: String?,
     @SerializedName("style")
-    var style: List<String>,
+    var style: List<String>?,
     @SerializedName("style_name")
-    var styleName: String,
+    var styleName: String?,
     @SerializedName("title")
-    var title: String,
+    var title: String?,
     @SerializedName("user_id")
-    var userId: String
+    var userId: String?
 )

@@ -7,9 +7,6 @@ import com.tailorfit.android.tailorfitapp.baseforms.GigFormType
 import com.tailorfit.android.tailorfitapp.models.request.CreateGigRequest
 
 class AddGigPriceFragment : BaseGigFormFragment() {
-    private lateinit var createGigRequest: CreateGigRequest
-
-    override fun getGigRequest(): CreateGigRequest = createGigRequest
 
     override fun getGigFormType(): GigFormType = GigFormType.AddGigPriceFragment
 
