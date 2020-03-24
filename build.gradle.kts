@@ -11,6 +11,7 @@ buildscript {
         classpath(Config.Plugins.gradle)
         classpath(Config.Plugins.spotless)
         classpath(Config.Plugins.kotlin)
+        classpath(Config.Plugins.googleServices)
         classpath(Config.Plugins.navSaveArgs)
     }
 }

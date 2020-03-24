@@ -1,4 +1,5 @@
 package com.tailorfit.android.tailorfitapp.models.request
 
-class GigImageModel {
-}
+data class GigImageModel(val id : String,
+    val imageStyle: String
+)

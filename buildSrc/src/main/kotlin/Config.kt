@@ -83,6 +83,7 @@ object Config {
             const val countryCodePicker = "com.github.joielechong:countrycodepicker:2.3.3"
             const val glide = "com.github.bumptech.glide:glide:4.8.0"
             const val googlePlayServices = "com.google.android.gms:play-services-location:17.0.0"
+            const val firebaseStorage = "com.google.firebase:firebase-storage-ktx:19.1.1"
         }
     }
 
@@ -92,6 +93,7 @@ object Config {
         const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Libs.Kotlin.kotlinVersion}"
         const val navSaveArgs =
             "android.arch.navigation:navigation-safe-args-gradle-plugin:${Libs.AndroidX.navigationVersion}"
+            const val googleServices = "com.google.gms:google-services:4.3.3"
     }
 
 }

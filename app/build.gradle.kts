@@ -10,6 +10,7 @@ plugins {
     kotlin("kapt")
     id("kotlin-android-extensions")
     id("kotlin-android")
+    id("com.google.gms.google-services")
 }
 
 
@@ -153,6 +154,7 @@ dependencies {
     implementation(Config.Libs.Misc.countryCodePicker)
     implementation(Config.Libs.Misc.glide)
     implementation(Config.Libs.Misc.googlePlayServices)
+    implementation(Config.Libs.Misc.firebaseStorage)
 
     //Rx
     implementation(Config.Libs.Reactive.rxJava)

@@ -92,7 +92,7 @@
     </fragment>
     <fragment
         android:id="@+id/addGigDetails"
-        android:name="com.tailorfit.android.tailorfitapp.gig.AddGigDetails"
+        android:name="com.tailorfit.android.tailorfitapp.gig.AddGigDetailsFragment"
         android:label="fragment_add_gig_details"
         tools:layout="@layout/fragment_add_gig_details" />
 </navigation>

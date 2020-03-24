@@ -1,5 +1,6 @@
 package com.tailorfit.android.tailorfitapp.gig
 
+import android.text.InputType
 import com.tailorfit.android.R
 import com.tailorfit.android.databinding.FragmentBaseFormBinding
 import com.tailorfit.android.tailorfitapp.baseforms.BaseGigFormFragment
@@ -13,6 +14,7 @@ class AddGigPriceFragment : BaseGigFormFragment() {
     override fun setDataHints(binding: FragmentBaseFormBinding) {
        binding.formDescription.text = getString(R.string.gig_price_message)
         binding.editText.hint = getString(R.string.gig_price_hint)
+        binding.editText.inputType = InputType.TYPE_CLASS_NUMBER
     }
 
 }

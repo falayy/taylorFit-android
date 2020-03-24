@@ -1,6 +1,7 @@
 package com.tailorfit.android.tailorfitapp.customer
 
 
+import android.text.InputType
 import com.tailorfit.android.R
 import com.tailorfit.android.databinding.FragmentBaseFormBinding
 import com.tailorfit.android.tailorfitapp.baseforms.BaseCustomerFormFragment
@@ -15,6 +16,8 @@ class AddCustomerPhoneFragment : BaseCustomerFormFragment() {
     override fun setDataHints(binding: FragmentBaseFormBinding) {
         binding.formDescription.text = getString(R.string.customer_number_message)
         binding.editText.hint = getString(R.string.customer_number_hint)
+        binding.editText.inputType = InputType.TYPE_CLASS_NUMBER
+
     }
 
 

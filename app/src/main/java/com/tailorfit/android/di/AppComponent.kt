@@ -2,6 +2,7 @@
 package com.tailorfit.android.di
 
 import android.app.Application
+import com.tailorfit.android.tailorfitapp.gig.AddGigDetailsFragment
 import com.tailorfit.android.tailorfitapp.signin.SignInFragment
 import com.tailorfit.android.tailorfitapp.signup.SignUpFragment
 import dagger.BindsInstance
@@ -15,6 +16,7 @@ interface AppComponent {
     // TODO inject stuff
     fun inject(target : SignUpFragment)
     fun inject(target : SignInFragment)
+    fun inject(target : AddGigDetailsFragment)
 
 
     @Component.Builder

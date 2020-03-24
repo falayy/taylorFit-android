@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:904098293826:android:6f3eecde816579edf9a5db",
         "android_client_info": {
-          "package_name": "com.tailorfit.android"
+          "package_name": "com.tailorfit.android.tailorfit"
         }
       },
       "oauth_client": [
