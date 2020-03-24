@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "904098293826",
+    "firebase_url": "https://taylorfit-fea63.firebaseio.com",
+    "project_id": "taylorfit-fea63",
+    "storage_bucket": "taylorfit-fea63.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:904098293826:android:6f3eecde816579edf9a5db",
+        "android_client_info": {
+          "package_name": "com.tailorfit.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "904098293826-jl1skhl0suf3n64de7slu469g3hqqpkm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwrGjbIXAZo-ZQcVryFhuEAqJD8u6DtPY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "904098293826-jl1skhl0suf3n64de7slu469g3hqqpkm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
