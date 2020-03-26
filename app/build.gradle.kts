@@ -2,6 +2,7 @@ import com.android.build.gradle.api.ApplicationVariant
 import com.android.build.gradle.internal.api.BaseVariantOutputImpl
 import org.jetbrains.kotlin.konan.properties.Properties
 import com.android.build.gradle.api.BaseVariantOutput
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 
 plugins {
     id("com.android.application")
@@ -152,7 +153,7 @@ dependencies {
     implementation(Config.Libs.Misc.materialDialogs)
     implementation(Config.Libs.Misc.timber)
     implementation(Config.Libs.Misc.countryCodePicker)
-    implementation(Config.Libs.Misc.glide)
+    implementation(Config.Libs.Misc.coil)
     implementation(Config.Libs.Misc.googlePlayServices)
     implementation(Config.Libs.Misc.firebaseStorage)
 

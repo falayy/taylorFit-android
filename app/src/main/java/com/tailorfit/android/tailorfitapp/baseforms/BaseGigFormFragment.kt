@@ -9,12 +9,11 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.tailorfit.android.base.BaseFragment
+import com.tailorfit.android.base.BaseViewModel
+import com.tailorfit.android.base.BaseViewModelFragment
 import com.tailorfit.android.databinding.FragmentBaseFormBinding
 import com.tailorfit.android.extensions.stringContent
-import com.tailorfit.android.tailorfitapp.gig.AddGigDueDateFragmentDirections
-import com.tailorfit.android.tailorfitapp.gig.AddGigPriceFragmentDirections
-import com.tailorfit.android.tailorfitapp.gig.AddGigStyleFragmentDirections
-import com.tailorfit.android.tailorfitapp.gig.AddGigTitleFragmentDirections
+import com.tailorfit.android.tailorfitapp.gig.*
 import com.tailorfit.android.tailorfitapp.models.request.CreateGigRequest
 import com.tailorfit.android.tailorfitapp.validateTextLayouts
 import com.tailorfit.android.utils.DatePickerFragment
@@ -31,12 +30,15 @@ enum class GigFormType {
 
 abstract class BaseGigFormFragment : BaseFragment(){
 
-    private lateinit var createGigRequest: CreateGigRequest
     private lateinit var binding: FragmentBaseFormBinding
+
     private var dateString = ""
     private var dob = ""
     private val REQUEST_CODE = 11
     private var data = ""
+
+    private lateinit var createGigRequest: CreateGigRequest
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -120,5 +122,7 @@ abstract class BaseGigFormFragment : BaseFragment(){
         }
 
     }
+
+
 }
 

@@ -5,7 +5,6 @@ import com.tailorfit.android.R
 import com.tailorfit.android.databinding.FragmentBaseFormBinding
 import com.tailorfit.android.tailorfitapp.baseforms.BaseCustomerFormFragment
 import com.tailorfit.android.tailorfitapp.baseforms.CustomerFormType
-import com.tailorfit.android.tailorfitapp.models.request.CreateCustomerRequest
 
 
 class AddCustomerNameFragment : BaseCustomerFormFragment() {

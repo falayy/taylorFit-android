@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.tailorfit.android.base.BaseFragment
+import com.tailorfit.android.base.BaseViewModel
+import com.tailorfit.android.base.BaseViewModelFragment
 import com.tailorfit.android.databinding.FragmentSignInBinding
 import com.tailorfit.android.extensions.stringContent
 import com.tailorfit.android.tailorfitapp.models.request.SignInRequest
@@ -17,7 +19,7 @@ import com.tailorfit.android.tailorfitapp.validateTextLayouts
 import javax.inject.Inject
 
 
-class SignInFragment : BaseFragment() {
+class SignInFragment : BaseViewModelFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -63,4 +65,7 @@ class SignInFragment : BaseFragment() {
             }
         })
     }
+
+    override fun getViewModel(): BaseViewModel = viewModel
+
 }

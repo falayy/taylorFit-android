@@ -81,7 +81,7 @@ object Config {
             const val timber = "com.jakewharton.timber:timber:4.7.1"
             const val materialDialogs = "com.afollestad.material-dialogs:core:3.0.0-rc1"
             const val countryCodePicker = "com.github.joielechong:countrycodepicker:2.3.3"
-            const val glide = "com.github.bumptech.glide:glide:4.8.0"
+            const val coil = "io.coil-kt:coil:0.9.1"
             const val googlePlayServices = "com.google.android.gms:play-services-location:17.0.0"
             const val firebaseStorage = "com.google.firebase:firebase-storage-ktx:19.1.1"
         }
