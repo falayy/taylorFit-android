@@ -21,7 +21,7 @@ class AddGigImageDetailsAdapter(private val imageOnClickListener: OnclickListene
         val items = getItem(position)
         holder.bind(items)
         holder.itemView.setOnClickListener {
-            imageOnClickListener.onClick(items)
+            imageOnClickListener.onClickItem(position)
         }
     }
 
@@ -60,7 +60,7 @@ class AddGigImageDetailsAdapter(private val imageOnClickListener: OnclickListene
 
     }
 
-    class OnclickListener(val clickListener: (imageModel: GigImageModel) -> Unit) {
-        fun onClick(imageModel: GigImageModel) = clickListener(imageModel)
+    class OnclickListener(val clickListener: (itemPosition : Int) -> Unit) {
+        fun onClickItem(itemPosition : Int) = clickListener(itemPosition)
     }
 }

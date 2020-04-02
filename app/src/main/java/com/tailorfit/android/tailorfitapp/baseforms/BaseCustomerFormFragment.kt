@@ -1,10 +1,12 @@
 package com.tailorfit.android.tailorfitapp.baseforms
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
@@ -13,12 +15,11 @@ import com.tailorfit.android.base.BaseViewModel
 import com.tailorfit.android.base.BaseViewModelFragment
 import com.tailorfit.android.databinding.FragmentBaseFormBinding
 import com.tailorfit.android.extensions.stringContent
-import com.tailorfit.android.tailorfitapp.customer.AddCustomerGenderFragmentDirections
-import com.tailorfit.android.tailorfitapp.customer.AddCustomerNameFragmentDirections
-import com.tailorfit.android.tailorfitapp.customer.AddCustomerPhoneFragmentDirections
-import com.tailorfit.android.tailorfitapp.customer.AddCustomerViewModel
+import com.tailorfit.android.tailorfitapp.PrefsValueHelper
+import com.tailorfit.android.tailorfitapp.customer.*
 import com.tailorfit.android.tailorfitapp.models.request.CreateCustomerRequest
 import com.tailorfit.android.tailorfitapp.validateTextLayouts
+import kotlinx.android.synthetic.main.fragment_base_form.*
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -28,14 +29,17 @@ enum class CustomerFormType {
     AddCustomerPhoneFragment
 }
 
-abstract class BaseCustomerFormFragment : BaseFragment() {
+abstract class BaseCustomerFormFragment : BaseViewModelFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject
+    lateinit var prefsValueHelper: PrefsValueHelper
+
     private lateinit var binding: FragmentBaseFormBinding
     private lateinit var createCustomerRequest: CreateCustomerRequest
     private var data = ""
-    private lateinit var customerViewModel: AddCustomerViewModel
+
 
 
     override fun onCreateView(
@@ -48,10 +52,8 @@ abstract class BaseCustomerFormFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        daggerAppComponent.inject(this)
-//        customerViewModel = ViewModelProviders.of(this,
-//            viewModelFactory).get(AddCustomerViewModel::class.java)
         setDataHints(binding)
+        setUpDaggerViewModel()
         navigate()
     }
 
@@ -61,44 +63,59 @@ abstract class BaseCustomerFormFragment : BaseFragment() {
         when (getCustomerFormType()) {
             CustomerFormType.AddCustomerFragment -> {
                 binding.FormProceedButton.setOnClickListener {
-                    if (!validateTextLayouts(binding.editText)) {
+                    if (validateTextLayouts(binding.editText)) {
                         name = binding.editText.stringContent()
+                        findNavController().navigate(
+                            AddCustomerNameFragmentDirections.actionAddCustomerNameFragmentToAddCustomerPhoneFragment()
+                        )
+                    } else {
+                        return@setOnClickListener
                     }
-                    findNavController().navigate(
-                        AddCustomerNameFragmentDirections.actionAddCustomerNameFragmentToAddCustomerPhoneFragment()
-                    )
                 }
             }
             CustomerFormType.AddCustomerPhoneFragment -> {
                 binding.FormProceedButton.setOnClickListener {
-                    if (!validateTextLayouts(binding.editText)) {
+                    if (validateTextLayouts(binding.editText)) {
                         phoneNumber = binding.editText.stringContent()
+                        findNavController().navigate(
+                            AddCustomerPhoneFragmentDirections.actionAddCustomerPhoneFragmentToAddCustomerGenderFragment()
+                        )
+                    } else {
+                        return@setOnClickListener
                     }
-                    findNavController().navigate(
-                        AddCustomerPhoneFragmentDirections.actionAddCustomerPhoneFragmentToAddCustomerGenderFragment()
-                    )
                 }
             }
             CustomerFormType.AddCustomerGenderFragment -> {
                 binding.FormProceedButton.setOnClickListener {
-                    if (!validateTextLayouts(binding.editText)) {
+                    if (validateTextLayouts(binding.editText)) {
                         data = binding.editText.stringContent()
+                        //TODO name and phoneNumber not populated cos of when statement
+                        createCustomerRequest = CreateCustomerRequest(
+                            data,
+                            name,
+                            phoneNumber,
+                            prefsValueHelper.getUserId()
+                        )
+                        createCustomer()
+                    } else {
+                        return@setOnClickListener
                     }
-                    createCustomerRequest = CreateCustomerRequest(
-                        data,
-                        name,
-                        phoneNumber,
-                        "kfj"
-                    )
-                    createCustomer()
                 }
             }
         }
     }
 
     private fun createCustomer() {
-        Toast.makeText(mainActivity, "Handle me!", Toast.LENGTH_SHORT).show()
-        findNavController().navigate(AddCustomerGenderFragmentDirections.actionAddCustomerGenderFragmentToAddGigTitleFragment())
+        setUpDaggerViewModel().createCustomer(
+            prefsValueHelper.getAccessToken().toString(),
+            createCustomerRequest
+        )
+        setUpDaggerViewModel().createCustomerResponse.observe(viewLifecycleOwner, Observer {
+            if (it != null) {
+                findNavController().navigate(AddCustomerGenderFragmentDirections.actionAddCustomerGenderFragmentToAddGigTitleFragment())
+
+            }
+        })
     }
 
 
@@ -106,7 +123,7 @@ abstract class BaseCustomerFormFragment : BaseFragment() {
 
     protected abstract fun setDataHints(binding: FragmentBaseFormBinding)
 
-//    override fun getViewModel(): BaseViewModel = customerViewModel
+    protected abstract fun setUpDaggerViewModel(): AddCustomerViewModel
 
 
 }
