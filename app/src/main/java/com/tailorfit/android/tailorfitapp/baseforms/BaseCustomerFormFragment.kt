@@ -41,7 +41,6 @@ abstract class BaseCustomerFormFragment : BaseViewModelFragment() {
     private var data = ""
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -58,13 +57,12 @@ abstract class BaseCustomerFormFragment : BaseViewModelFragment() {
     }
 
     private fun navigate() {
-        var name = ""
-        var phoneNumber = ""
         when (getCustomerFormType()) {
             CustomerFormType.AddCustomerFragment -> {
                 binding.FormProceedButton.setOnClickListener {
                     if (validateTextLayouts(binding.editText)) {
-                        name = binding.editText.stringContent()
+                        val name = binding.editText.stringContent()
+                        prefsValueHelper.setCustomerName(name)
                         findNavController().navigate(
                             AddCustomerNameFragmentDirections.actionAddCustomerNameFragmentToAddCustomerPhoneFragment()
                         )
@@ -76,7 +74,8 @@ abstract class BaseCustomerFormFragment : BaseViewModelFragment() {
             CustomerFormType.AddCustomerPhoneFragment -> {
                 binding.FormProceedButton.setOnClickListener {
                     if (validateTextLayouts(binding.editText)) {
-                        phoneNumber = binding.editText.stringContent()
+                        val phoneNumber = binding.editText.stringContent()
+                        prefsValueHelper.setCustomerPhone(phoneNumber)
                         findNavController().navigate(
                             AddCustomerPhoneFragmentDirections.actionAddCustomerPhoneFragmentToAddCustomerGenderFragment()
                         )
@@ -89,11 +88,10 @@ abstract class BaseCustomerFormFragment : BaseViewModelFragment() {
                 binding.FormProceedButton.setOnClickListener {
                     if (validateTextLayouts(binding.editText)) {
                         data = binding.editText.stringContent()
-                        //TODO name and phoneNumber not populated cos of when statement
                         createCustomerRequest = CreateCustomerRequest(
                             data,
-                            name,
-                            phoneNumber,
+                            prefsValueHelper.getCustomerName(),
+                            prefsValueHelper.getCustomerPhone(),
                             prefsValueHelper.getUserId()
                         )
                         createCustomer()

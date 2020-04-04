@@ -15,6 +15,7 @@
  */
 package com.tailorfit.android.tailorfitapp
 
+import com.tailorfit.android.tailorfitapp.repositories.CustomerRepository
 import com.tailorfit.android.utils.PrefsUtils
 import javax.inject.Inject
 
@@ -27,6 +28,8 @@ class PrefsValueHelper @Inject constructor(private val prefsUtils: PrefsUtils) {
         const val AUTH_FLOW_PHONE_NUMBER = "AUTH_FLOW_PHONE_NUMBER"
         const val VERIFIED_PHONE_NUMBER = "VERIFIED_PHONE_NUMBER"
         const val DEMO_SHOWN = "DEMO_SHOWN"
+        const val CUSTOMER_NAME = "CUSTOMER_NAME"
+        const val CUSTOMER_PHONE = "CUSTOMER_PHONE"
     }
 
     fun setAccessToken(accessToken: String) = prefsUtils.putString(ACCESS_TOKEN, accessToken)
@@ -37,12 +40,11 @@ class PrefsValueHelper @Inject constructor(private val prefsUtils: PrefsUtils) {
 
     fun getUserId() = prefsUtils.getString(USER_ID, "")
 
-    fun setDemoShownStatus(isDemoShown: Boolean) = prefsUtils.putBoolean(DEMO_SHOWN, isDemoShown)
+    fun setCustomerName(name : String) = prefsUtils.putString(CUSTOMER_NAME, name)
 
-    fun isDemoShown() = prefsUtils.getBoolean(DEMO_SHOWN, false)
+    fun getCustomerName() = prefsUtils.getString(CUSTOMER_NAME, "")
 
-    fun setLastVerifiedPhoneNumber(number: String) =
-        prefsUtils.putString(VERIFIED_PHONE_NUMBER, number)
+    fun setCustomerPhone(phone : String) = prefsUtils.putString(CUSTOMER_PHONE, phone)
 
-    fun getLastVerifiedPhoneNumber() = prefsUtils.getString(VERIFIED_PHONE_NUMBER, null)
+    fun getCustomerPhone() = prefsUtils.getString(CUSTOMER_PHONE, "")
 }

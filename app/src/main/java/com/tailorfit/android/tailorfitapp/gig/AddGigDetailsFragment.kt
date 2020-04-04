@@ -60,12 +60,11 @@ class AddGigDetailsFragment : BaseViewModelFragment() {
     private val addGigImageDetailsAdapter : AddGigImageDetailsAdapter by lazy {
         AddGigImageDetailsAdapter(AddGigImageDetailsAdapter.OnclickListener{
            MaterialDialog(mainActivity.applicationContext).show {
-               //TODO if you can do this from the main activity like others
+               // TODO if you can do this from the main activity like others
                listItems(R.string.camera) { _, _, _ ->
                    if (checkPermissions()) startImageCaptureProcess(it)
-
                }
-               listItems( R.string.gallery) { _, _, _ ->
+               listItems(R.string.gallery) { _, _, _ ->
                    if (checkPermissions()) startImageSelectionProcess()
 
                }

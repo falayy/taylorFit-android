@@ -9,7 +9,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.list.listItems
 import com.google.android.material.snackbar.Snackbar
 import com.tailorfit.android.base.BaseFragment
 import com.tailorfit.android.base.LoadingCallback
@@ -68,10 +67,6 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
         showLoading(getString(resId))
     }
 
-    override fun isLoading(): Boolean {
-        return loading_layout_container.isVisible
-    }
-
     override fun showLoading(message: String) {
         progressMessage.text = message
         if (isLoading()) return
@@ -79,6 +74,11 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
         loading_layout_container.showViewWithChildren()
         disableTouch()
     }
+
+    override fun isLoading(): Boolean {
+        return loading_layout_container.isVisible
+    }
+
 
     override fun dismissLoading() {
         loading_layout_container.hide()
