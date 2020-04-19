@@ -1,66 +1,326 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.tailorfit.android.tailorfitapp.baseforms.MeasurementFragment">
+    tools:context="com.tailorfit.android.tailorfitapp.measurement.MaleMeasurementFragment">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="?attr/actionBarSize"
-        android:layout_marginEnd="24dp">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/form_description"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/lato_bold"
-            android:text="@string/let_s_get_the_measurement_started_inches"
-            android:textColor="@color/textColorDark"
-            android:textSize="27sp"
-            app:layout_constraintBottom_toTopOf="@id/_form_input_text_container"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginTop="?attr/actionBarSize">
 
-        <FrameLayout
-            android:id="@+id/_form_input_text_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            app:layout_constraintBottom_toTopOf="@id/_form_proceed_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/form_description">
+            <TextView
+                android:id="@+id/measurement_description"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/lato_bold"
+                android:maxLines="2"
+                android:text="@string/let_s_get_the_measurement_started_inches"
+                android:textColor="@color/textColorDark"
+                android:textSize="27sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/form_value_input_layout"
-                style="@style/TextInputLayoutStyle"
+            <FrameLayout
+                android:id="@+id/_neck_circumference_text_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                tools:hint="Hints">
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="35dp"
+                android:layout_marginRight="16dp"
+                app:layout_constraintBottom_toTopOf="@id/_shoulder_breadth_text_container"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/measurement_description">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/neck_circumference_TextInputLayout"
+                    style="@style/TextInputLayoutStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="wrap_content"
+                    android:hint="@string/neck_circumference">
 
-            </com.google.android.material.textfield.TextInputLayout>
-        </FrameLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/neck_circumference_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="number" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/_shoulder_breadth_text_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp"
+                app:layout_constraintBottom_toTopOf="@id/_chest_circumference_text_container"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/_neck_circumference_text_container">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/shoulder_breadthTextInputLayout"
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/shoulder_breadth">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/shoulder_breadth_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="number" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/_chest_circumference_text_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp"
+                app:layout_constraintBottom_toTopOf="@id/_waist_circumference_text_container"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/_shoulder_breadth_text_container">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/chest_circumferenceTextInputLayout"
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/chest_circumference">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/chest_circumference_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="number" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/_waist_circumference_text_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp"
+                app:layout_constraintBottom_toTopOf="@id/_hips_circumference_text_container"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/_chest_circumference_text_container">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/waist_circumferenceTextInputLayout"
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/waist_circumference">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/waist_circumference_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="number" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/_hips_circumference_text_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp"
+                app:layout_constraintBottom_toTopOf="@id/_thigh_text_container"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/_waist_circumference_text_container">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/hips_circumferenceTextInputLayout"
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hips_circumference">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/hips_circumference_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="number" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/_thigh_text_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp"
+                app:layout_constraintBottom_toTopOf="@id/calf_text_container"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/_hips_circumference_text_container">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/thighTextInputLayout"
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/thigh">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/thigh_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="number" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/calf_text_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp"
+                app:layout_constraintBottom_toTopOf="@id/_wrist_circumference_text_container"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/_thigh_text_container">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/calfTextInputLayout"
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/calf">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/calf_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="number" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/_wrist_circumference_text_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp"
+                app:layout_constraintBottom_toTopOf="@id/_arm_length_text_container"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/calf_text_container">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/wrist_circumferenceTextInputLayout"
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/wrist_circumference">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/wrist_circumference_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="number" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/_arm_length_text_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp"
+                app:layout_constraintBottom_toTopOf="@id/_full_length_text_container"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/_wrist_circumference_text_container">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/arm_lengthTextInputLayout"
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/arm_length">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/arm_length_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="number" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/_full_length_text_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="16dp"
+                app:layout_constraintBottom_toTopOf="@id/create_male_measurement_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/_arm_length_text_container">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/full_lengthTextInputLayout"
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Full Length">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/full_length_edit_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="number" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+            </FrameLayout>
 
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/create_male_measurement_button"
+                style="@style/AppTheme.HorizontalButtonAppearance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/proceed"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/_full_length_text_container" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/_form_proceed_button"
-            style="@style/AppTheme.HorizontalButtonAppearance"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="@string/proceed"
-            android:textColor="@color/textColorPrimaryWhite"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/_form_input_text_container" />
-
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
 </layout>

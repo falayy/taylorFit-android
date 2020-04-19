@@ -34,8 +34,39 @@
     <string name="gig_price_hint">N5,000</string>
     <string name="gig_price_message">How much are you charging for the gig?</string>
     <string name="upload_pictures_optional">UPLOAD PICTURES (OPTIONAL)</string>
-    <string name="remove">Remove</string>
+    <string name="remove"><u>Remove</u></string>
     <string name="note_optional">NOTE (OPTIONAL)</string>
     <string name="put_in_your_additional_information_here">Put in your additional information here</string>
     <string name="save">save</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    <string name="shoulder_to_shoulder">Shoulder To Shoulder</string>
+    <string name="sleeve_length">Sleeve Length</string>
+    <string name="half_sleeve">Half Sleeve</string>
+    <string name="arm_round">Arm Round</string>
+    <string name="arm_hole">Arm Hole</string>
+    <string name="full_length">Full Length</string>
+    <string name="hip_round">Hip Round</string>
+    <string name="hip_line">Hip Line</string>
+    <string name="natural_waist">Natural Waist</string>
+    <string name="under_bust">Under Bust</string>
+    <string name="bust_round">Bust Round</string>
+    <string name="bust_line">Bust Line</string>
+    <string name="neck_circumference">Neck Circumference</string>
+    <string name="chest_circumference">Chest Circumference</string>
+    <string name="shoulder_breadth">Shoulder Breadth</string>
+    <string name="waist_circumference">Waist Circumference</string>
+    <string name="hips_circumference">Hips Circumference</string>
+    <string name="thigh">Thigh</string>
+    <string name="calf">Calf</string>
+    <string name="wrist_circumference">Wrist Circumference</string>
+    <string name="arm_length">Arm Length</string>
+    <string name="price">PRICE</string>
+    <string name="style">STYLE</string>
+    <string name="due_date">DUE DATE</string>
+    <string name="pending_jobs">Pending Jobs</string>
+    <string name="completed_jobs">Completed Jobs</string>
+    <string-array name="list_of_image_options">
+        <item>Camera</item>
+        <item>Gallery</item>
+    </string-array>
 </resources>

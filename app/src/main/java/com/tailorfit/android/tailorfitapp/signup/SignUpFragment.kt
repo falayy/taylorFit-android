@@ -10,14 +10,16 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.tailorfit.android.base.BaseFragment
+import com.tailorfit.android.base.BaseViewModel
+import com.tailorfit.android.base.BaseViewModelFragment
 import com.tailorfit.android.databinding.FragmentSignUpBinding
 import com.tailorfit.android.extensions.stringContent
 import com.tailorfit.android.tailorfitapp.models.request.SignUpRequest
 import com.tailorfit.android.tailorfitapp.validateTextLayouts
 import javax.inject.Inject
 
-//TODO Do you know why your loading is not showing?... Figure it out.
-class SignUpFragment : BaseFragment() {
+class SignUpFragment : BaseViewModelFragment() {
+
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -45,28 +47,30 @@ class SignUpFragment : BaseFragment() {
         }
         binding.signupButton.setOnClickListener {
             findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToAddCustomerNameFragment())
-//            if (validateTextLayouts(
-//                    binding.nameEditText,
-//                    binding.phoneEditText,
-//                    binding.storeEditText,
-//                    binding.passwordEditText
-//                )
-//            ) {
-//                viewModel.signUp(
-//                    SignUpRequest(
-//                        binding.storeEditText.stringContent(),
-//                        binding.nameEditText.stringContent(),
-//                        binding.passwordEditText.stringContent(),
-//                        binding.phoneEditText.stringContent().toLong() // TODO. Why Long??. Collect phone number as String 🤨
-//                    )
-//                )
-//            }
+            if (validateTextLayouts(
+                    binding.nameEditText,
+                    binding.phoneEditText,
+                    binding.storeEditText,
+                    binding.passwordEditText
+                )
+            ) {
+                viewModel.signUp(
+                    SignUpRequest(
+                        binding.storeEditText.stringContent(),
+                        binding.nameEditText.stringContent(),
+                        binding.passwordEditText.stringContent(),
+                        binding.phoneEditText.stringContent().toLong() // TODO. Why Long??. Collect phone number as String 🤨
+                    )
+                )
+            }
         }
 
-//        viewModel.signUpResponse.observe(this, Observer {
-//            if (it != null) {
+        viewModel.signUpResponse.observe(this, Observer {
+            if (it != null) {
 //                findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToAddCustomerFragment())
-//            }
-//        })
+            }
+        })
     }
+
+    override fun getViewModel(): BaseViewModel = viewModel
 }

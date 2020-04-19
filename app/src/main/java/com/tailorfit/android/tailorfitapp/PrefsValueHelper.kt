@@ -22,21 +22,56 @@ class PrefsValueHelper @Inject constructor(private val prefsUtils: PrefsUtils) {
 
     companion object {
         const val ACCESS_TOKEN = "ACCESS_TOKEN"
-        const val USER_DATA = "USER_DATA"
-        const val AUTH_FLOW_PHONE_NUMBER = "AUTH_FLOW_PHONE_NUMBER"
-        const val VERIFIED_PHONE_NUMBER = "VERIFIED_PHONE_NUMBER"
-        const val DEMO_SHOWN = "DEMO_SHOWN"
+        const val USER_ID = "USER_ID"
+        const val CUSTOMER_NAME = "CUSTOMER_NAME"
+        const val CUSTOMER_PHONE = "CUSTOMER_PHONE"
+        const val CUSTOMER_ID = "CUSTOMER_ID"
+        const val GIG_ID = "GIG_ID"
+        const val GIG_TITLE = "GIG_TITLE"
+        const val GIG_STYLE_NAME = "GIG_STYLE_NAME"
+        const val GIG_DUE_DATE = "GIG_DUE_DATE"
+        const val GIG_PRICE = "GIG_PRICE"
     }
 
     fun setAccessToken(accessToken: String) = prefsUtils.putString(ACCESS_TOKEN, accessToken)
 
     fun getAccessToken() = prefsUtils.getString(ACCESS_TOKEN, null)
 
-    fun setDemoShownStatus(isDemoShown: Boolean) = prefsUtils.putBoolean(DEMO_SHOWN, isDemoShown)
+    fun setUserId(userId: String) = prefsUtils.putString(USER_ID, userId)
 
-    fun isDemoShown() = prefsUtils.getBoolean(DEMO_SHOWN, false)
+    fun getUserId() = prefsUtils.getString(USER_ID, "")
 
-    fun setLastVerifiedPhoneNumber(number: String) = prefsUtils.putString(VERIFIED_PHONE_NUMBER, number)
+    fun setCustomerName(name: String) = prefsUtils.putString(CUSTOMER_NAME, name)
 
-    fun getLastVerifiedPhoneNumber() = prefsUtils.getString(VERIFIED_PHONE_NUMBER, null)
+    fun getCustomerName() = prefsUtils.getString(CUSTOMER_NAME, "")
+
+    fun setCustomerPhone(phone: String) = prefsUtils.putString(CUSTOMER_PHONE, phone)
+
+    fun getCustomerPhone() = prefsUtils.getString(CUSTOMER_PHONE, "")
+
+    fun setCustomerId(customerId : String) = prefsUtils.putString(CUSTOMER_ID, customerId)
+
+    fun getCustomerId() = prefsUtils.getString(CUSTOMER_ID, "")
+
+    fun getGigId() = prefsUtils.getString(GIG_ID, "")
+
+    fun setGigId(gigId : String) = prefsUtils.putString(GIG_ID, gigId)
+
+    fun setGigTitle(gigTitle: String) = prefsUtils.putString(GIG_TITLE, gigTitle)
+
+    fun getGigTitle() = prefsUtils.getString(GIG_TITLE, "")
+
+    fun setGigStyleName(gigStyleName: String) = prefsUtils.putString(GIG_STYLE_NAME, gigStyleName)
+
+    fun getGigStyleName() = prefsUtils.getString(GIG_STYLE_NAME, "")
+
+    fun setGigDueDate(gigDueDate: String) = prefsUtils.putString(GIG_DUE_DATE, gigDueDate)
+
+    fun getGigDueDate() = prefsUtils.getString(GIG_DUE_DATE, "")
+
+    fun setGigPrice(gigPrice: String) = prefsUtils.putString(GIG_PRICE, gigPrice)
+
+    fun getGigPrice() = prefsUtils.getString(GIG_PRICE, "")
+
+
 }

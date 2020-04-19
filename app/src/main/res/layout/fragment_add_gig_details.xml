@@ -1,6 +1,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.tailorfit.android.tailorfitapp.gig.GigViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -10,45 +17,46 @@
             android:id="@+id/gig_description"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/lato_bold"
-            android:textColor="@color/textColorDark"
-            android:textSize="27sp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
+            android:fontFamily="@font/lato_bold"
+            android:text="@string/put_in_your_additional_information_here"
+            android:textColor="@color/textColorDark"
+            android:textSize="27sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="@string/put_in_your_additional_information_here" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/upload_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="40dp"
+            android:layout_marginEnd="16dp"
             android:text="@string/upload_pictures_optional"
             android:textSize="16sp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
             app:layout_constraintBottom_toTopOf="@+id/recycler_view_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/gig_description" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view_image"
-            android:layout_width="fill_parent"
-            android:layout_height="140dp"
-            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/upload_description" />
+            app:layout_constraintTop_toBottomOf="@id/upload_description"
+            app:listImagePlaceHolder="@{viewmodel.imagePlaceHolder}" />
 
 
         <FrameLayout
             android:id="@+id/_additional_text_container"
             android:layout_width="match_parent"
             android:layout_height="250dp"
-            android:layout_marginTop="35dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="35dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -62,6 +70,7 @@
                 android:hint="@string/note_optional">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/additionalEditText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="20dp"
@@ -74,7 +83,7 @@
         </FrameLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/signin_button"
+            android:id="@+id/create_gig_button"
             style="@style/AppTheme.HorizontalButtonAppearance"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

@@ -2,6 +2,7 @@ import com.android.build.gradle.api.ApplicationVariant
 import com.android.build.gradle.internal.api.BaseVariantOutputImpl
 import org.jetbrains.kotlin.konan.properties.Properties
 import com.android.build.gradle.api.BaseVariantOutput
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
 
 plugins {
     id("com.android.application")
@@ -10,6 +11,7 @@ plugins {
     kotlin("kapt")
     id("kotlin-android-extensions")
     id("kotlin-android")
+    id("com.google.gms.google-services")
 }
 
 
@@ -28,6 +30,12 @@ android {
     dataBinding {
         isEnabled = true
     }
+
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -151,8 +159,9 @@ dependencies {
     implementation(Config.Libs.Misc.materialDialogs)
     implementation(Config.Libs.Misc.timber)
     implementation(Config.Libs.Misc.countryCodePicker)
-    implementation(Config.Libs.Misc.glide)
+    implementation(Config.Libs.Misc.coil)
     implementation(Config.Libs.Misc.googlePlayServices)
+    implementation(Config.Libs.Misc.firebaseStorage)
 
     //Rx
     implementation(Config.Libs.Reactive.rxJava)

@@ -9,17 +9,18 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.tailorfit.android.base.BaseFragment
+import com.tailorfit.android.base.BaseViewModel
+import com.tailorfit.android.base.BaseViewModelFragment
 import com.tailorfit.android.databinding.FragmentBaseFormBinding
 import com.tailorfit.android.extensions.stringContent
-import com.tailorfit.android.tailorfitapp.gig.AddGigDueDateFragmentDirections
-import com.tailorfit.android.tailorfitapp.gig.AddGigPriceFragmentDirections
-import com.tailorfit.android.tailorfitapp.gig.AddGigStyleFragmentDirections
-import com.tailorfit.android.tailorfitapp.gig.AddGigTitleFragmentDirections
+import com.tailorfit.android.tailorfitapp.PrefsValueHelper
+import com.tailorfit.android.tailorfitapp.gig.*
 import com.tailorfit.android.tailorfitapp.models.request.CreateGigRequest
 import com.tailorfit.android.tailorfitapp.validateTextLayouts
 import com.tailorfit.android.utils.DatePickerFragment
 import com.tailorfit.android.utils.DateUtils
 import kotlinx.android.synthetic.main.fragment_base_form.*
+import javax.inject.Inject
 
 enum class GigFormType {
     AddGigDueDateFragment,
@@ -29,14 +30,16 @@ enum class GigFormType {
 }
 
 
-abstract class BaseGigFormFragment : BaseFragment(){
+abstract class BaseGigFormFragment : BaseFragment() {
 
-    private lateinit var createGigRequest: CreateGigRequest
     private lateinit var binding: FragmentBaseFormBinding
+
+    @Inject
+    lateinit var prefsValueHelper: PrefsValueHelper
     private var dateString = ""
     private var dob = ""
     private val REQUEST_CODE = 11
-    private var data = ""
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,7 +65,7 @@ abstract class BaseGigFormFragment : BaseFragment(){
             GigFormType.AddGigTitleFragment -> {
                 binding.FormProceedButton.setOnClickListener {
                     if (!validateTextLayouts(binding.editText)) {
-                        title = binding.editText.stringContent()
+                        prefsValueHelper.setGigTitle(binding.editText.stringContent())
                     }
                     findNavController().navigate(AddGigTitleFragmentDirections.actionAddGigTitleFragmentToAddGigStyleFragment())
                 }
@@ -70,7 +73,7 @@ abstract class BaseGigFormFragment : BaseFragment(){
             GigFormType.AddGigStyleFragment -> {
                 binding.FormProceedButton.setOnClickListener {
                     if (!validateTextLayouts(binding.editText)) {
-                        styleName = binding.editText.stringContent()
+                        prefsValueHelper.setGigStyleName(binding.editText.stringContent())
                     }
                     findNavController().navigate(AddGigStyleFragmentDirections.actionAddGigStyleFragmentToAddGigDueDateFragment())
                 }
@@ -88,21 +91,14 @@ abstract class BaseGigFormFragment : BaseFragment(){
             GigFormType.AddGigPriceFragment -> {
                 binding.FormProceedButton.setOnClickListener {
                     if (!validateTextLayouts(binding.editText)) {
-                        price = binding.editText.stringContent()
+                       prefsValueHelper.setGigPrice(binding.editText.stringContent())
                     }
-                    createGigRequest = CreateGigRequest(
-                        "kjg", date,
-                        "kgjhf", price, style, styleName, title, "jhf"
+                    findNavController().navigate(
+                        AddGigPriceFragmentDirections.actionAddGigPriceFragmentToAddGigDetails()
                     )
-                    findNavController().navigate(AddGigPriceFragmentDirections.actionAddGigPriceFragmentToAddGigDetails())
-//                    createGig()
                 }
             }
         }
-    }
-
-    private fun createGig() {
-        Toast.makeText(mainActivity, "Handle me to add details!", Toast.LENGTH_SHORT).show()
     }
 
 
@@ -117,8 +113,11 @@ abstract class BaseGigFormFragment : BaseFragment(){
             dateString = data!!.getStringExtra("selectedDate")!!
             dob = dateString
             binding.editText.setText(DateUtils.formatDateToDisplayDate(dateString))
+            prefsValueHelper.setGigDueDate(dob)
         }
 
     }
+
+
 }
 
