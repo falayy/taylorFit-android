@@ -70,6 +70,7 @@
                 android:hint="@string/note_optional">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/additionalEditText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="20dp"
@@ -82,7 +83,7 @@
         </FrameLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/signin_button"
+            android:id="@+id/create_gig_button"
             style="@style/AppTheme.HorizontalButtonAppearance"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

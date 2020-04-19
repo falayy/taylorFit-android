@@ -47,29 +47,29 @@ class SignUpFragment : BaseViewModelFragment() {
         }
         binding.signupButton.setOnClickListener {
             findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToAddCustomerNameFragment())
-//            if (validateTextLayouts(
-//                    binding.nameEditText,
-//                    binding.phoneEditText,
-//                    binding.storeEditText,
-//                    binding.passwordEditText
-//                )
-//            ) {
-//                viewModel.signUp(
-//                    SignUpRequest(
-//                        binding.storeEditText.stringContent(),
-//                        binding.nameEditText.stringContent(),
-//                        binding.passwordEditText.stringContent(),
-//                        binding.phoneEditText.stringContent().toLong() // TODO. Why Long??. Collect phone number as String 🤨
-//                    )
-//                )
-//            }
+            if (validateTextLayouts(
+                    binding.nameEditText,
+                    binding.phoneEditText,
+                    binding.storeEditText,
+                    binding.passwordEditText
+                )
+            ) {
+                viewModel.signUp(
+                    SignUpRequest(
+                        binding.storeEditText.stringContent(),
+                        binding.nameEditText.stringContent(),
+                        binding.passwordEditText.stringContent(),
+                        binding.phoneEditText.stringContent().toLong() // TODO. Why Long??. Collect phone number as String 🤨
+                    )
+                )
+            }
         }
 
-//        viewModel.signUpResponse.observe(this, Observer {
-//            if (it != null) {
+        viewModel.signUpResponse.observe(this, Observer {
+            if (it != null) {
 //                findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToAddCustomerFragment())
-//            }
-//        })
+            }
+        })
     }
 
     override fun getViewModel(): BaseViewModel = viewModel

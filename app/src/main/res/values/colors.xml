@@ -17,5 +17,7 @@
 
     <color name="secondaryColorChocolate">#3D1818</color>
     <color name="primaryColorChocolate">#5E2E00</color>
+    <color name="gold">#D0AD85</color>
+    <color name="green">#47D431</color>
 
 </resources>

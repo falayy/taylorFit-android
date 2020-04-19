@@ -14,4 +14,9 @@ object Constants {
         const val DEFAULT_PHOTO_EXTENSION = ".jpg"
         const val FILE_PROVIDER_AUTHORITY = "${BuildConfig.APPLICATION_ID}.fileprovider"
     }
+
+    object  Gender{
+        const val FEMALE = "female"
+        const val MALE = "male"
+    }
 }

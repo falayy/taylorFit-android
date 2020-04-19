@@ -1,52 +1,86 @@
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
-        android:layout_marginTop="?attr/actionBarSize"
+        android:orientation="vertical"
         tools:context="com.tailorfit.android.tailorfitapp.dashboard.DashBoardFragment">
 
-<!--        <TextView-->
-<!--            android:id="@+id/gig_description"-->
-<!--            android:layout_width="300dp"-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:layout_marginRight="24dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/user_avatar_image_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="35dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeColor="@color/gold"
+                app:strokeWidth="3dp">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/user_name_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/customer_hint_name"
+                android:textColor="@color/textColorDark"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/user_phone_text_view"
+                app:layout_constraintLeft_toRightOf="@id/user_avatar_image_container"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/user_phone_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="@string/customer_number_hint"
+                android:textColor="@color/textColorPrimaryGrey"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toRightOf="@id/user_avatar_image_container"
+                app:layout_constraintTop_toBottomOf="@id/user_name_text_view" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+<!--    <com.google.android.material.tabs.TabLayout-->
+<!--            android:id="@+id/tabs"-->
+<!--            style="@style/Widget.Design.TabLayout"-->
+<!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="wrap_content"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            tools:text = "Put in your additional information here"-->
-<!--            android:fontFamily="@font/lato_bold"-->
-<!--            android:textColor="@color/textColorDark"-->
-<!--            android:textSize="27sp" />-->
+<!--            android:layout_margin="10dp"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/user_avatar_image_container"-->
+<!--            app:tabSelectedTextColor="@color/secondaryColorChocolate"-->
+<!--            tools:layout_editor_absoluteX="0dp" />-->
 
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:textSize="16sp"-->
-<!--            android:id="@+id/upload_description"-->
-<!--            android:layout_marginTop="40dp"-->
-<!--            android:text="@string/upload_pictures_optional"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/gig_description"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintBottom_toTopOf="@+id/recycler_view_image"-->
-<!--            />-->
-<!--        -->
-<!--        <androidx.recyclerview.widget.RecyclerView-->
-<!--            android:id="@+id/recycler_view_image"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="120dp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/upload_description"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            />-->
+<!--        <androidx.viewpager2.widget.ViewPager2-->
+<!--            android:id="@+id/tab_layout_view_holder"-->
+<!--            android:orientation="vertical"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"/>-->
+    </LinearLayout>
 
 
 
 
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

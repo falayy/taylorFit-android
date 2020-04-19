@@ -11,13 +11,11 @@
         <item name="backgroundTint">@color/secondaryColorChocolate</item>
     </style>
 
-
     <style name="TextInputLayoutStyle" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
         <item name="boxStrokeWidth">3dp</item>
         <item name="boxStrokeColor">@color/textColorLightGrey</item>
         <item name="cornerRadius">8dp</item>
         <item name="android:textColorHint">@color/textColorPrimaryGrey</item>
-
     </style>
 
     <style name="TextAppearance.App.TextInputLayout" parent="@android:style/TextAppearance">
