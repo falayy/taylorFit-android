@@ -5,16 +5,22 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.core.content.FileProvider
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import coil.api.load
+import coil.transform.CircleCropTransformation
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.list.listItems
 import com.tailorfit.android.Constants.Misc
 import com.tailorfit.android.R
 import com.tailorfit.android.base.BaseViewModel
@@ -35,21 +41,39 @@ class AddGigDetailsFragment : BaseViewModelFragment() {
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var photoFile: File
+    private lateinit var  photoUri : Uri
+
+    private var position = 0
+    private lateinit var individualImageViewFromAdapter : ImageView
 
     private val cameraAndStoragePermissions =
-        arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
 
     companion object {
         private const val CAMERA_AND_STORAGE_PERMISSION_REQUEST_CODE = 100
         private const val REQUEST_IMAGE_CAPTURE_CODE = 101
+        private const val PICK_IMAGE_REQUEST = 102
     }
 
+    private  var listOptionsForImageCapture = listOf("Camera", "Gallery")
     private lateinit var viewModel :  GigViewModel
     private val addGigImageDetailsAdapter : AddGigImageDetailsAdapter by lazy {
         AddGigImageDetailsAdapter(AddGigImageDetailsAdapter.OnclickListener{
-          if (checkPermissions()) startImageCaptureProcess()
+           MaterialDialog(mainActivity.applicationContext).show {
+               // TODO if you can do this from the main activity like others
+               listItems(R.string.camera) { _, _, _ ->
+                   if (checkPermissions()) startImageCaptureProcess(it)
+               }
+               listItems(R.string.gallery) { _, _, _ ->
+                   if (checkPermissions()) startImageSelectionProcess()
+
+               }
+           }
         })
     }
+
+
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -81,8 +105,9 @@ class AddGigDetailsFragment : BaseViewModelFragment() {
         })
     }
 
-    private fun startImageCaptureProcess() {
-      val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+    private fun startImageCaptureProcess(position : Int) {
+        this.position = position
+        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         if (takePictureIntent.resolveActivity(mainActivity.packageManager) != null){
              photoFile = try{
                  mainActivity.createImageFile()
@@ -90,10 +115,18 @@ class AddGigDetailsFragment : BaseViewModelFragment() {
                  showSnackBar(getString(R.string.something_went_wrong))
                  return
              }
-            val photoUri = FileProvider.getUriForFile(mainActivity, Misc.FILE_PROVIDER_AUTHORITY, photoFile)
+            photoUri = FileProvider.getUriForFile(mainActivity, Misc.FILE_PROVIDER_AUTHORITY, photoFile)
             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri)
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE_CODE)
         }
+    }
+
+    private fun startImageSelectionProcess() {
+        val intent = Intent().apply {
+            type = "image/*"
+            action = Intent.ACTION_GET_CONTENT
+        }
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST)
     }
 
     private fun checkPermissions() : Boolean {
@@ -111,17 +144,26 @@ class AddGigDetailsFragment : BaseViewModelFragment() {
     ) {
         if (requestCode == CAMERA_AND_STORAGE_PERMISSION_REQUEST_CODE &&
             confirmPermissionResults(grantResults)
-        ) startImageCaptureProcess()
+        ) startImageCaptureProcess(requestCode)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_IMAGE_CAPTURE_CODE && resultCode == Activity.RESULT_OK) {
-//            binding.avatarImageView.load(photoFile) {
-//                crossfade(true)
-//                transformations(CircleCropTransformation())
-//            }
-            viewModel.uploadGigStyle("", SizedFileRequestBody(photoFile))
+        when(requestCode){
+            REQUEST_IMAGE_CAPTURE_CODE -> {
+                showImageOnImageView()
+            }
+            PICK_IMAGE_REQUEST ->{
+                showImageOnImageView()
+            }
+        }
+        viewModel.uploadGigStyle(photoUri)
+    }
+
+    private fun showImageOnImageView() {
+        individualImageViewFromAdapter.load(photoFile) {
+            crossfade(true)
+            transformations(CircleCropTransformation())
         }
     }
 
@@ -133,5 +175,6 @@ class AddGigDetailsFragment : BaseViewModelFragment() {
     }
 
     override fun getViewModel(): BaseViewModel = viewModel
+
 
 }

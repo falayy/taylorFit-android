@@ -39,4 +39,9 @@
     <string name="put_in_your_additional_information_here">Put in your additional information here</string>
     <string name="save">save</string>
     <string name="something_went_wrong">Something went wrong</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="style">STYLE</string>
+    <string name="due_date">DUE DATE</string>
+    <string name="price">PRICE</string>
 </resources>

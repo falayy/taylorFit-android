@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools ="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="imageModel"
             type="com.tailorfit.android.tailorfitapp.models.request.GigImageModel" />
+
+        <variable
+            name="viewmodel"
+            type="com.tailorfit.android.tailorfitapp.gig.GigViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,44 +24,44 @@
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" >
-
-        <ImageView
-            android:id="@+id/image_style"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:background="@drawable/ic_baseline_add_circle_outline_24"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:alpha="0.5"
+                android:id="@+id/image_style"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@drawable/ic_baseline_add_circle_outline_24"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
                 android:id="@+id/image_upload_status_view"
+                bindImage="@{viewmodel.imageUploadStatus}"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                tools:src="@drawable/image_upload_done_status"
+                android:alpha="0.5"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/image_upload_done_status" />
 
 
             <ProgressBar
+                android:id="@+id/indeterminateImageUploadProgressBar"
+                style="?android:attr/progressBarStyleSmall"
+                bindImageProgressBar="@{viewmodel.imageUploadStatus}"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:id="@+id/indeterminateImageUploadProgressBar"
-                style="?android:attr/progressBarStyleSmall"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                tools:visibility="visible"
-                android:visibility="gone" />
+                tools:visibility="visible" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -87,8 +91,7 @@
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/placeholder_label"
-            />
+            app:layout_constraintTop_toBottomOf="@id/placeholder_label" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

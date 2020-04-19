@@ -14,6 +14,7 @@ fun <T : Any> getAPIResult(response: Response<BaseAPIResponse<T>>): Result<T> {
         if (body?.data != null) {
             return Result.Success(body.data!!)
         }
+
     } else {
         val errorBody = response.errorBody()
         if (errorBody != null) {

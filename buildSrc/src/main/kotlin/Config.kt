@@ -79,7 +79,7 @@ object Config {
         object Misc {
             const val materialDesign = "com.google.android.material:material:1.1.0-alpha08"
             const val timber = "com.jakewharton.timber:timber:4.7.1"
-            const val materialDialogs = "com.afollestad.material-dialogs:core:3.0.0-rc1"
+            const val materialDialogs = "com.afollestad.material-dialogs:core:3.2.1"
             const val countryCodePicker = "com.github.joielechong:countrycodepicker:2.3.3"
             const val coil = "io.coil-kt:coil:0.9.1"
             const val googlePlayServices = "com.google.android.gms:play-services-location:17.0.0"
