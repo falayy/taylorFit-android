@@ -59,7 +59,7 @@ class SignUpFragment : BaseViewModelFragment() {
                         binding.storeEditText.stringContent(),
                         binding.nameEditText.stringContent(),
                         binding.passwordEditText.stringContent(),
-                        binding.phoneEditText.stringContent().toLong() // TODO. Why Long??. Collect phone number as String 🤨
+                        binding.phoneEditText.stringContent() 
                     )
                 )
             }

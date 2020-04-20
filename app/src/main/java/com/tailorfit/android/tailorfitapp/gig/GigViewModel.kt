@@ -7,6 +7,7 @@ import com.tailorfit.android.base.BaseViewModel
 import com.tailorfit.android.networkutils.Result
 import com.tailorfit.android.networkutils.LoadingStatus
 import com.tailorfit.android.networkutils.disposeBy
+import com.tailorfit.android.tailorfitapp.PrefsValueHelper
 import com.tailorfit.android.tailorfitapp.models.request.CreateGigRequest
 import com.tailorfit.android.tailorfitapp.models.request.GigImageModel
 import com.tailorfit.android.tailorfitapp.models.response.CreateGigResponse
@@ -19,7 +20,9 @@ import javax.inject.Inject
 enum class ImageUploadStatus { NOT_UPLOADED, UPLOADING, SUCCESS, FAILED }
 
 
-class GigViewModel @Inject constructor(private val gigsRepository: GigsRepository) :
+class GigViewModel @Inject constructor(
+    private val gigsRepository: GigsRepository,
+    private val prefsValueHelper: PrefsValueHelper) :
     BaseViewModel() {
 
     private val _imagePlaceHolder = MutableLiveData<List<GigImageModel>>()
@@ -55,6 +58,7 @@ class GigViewModel @Inject constructor(private val gigsRepository: GigsRepositor
             .subscribeBy {
                 when (it) {
                     is Result.Success -> {
+                        prefsValueHelper.setGigId(it.data.id)
                         _createGigResponse.value = it.data
                         _loadingStatus.value = LoadingStatus.Success
                     }
