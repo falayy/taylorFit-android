@@ -46,9 +46,9 @@ class GigViewModel @Inject constructor(private val gigsRepository: GigsRepositor
         gigsRepository.uploadImage(photoUri)
     }
 
-    fun createGig(token : String, createGigRequest: CreateGigRequest) {
+    fun createGig(token : String?, createGigRequest: CreateGigRequest) {
         _loadingStatus.value = LoadingStatus.Loading("Creating Gig, please wait")
-        gigsRepository.createGig(token, createGigRequest)
+        gigsRepository.createGig(token!!, createGigRequest)
             .subscribeBy {
                 when (it) {
                     is Result.Success -> {

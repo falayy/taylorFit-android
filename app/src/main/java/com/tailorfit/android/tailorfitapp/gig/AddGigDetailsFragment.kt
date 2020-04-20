@@ -2,7 +2,6 @@ package com.tailorfit.android.tailorfitapp.gig
 
 
 import android.Manifest
-import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -28,6 +27,9 @@ import com.tailorfit.android.base.BaseViewModelFragment
 import com.tailorfit.android.databinding.FragmentAddGigDetailsBinding
 import com.tailorfit.android.extensions.createImageFile
 import com.tailorfit.android.extensions.hasPermissions
+import com.tailorfit.android.extensions.stringContent
+import com.tailorfit.android.tailorfitapp.PrefsValueHelper
+import com.tailorfit.android.tailorfitapp.models.request.CreateGigRequest
 import java.io.File
 import java.lang.Exception
 import javax.inject.Inject
@@ -39,6 +41,9 @@ class AddGigDetailsFragment : BaseViewModelFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    @Inject
+    lateinit var prefsValueHelper: PrefsValueHelper
 
     private lateinit var photoFile: File
     private lateinit var  photoUri : Uri
@@ -88,6 +93,34 @@ class AddGigDetailsFragment : BaseViewModelFragment() {
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(GigViewModel::class.java)
         viewModel.getImagePlaceHolders()
         getImagePlaceHolder()
+        binding.createGigButton.setOnClickListener {
+            viewModel.createGig(
+                prefsValueHelper.getAccessToken(),
+                CreateGigRequest(
+                    prefsValueHelper.getCustomerId(),
+                    prefsValueHelper.getGigDueDate(),
+                    binding.additionalEditText.stringContent(),
+                    prefsValueHelper.getGigPrice(),
+                    null,
+                    prefsValueHelper.getGigStyleName(),
+                    prefsValueHelper.getGigTitle(),
+                    prefsValueHelper.getUserId()
+                    )
+                )
+
+            viewModel.createGigResponse.observe(viewLifecycleOwner, Observer {
+                if (it != null) {
+                    when(it.gender) {
+                        "male" -> {
+
+                        }
+                        "female" -> {
+
+                        }
+                    }
+                }
+            })
+        }
     }
 
     private fun getImagePlaceHolder() {

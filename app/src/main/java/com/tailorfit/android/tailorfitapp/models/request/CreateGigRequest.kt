@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class CreateGigRequest(
     @SerializedName("customer_id")
-    var customerId: String,
+    var customerId: String?,
     @SerializedName("date")
     var date: String?,
     @SerializedName("notes")

@@ -73,6 +73,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="20dp"
+                    android:id="@+id/additionalEditText"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/recycler_view_image" />
@@ -82,7 +83,7 @@
         </FrameLayout>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/signin_button"
+            android:id="@+id/create_gig_button"
             style="@style/AppTheme.HorizontalButtonAppearance"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
