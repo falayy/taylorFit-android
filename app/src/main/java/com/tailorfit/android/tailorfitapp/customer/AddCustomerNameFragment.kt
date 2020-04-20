@@ -11,6 +11,19 @@ import com.tailorfit.android.tailorfitapp.baseforms.CustomerFormType
 
 class AddCustomerNameFragment : BaseCustomerFormFragment() {
 
+    private lateinit var customerViewModel: AddCustomerViewModel
+
+    override fun setUpDaggerViewModel()  : AddCustomerViewModel{
+        daggerAppComponent.inject(this)
+        customerViewModel = ViewModelProviders.of(
+            this,
+            viewModelFactory
+        ).get(AddCustomerViewModel::class.java)
+
+        return  customerViewModel
+    }
+
+    override fun getViewModel(): BaseViewModel = customerViewModel
 
     private lateinit var customerViewModel: AddCustomerViewModel
 

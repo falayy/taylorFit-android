@@ -1,4 +1,3 @@
-
 package com.tailorfit.android.base
 
 import androidx.annotation.StringRes
@@ -32,7 +31,14 @@ abstract class BaseFragment : Fragment() {
         positiveAction: (() -> Unit)? = null,
         @StringRes negativeRes: Int? = null,
         negativeAction: (() -> Unit)? = null
-    ) = mainActivity.showDialogWithAction(title, body, positiveRes, positiveAction, negativeRes, negativeAction)
+    ) = mainActivity.showDialogWithAction(
+        title,
+        body,
+        positiveRes,
+        positiveAction,
+        negativeRes,
+        negativeAction
+    )
 
     fun showSnackBar(@StringRes stringRes: Int) = mainActivity.showSnackBar(getString(stringRes))
 
@@ -40,4 +46,5 @@ abstract class BaseFragment : Fragment() {
 
     // Return true if you handle the back press in your fragment
     open fun onBackPressed(): Boolean = false
+
 }

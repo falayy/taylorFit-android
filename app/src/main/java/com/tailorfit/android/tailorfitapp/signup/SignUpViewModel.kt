@@ -6,6 +6,7 @@ import com.tailorfit.android.base.BaseViewModel
 import com.tailorfit.android.networkutils.LoadingStatus
 import com.tailorfit.android.networkutils.Result
 import com.tailorfit.android.networkutils.disposeBy
+import com.tailorfit.android.tailorfitapp.PrefsValueHelper
 import com.tailorfit.android.tailorfitapp.models.request.SignUpRequest
 import com.tailorfit.android.tailorfitapp.models.response.SignUpResponse
 import com.tailorfit.android.tailorfitapp.repositories.AccountsRepository
@@ -13,7 +14,8 @@ import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
 
 class SignUpViewModel @Inject constructor(
-    private val accountRepository: AccountsRepository
+    private val accountRepository: AccountsRepository,
+    private val prefsValueHelper: PrefsValueHelper
 ) : BaseViewModel() {
 
     private val _signUpResponse = MutableLiveData<SignUpResponse>()
@@ -27,6 +29,8 @@ class SignUpViewModel @Inject constructor(
             .subscribeBy {
                 when (it) {
                     is Result.Success -> {
+                        prefsValueHelper.setAccessToken(it.data.token)
+                        prefsValueHelper.setUserId(it.data.id)
                         _signUpResponse.value = it.data
                         _loadingStatus.value = LoadingStatus.Success
                     }

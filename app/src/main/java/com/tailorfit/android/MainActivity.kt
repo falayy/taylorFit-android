@@ -1,18 +1,3 @@
-/**
- * Copyright (c) 2019 Cotta & Cush Limited.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.tailorfit.android
 
 import android.os.Bundle
@@ -59,7 +44,10 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
             toolbarTitleTextView.text = toolbarTitle
             val leftRightPaddingRes = if (isRootPage) R.dimen.toolbar_left_right_padding_root else
                 R.dimen.toolbar_left_right_padding
-            toolbarTitleTextView.setViewPadding(R.dimen.toolbar_top_bottom_padding, leftRightPaddingRes)
+            toolbarTitleTextView.setViewPadding(
+                R.dimen.toolbar_top_bottom_padding,
+                leftRightPaddingRes
+            )
         }
     }
 
@@ -79,10 +67,6 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
         showLoading(getString(resId))
     }
 
-    override fun isLoading(): Boolean {
-        return loading_layout_container.isVisible
-    }
-
     override fun showLoading(message: String) {
         progressMessage.text = message
         if (isLoading()) return
@@ -90,6 +74,11 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
         loading_layout_container.showViewWithChildren()
         disableTouch()
     }
+
+    override fun isLoading(): Boolean {
+        return loading_layout_container.isVisible
+    }
+
 
     override fun dismissLoading() {
         loading_layout_container.hide()

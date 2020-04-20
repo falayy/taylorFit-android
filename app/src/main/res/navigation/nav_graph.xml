@@ -16,7 +16,8 @@
             app:exitAnim="@anim/fade_out" />
         <action
             android:id="@+id/action_signUpFragment_to_addCustomerNameFragment"
-            app:destination="@id/addCustomerNameFragment" />
+            app:destination="@id/addCustomerNameFragment"
+            app:enterAnim="@anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
@@ -89,6 +90,9 @@
         <action
             android:id="@+id/action_addCustomerNameFragment_to_addCustomerPhoneFragment"
             app:destination="@id/addCustomerPhoneFragment" />
+        <action
+            android:id="@+id/action_addCustomerNameFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
     </fragment>
     <fragment
         android:id="@+id/addGigDetails"

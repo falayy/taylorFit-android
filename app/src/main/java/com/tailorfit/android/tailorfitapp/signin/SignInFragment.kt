@@ -40,7 +40,6 @@ class SignInFragment : BaseViewModelFragment() {
         super.onViewCreated(view, savedInstanceState)
         daggerAppComponent.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(SignInViewModel::class.java)
-
         binding.signUpText.setOnClickListener {
             findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToSignUpFragment())
         }
@@ -53,15 +52,17 @@ class SignInFragment : BaseViewModelFragment() {
                 viewModel.signIn(
                     SignInRequest(
                         binding.passwordEditText.stringContent(),
-                        binding.phoneEditText.stringContent().toLong()
+                        binding.phoneEditText.stringContent()
                     )
                 )
+            } else {
+                return@setOnClickListener
             }
         }
 
         viewModel.signInResponse.observe(this, Observer {
-            if (it!= null){
-              findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToAddCustomerNameFragment())
+            if (it != null) {
+                findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToAddCustomerNameFragment())
             }
         })
     }
