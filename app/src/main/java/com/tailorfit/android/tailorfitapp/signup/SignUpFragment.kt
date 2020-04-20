@@ -46,6 +46,7 @@ class SignUpFragment : BaseViewModelFragment() {
             findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToSignInFragment())
         }
         binding.signupButton.setOnClickListener {
+            findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToAddCustomerNameFragment())
             if (validateTextLayouts(
                     binding.nameEditText,
                     binding.phoneEditText,
@@ -58,17 +59,15 @@ class SignUpFragment : BaseViewModelFragment() {
                         binding.storeEditText.stringContent(),
                         binding.nameEditText.stringContent(),
                         binding.passwordEditText.stringContent(),
-                        binding.phoneEditText.stringContent()// TODO. Why Long??. Collect phone number as String 🤨
+                        binding.phoneEditText.stringContent().toLong() // TODO. Why Long??. Collect phone number as String 🤨
                     )
                 )
-            } else {
-                return@setOnClickListener
             }
         }
 
         viewModel.signUpResponse.observe(this, Observer {
             if (it != null) {
-                findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToAddCustomerNameFragment())
+//                findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToAddCustomerFragment())
             }
         })
     }

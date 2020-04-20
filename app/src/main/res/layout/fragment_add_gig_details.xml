@@ -70,6 +70,7 @@
                 android:hint="@string/note_optional">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/additionalEditText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="20dp"

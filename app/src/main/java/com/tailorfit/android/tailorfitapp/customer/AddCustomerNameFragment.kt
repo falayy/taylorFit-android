@@ -25,6 +25,20 @@ class AddCustomerNameFragment : BaseCustomerFormFragment() {
 
     override fun getViewModel(): BaseViewModel = customerViewModel
 
+    private lateinit var customerViewModel: AddCustomerViewModel
+
+    override fun setUpDaggerViewModel() : AddCustomerViewModel {
+        daggerAppComponent.inject(this)
+        customerViewModel = ViewModelProviders.of(
+            this,
+            viewModelFactory
+        ).get(AddCustomerViewModel::class.java)
+        return customerViewModel
+    }
+
+    override fun getViewModel(): BaseViewModel = customerViewModel
+
+
     override fun getCustomerFormType() = CustomerFormType.AddCustomerFragment
 
     override fun setDataHints(binding: FragmentBaseFormBinding) {

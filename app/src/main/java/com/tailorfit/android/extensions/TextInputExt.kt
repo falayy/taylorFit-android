@@ -13,3 +13,6 @@ fun TextView.validate(errorMessage: String = "This Field is required"): Boolean 
 }
 
 fun EditText.stringContent(): String = text.toString()
+
+
+fun EditText.toInteger() : Int = text.toString().toInt()

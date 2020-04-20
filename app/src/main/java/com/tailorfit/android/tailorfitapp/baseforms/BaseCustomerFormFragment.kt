@@ -1,26 +1,22 @@
 package com.tailorfit.android.tailorfitapp.baseforms
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-import com.tailorfit.android.base.BaseFragment
-import com.tailorfit.android.base.BaseViewModel
 import com.tailorfit.android.base.BaseViewModelFragment
 import com.tailorfit.android.databinding.FragmentBaseFormBinding
 import com.tailorfit.android.extensions.stringContent
 import com.tailorfit.android.tailorfitapp.PrefsValueHelper
-import com.tailorfit.android.tailorfitapp.customer.*
+import com.tailorfit.android.tailorfitapp.customer.AddCustomerGenderFragmentDirections
+import com.tailorfit.android.tailorfitapp.customer.AddCustomerNameFragmentDirections
+import com.tailorfit.android.tailorfitapp.customer.AddCustomerPhoneFragmentDirections
+import com.tailorfit.android.tailorfitapp.customer.AddCustomerViewModel
 import com.tailorfit.android.tailorfitapp.models.request.CreateCustomerRequest
 import com.tailorfit.android.tailorfitapp.validateTextLayouts
-import kotlinx.android.synthetic.main.fragment_base_form.*
-import timber.log.Timber
 import javax.inject.Inject
 
 enum class CustomerFormType {
@@ -111,7 +107,6 @@ abstract class BaseCustomerFormFragment : BaseViewModelFragment() {
         setUpDaggerViewModel().createCustomerResponse.observe(viewLifecycleOwner, Observer {
             if (it != null) {
                 findNavController().navigate(AddCustomerGenderFragmentDirections.actionAddCustomerGenderFragmentToAddGigTitleFragment())
-
             }
         })
     }

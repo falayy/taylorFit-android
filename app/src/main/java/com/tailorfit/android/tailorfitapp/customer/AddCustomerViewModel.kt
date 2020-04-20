@@ -1,11 +1,10 @@
 package com.tailorfit.android.tailorfitapp.customer
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tailorfit.android.base.BaseViewModel
-import com.tailorfit.android.networkutils.LoadingStatus
 import com.tailorfit.android.networkutils.Result
+import com.tailorfit.android.networkutils.LoadingStatus
 import com.tailorfit.android.networkutils.disposeBy
 import com.tailorfit.android.tailorfitapp.models.request.CreateCustomerRequest
 import com.tailorfit.android.tailorfitapp.models.response.CreateCustomerResponse
@@ -25,8 +24,7 @@ class AddCustomerViewModel @Inject constructor(
 
     fun createCustomer(token : String, createCustomerRequest: CreateCustomerRequest) {
         _loadingStatus.value = LoadingStatus.Loading("Adding Customer, please wait")
-        Log.d("TAG", createCustomerRequest.toString())
-        Log.d("TAG", token)
+
         customerRepository.createCustomer(token, createCustomerRequest)
             .subscribeBy {
                 when (it) {

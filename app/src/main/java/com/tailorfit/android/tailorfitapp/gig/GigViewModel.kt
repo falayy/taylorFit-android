@@ -4,8 +4,8 @@ import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tailorfit.android.base.BaseViewModel
-import com.tailorfit.android.networkutils.LoadingStatus
 import com.tailorfit.android.networkutils.Result
+import com.tailorfit.android.networkutils.LoadingStatus
 import com.tailorfit.android.networkutils.disposeBy
 import com.tailorfit.android.tailorfitapp.models.request.CreateGigRequest
 import com.tailorfit.android.tailorfitapp.models.request.GigImageModel
@@ -23,11 +23,13 @@ class GigViewModel @Inject constructor(private val gigsRepository: GigsRepositor
     BaseViewModel() {
 
     private val _imagePlaceHolder = MutableLiveData<List<GigImageModel>>()
+
     val imagePlaceHolder: LiveData<List<GigImageModel>>
         get() = _imagePlaceHolder
 
     private val _gigImageUploadStatus =
         MutableLiveData<ImageUploadStatus>(ImageUploadStatus.NOT_UPLOADED)
+
     val imageUploadStatus: LiveData<ImageUploadStatus>
         get() = _gigImageUploadStatus
 
@@ -40,15 +42,16 @@ class GigViewModel @Inject constructor(private val gigsRepository: GigsRepositor
         _imagePlaceHolder.value = gigsRepository.getImagePlaceHolder()
     }
 
+
     fun uploadGigStyle(
         photoUri: Uri
     ) {
         gigsRepository.uploadImage(photoUri)
     }
 
-    fun createGig(token : String?, createGigRequest: CreateGigRequest) {
+    fun createGig(token: String, createGigRequest: CreateGigRequest) {
         _loadingStatus.value = LoadingStatus.Loading("Creating Gig, please wait")
-        gigsRepository.createGig(token!!, createGigRequest)
+        gigsRepository.createGig(token, createGigRequest)
             .subscribeBy {
                 when (it) {
                     is Result.Success -> {

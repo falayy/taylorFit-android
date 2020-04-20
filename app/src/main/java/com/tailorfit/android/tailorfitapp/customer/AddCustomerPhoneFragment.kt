@@ -13,9 +13,10 @@ import com.tailorfit.android.tailorfitapp.models.request.CreateCustomerRequest
 
 class AddCustomerPhoneFragment : BaseCustomerFormFragment() {
 
+
     private lateinit var customerViewModel: AddCustomerViewModel
 
-    override fun setUpDaggerViewModel(): AddCustomerViewModel {
+    override fun setUpDaggerViewModel() : AddCustomerViewModel {
         daggerAppComponent.inject(this)
         customerViewModel = ViewModelProviders.of(
             this,

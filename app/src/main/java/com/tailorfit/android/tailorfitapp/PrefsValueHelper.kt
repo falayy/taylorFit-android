@@ -15,7 +15,6 @@
  */
 package com.tailorfit.android.tailorfitapp
 
-import com.tailorfit.android.tailorfitapp.repositories.CustomerRepository
 import com.tailorfit.android.utils.PrefsUtils
 import javax.inject.Inject
 
@@ -24,14 +23,14 @@ class PrefsValueHelper @Inject constructor(private val prefsUtils: PrefsUtils) {
     companion object {
         const val ACCESS_TOKEN = "ACCESS_TOKEN"
         const val USER_ID = "USER_ID"
-        const val CUSTOMER_ID = "CUSTOMER_ID"
         const val CUSTOMER_NAME = "CUSTOMER_NAME"
         const val CUSTOMER_PHONE = "CUSTOMER_PHONE"
+        const val CUSTOMER_ID = "CUSTOMER_ID"
         const val GIG_ID = "GIG_ID"
         const val GIG_TITLE = "GIG_TITLE"
-        const val GIG_PRICE = "GIG_PRICE"
-        const val GIG_DUE_DATE = "GIG_DUE_DATE"
         const val GIG_STYLE_NAME = "GIG_STYLE_NAME"
+        const val GIG_DUE_DATE = "GIG_DUE_DATE"
+        const val GIG_PRICE = "GIG_PRICE"
     }
 
     fun setAccessToken(accessToken: String) = prefsUtils.putString(ACCESS_TOKEN, accessToken)
@@ -42,10 +41,6 @@ class PrefsValueHelper @Inject constructor(private val prefsUtils: PrefsUtils) {
 
     fun getUserId() = prefsUtils.getString(USER_ID, "")
 
-    fun setCustomerId(customerId: String) = prefsUtils.putString(CUSTOMER_ID, customerId)
-
-    fun getCustomerId() = prefsUtils.getString(CUSTOMER_ID, "")
-
     fun setCustomerName(name: String) = prefsUtils.putString(CUSTOMER_NAME, name)
 
     fun getCustomerName() = prefsUtils.getString(CUSTOMER_NAME, "")
@@ -54,25 +49,29 @@ class PrefsValueHelper @Inject constructor(private val prefsUtils: PrefsUtils) {
 
     fun getCustomerPhone() = prefsUtils.getString(CUSTOMER_PHONE, "")
 
-    fun setGigId(gigId: String) = prefsUtils.putString(GIG_ID, gigId)
+    fun setCustomerId(customerId : String) = prefsUtils.putString(CUSTOMER_ID, customerId)
+
+    fun getCustomerId() = prefsUtils.getString(CUSTOMER_ID, "")
 
     fun getGigId() = prefsUtils.getString(GIG_ID, "")
 
-    fun setGigTitle(title: String) = prefsUtils.putString(GIG_TITLE, title)
+    fun setGigId(gigId : String) = prefsUtils.putString(GIG_ID, gigId)
+
+    fun setGigTitle(gigTitle: String) = prefsUtils.putString(GIG_TITLE, gigTitle)
 
     fun getGigTitle() = prefsUtils.getString(GIG_TITLE, "")
 
-    fun setGigPrice(price: String) = prefsUtils.putString(GIG_PRICE, price)
+    fun setGigStyleName(gigStyleName: String) = prefsUtils.putString(GIG_STYLE_NAME, gigStyleName)
 
-    fun getGigPrice() = prefsUtils.getString(GIG_PRICE, "")
+    fun getGigStyleName() = prefsUtils.getString(GIG_STYLE_NAME, "")
 
-    fun setGigDueDate(date: String) = prefsUtils.putString(GIG_DUE_DATE, date)
+    fun setGigDueDate(gigDueDate: String) = prefsUtils.putString(GIG_DUE_DATE, gigDueDate)
 
     fun getGigDueDate() = prefsUtils.getString(GIG_DUE_DATE, "")
 
-    fun setGigStyleName(style: String) = prefsUtils.putString(GIG_STYLE_NAME, style)
+    fun setGigPrice(gigPrice: String) = prefsUtils.putString(GIG_PRICE, gigPrice)
 
-    fun getGigStyleName() = prefsUtils.getString(GIG_STYLE_NAME, "")
+    fun getGigPrice() = prefsUtils.getString(GIG_PRICE, "")
 
 
 }

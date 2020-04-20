@@ -98,5 +98,50 @@
         android:id="@+id/addGigDetails"
         android:name="com.tailorfit.android.tailorfitapp.gig.AddGigDetailsFragment"
         android:label="fragment_add_gig_details"
-        tools:layout="@layout/fragment_add_gig_details" />
+        tools:layout="@layout/fragment_add_gig_details" >
+        <action
+            android:id="@+id/action_addGigDetails_to_femaleMeasurementFragment"
+            app:destination="@id/femaleMeasurementFragment" />
+        <action
+            android:id="@+id/action_addGigDetails_to_maleMeasurementFragment"
+            app:destination="@id/maleMeasurementFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/femaleMeasurementFragment"
+        android:name="com.tailorfit.android.tailorfitapp.measurement.FemaleMeasurementFragment"
+        android:label="fragment_female_measurement"
+        tools:layout="@layout/fragment_female_measurement" >
+        <action
+            android:id="@+id/action_femaleMeasurementFragment_to_dashBoardFragment"
+            app:destination="@id/dashBoardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/maleMeasurementFragment"
+        android:name="com.tailorfit.android.tailorfitapp.measurement.MaleMeasurementFragment"
+        android:label="MaleMeasurementFragment" >
+        <action
+            android:id="@+id/action_maleMeasurementFragment_to_dashBoardFragment"
+            app:destination="@id/dashBoardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dashBoardFragment"
+        android:name="com.tailorfit.android.tailorfitapp.dashboard.DashBoardFragment"
+        android:label="DashBoardFragment" >
+        <action
+            android:id="@+id/action_dashBoardFragment_to_completedJobsFragment"
+            app:destination="@id/completedJobsFragment" />
+        <action
+            android:id="@+id/action_dashBoardFragment_to_pendingJobsFragment"
+            app:destination="@id/pendingJobsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pendingJobsFragment"
+        android:name="com.tailorfit.android.tailorfitapp.dashboard.PendingJobsFragment"
+        android:label="fragment_pending_jobs"
+        tools:layout="@layout/fragment_pending_jobs" />
+    <fragment
+        android:id="@+id/completedJobsFragment"
+        android:name="com.tailorfit.android.tailorfitapp.dashboard.CompletedJobsFragment"
+        android:label="fragment_completed_jobs"
+        tools:layout="@layout/fragment_completed_jobs" />
 </navigation>
