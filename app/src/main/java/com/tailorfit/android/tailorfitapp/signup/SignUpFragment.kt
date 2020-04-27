@@ -9,7 +9,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-import com.tailorfit.android.base.BaseFragment
 import com.tailorfit.android.base.BaseViewModel
 import com.tailorfit.android.base.BaseViewModelFragment
 import com.tailorfit.android.databinding.FragmentSignUpBinding
@@ -67,7 +66,7 @@ class SignUpFragment : BaseViewModelFragment() {
 
         viewModel.signUpResponse.observe(this, Observer {
             if (it != null) {
-//                findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToAddCustomerFragment())
+                findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToAddCustomerNameFragment())
             }
         })
     }

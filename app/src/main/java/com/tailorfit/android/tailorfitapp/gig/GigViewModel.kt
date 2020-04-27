@@ -53,7 +53,7 @@ class GigViewModel @Inject constructor(
     }
 
     fun createGig(token: String, createGigRequest: CreateGigRequest) {
-        _loadingStatus.value = LoadingStatus.Loading("Creating Gig, please wait")
+        _loadingStatus.value = LoadingStatus.Loading("Creating Gig, please wait...")
         gigsRepository.createGig(token, createGigRequest)
             .subscribeBy {
                 when (it) {

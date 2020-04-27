@@ -1,4 +1,3 @@
-
 package com.tailorfit.android.extensions
 
 import android.text.InputFilter

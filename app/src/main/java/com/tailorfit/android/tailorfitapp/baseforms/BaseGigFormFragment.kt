@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.tailorfit.android.base.BaseFragment
 import com.tailorfit.android.base.BaseViewModel
@@ -30,12 +32,18 @@ enum class GigFormType {
 }
 
 
-abstract class BaseGigFormFragment : BaseFragment() {
+abstract class BaseGigFormFragment : BaseViewModelFragment() {
 
     private lateinit var binding: FragmentBaseFormBinding
 
     @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    @Inject
     lateinit var prefsValueHelper: PrefsValueHelper
+
+    private lateinit var viewModel: GigViewModel
+
     private var dateString = ""
     private var dob = ""
     private val REQUEST_CODE = 11
@@ -51,31 +59,35 @@ abstract class BaseGigFormFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        daggerAppComponent.inject(this)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(GigViewModel::class.java)
         setDataHints(binding)
         navigate()
     }
 
     private fun navigate() {
-        var title = ""
-        var styleName = ""
-        var date = ""
-        var price = ""
-        var style = listOf("", "", "")
         when (getGigFormType()) {
             GigFormType.AddGigTitleFragment -> {
                 binding.FormProceedButton.setOnClickListener {
-                    if (!validateTextLayouts(binding.editText)) {
-                        prefsValueHelper.setGigTitle(binding.editText.stringContent())
+                    if (validateTextLayouts(binding.editText)) {
+                        val title = binding.editText.stringContent()
+                        prefsValueHelper.setGigTitle(title)
+                        findNavController().navigate(AddGigTitleFragmentDirections.actionAddGigTitleFragmentToAddGigStyleFragment())
+                    }else {
+                        return@setOnClickListener
                     }
-                    findNavController().navigate(AddGigTitleFragmentDirections.actionAddGigTitleFragmentToAddGigStyleFragment())
                 }
             }
             GigFormType.AddGigStyleFragment -> {
                 binding.FormProceedButton.setOnClickListener {
-                    if (!validateTextLayouts(binding.editText)) {
-                        prefsValueHelper.setGigStyleName(binding.editText.stringContent())
+                    if (validateTextLayouts(binding.editText)) {
+                        val style = binding.editText.stringContent()
+                        prefsValueHelper.setGigStyleName(style)
+                        findNavController().navigate(AddGigStyleFragmentDirections.actionAddGigStyleFragmentToAddGigDueDateFragment())
                     }
-                    findNavController().navigate(AddGigStyleFragmentDirections.actionAddGigStyleFragmentToAddGigDueDateFragment())
+                    else {
+                        return@setOnClickListener
+                    }
                 }
             }
             GigFormType.AddGigDueDateFragment -> {
@@ -90,12 +102,16 @@ abstract class BaseGigFormFragment : BaseFragment() {
             }
             GigFormType.AddGigPriceFragment -> {
                 binding.FormProceedButton.setOnClickListener {
-                    if (!validateTextLayouts(binding.editText)) {
-                       prefsValueHelper.setGigPrice(binding.editText.stringContent())
+                    if (validateTextLayouts(binding.editText)) {
+                        val price = binding.editText.stringContent()
+                        prefsValueHelper.setGigDueDate("12, 09, 12")
+                        prefsValueHelper.setGigPrice(price)
+                        findNavController().navigate(
+                            AddGigPriceFragmentDirections.actionAddGigPriceFragmentToAddGigDetails()
+                        )
+                    } else {
+                        return@setOnClickListener
                     }
-                    findNavController().navigate(
-                        AddGigPriceFragmentDirections.actionAddGigPriceFragmentToAddGigDetails()
-                    )
                 }
             }
         }
@@ -113,11 +129,11 @@ abstract class BaseGigFormFragment : BaseFragment() {
             dateString = data!!.getStringExtra("selectedDate")!!
             dob = dateString
             binding.editText.setText(DateUtils.formatDateToDisplayDate(dateString))
-            prefsValueHelper.setGigDueDate(dob)
         }
 
     }
 
+    override fun getViewModel(): BaseViewModel = viewModel
 
 }
 

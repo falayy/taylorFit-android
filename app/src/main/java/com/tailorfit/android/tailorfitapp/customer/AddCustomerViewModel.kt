@@ -26,7 +26,6 @@ class AddCustomerViewModel @Inject constructor(
 
     fun createCustomer(token : String, createCustomerRequest: CreateCustomerRequest) {
         _loadingStatus.value = LoadingStatus.Loading("Adding Customer, please wait")
-
         customerRepository.createCustomer(token, createCustomerRequest)
             .subscribeBy {
                 when (it) {

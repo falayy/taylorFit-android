@@ -8,7 +8,6 @@ import com.tailorfit.android.tailorfitapp.models.request.GigImageModel
 
 @BindingAdapter("listImagePlaceHolder")
 fun bindRecyclerViews(recyclerView: RecyclerView, imagesPlaceHolder: List<GigImageModel>?) {
-    Log.d("TAG", "update recycler views ${imagesPlaceHolder?.size}")
     imagesPlaceHolder?.let {
         val adapter = recyclerView.adapter as AddGigImageDetailsAdapter
         adapter.submitList(imagesPlaceHolder)

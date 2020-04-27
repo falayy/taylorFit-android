@@ -45,6 +45,7 @@ class AddGigDetailsFragment : BaseViewModelFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+
     @Inject
     lateinit var prefsValueHelper: PrefsValueHelper
 
@@ -100,14 +101,17 @@ class AddGigDetailsFragment : BaseViewModelFragment() {
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(GigViewModel::class.java)
         viewModel.getImagePlaceHolders()
         getImagePlaceHolder()
+
         binding.createGigButton.setOnClickListener {
-            if (!validateTextLayouts(binding.additionalEditText))
+            if (validateTextLayouts(binding.additionalEditText)) {
                 createGig()
+            }
         }
     }
 
 
     private fun createGig() {
+        Toast.makeText(context, "nawa 1" , Toast.LENGTH_LONG).show()
         val createGigRequest = CreateGigRequest(
             prefsValueHelper.getCustomerId(),
             prefsValueHelper.getGigDueDate(),
@@ -120,9 +124,11 @@ class AddGigDetailsFragment : BaseViewModelFragment() {
         )
 
         viewModel.createGig(
-            prefsValueHelper.getAccessToken()!!,
+                    prefsValueHelper.getAccessToken()!!,
             createGigRequest
         )
+        Toast.makeText(context, "nawa 2" , Toast.LENGTH_LONG).show()
+
 
         viewModel.createGigResponse.observe(viewLifecycleOwner, Observer {
             if (it != null) {

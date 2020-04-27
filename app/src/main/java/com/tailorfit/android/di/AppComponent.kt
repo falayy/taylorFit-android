@@ -3,6 +3,7 @@ package com.tailorfit.android.di
 
 import android.app.Application
 import com.tailorfit.android.tailorfitapp.baseforms.BaseCustomerFormFragment
+import com.tailorfit.android.tailorfitapp.baseforms.BaseGigFormFragment
 import com.tailorfit.android.tailorfitapp.customer.AddCustomerGenderFragment
 import com.tailorfit.android.tailorfitapp.customer.AddCustomerNameFragment
 import com.tailorfit.android.tailorfitapp.customer.AddCustomerPhoneFragment
@@ -20,14 +21,15 @@ import javax.inject.Singleton
 @Component(modules = [APIServiceModule::class, ViewModelModule::class])
 interface AppComponent {
 
-    fun inject(target : SignUpFragment)
-    fun inject(target : SignInFragment)
-    fun inject(target : BaseCustomerFormFragment)
-    fun inject(target : AddCustomerNameFragment)
+    fun inject(target: SignUpFragment)
+    fun inject(target: SignInFragment)
+    fun inject(target: BaseCustomerFormFragment)
+    fun inject(target: BaseGigFormFragment)
+    fun inject(target: AddCustomerNameFragment)
     fun inject(target: AddCustomerPhoneFragment)
     fun inject(target: AddCustomerGenderFragment)
-    fun inject(target : AddGigDetailsFragment)
-    fun inject(target : MaleMeasurementFragment)
+    fun inject(target: AddGigDetailsFragment)
+    fun inject(target: MaleMeasurementFragment)
     fun inject(target: FemaleMeasurementFragment)
     fun inject(target: DashBoardFragment)
 

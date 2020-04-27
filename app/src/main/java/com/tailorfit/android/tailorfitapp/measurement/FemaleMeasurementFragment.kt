@@ -87,7 +87,7 @@ class FemaleMeasurementFragment : BaseViewModelFragment() {
                     if (it != null) {
                         findNavController().navigate(
                             FemaleMeasurementFragmentDirections
-                                .actionFemaleMeasurementFragmentToDashBoardFragment()
+                                .actionFemaleMeasurementFragmentToMaleMeasurementFragment()
                         )
                     }
                 })

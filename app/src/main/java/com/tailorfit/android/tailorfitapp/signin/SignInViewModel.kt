@@ -25,7 +25,7 @@ class SignInViewModel @Inject constructor(
         get() = _signInResponse
 
     fun signIn(signInRequest: SignInRequest) {
-        _loadingStatus.value = LoadingStatus.Loading("Signing In, please wait")
+        _loadingStatus.value = LoadingStatus.Loading("Signing In, please wait...")
         accountsRepository.signIn(signInRequest)
             .subscribeBy {
                 when (it) {
