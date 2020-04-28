@@ -32,10 +32,11 @@ class APIServiceModule {
         accessTokenProvider: AccessTokenProvider
     ): OkHttpClient {
         return upstream.newBuilder()
-            .addInterceptor(AccessTokenInterceptor(accessTokenProvider))
-            .authenticator(AccessTokenAuthenticator(accessTokenProvider))
+//            .addInterceptor(AccessTokenInterceptor(accessTokenProvider))
             .build()
     }
+
+    //.authenticator(AccessTokenAuthenticator(accessTokenProvider))
 
     @Provides
     @Singleton

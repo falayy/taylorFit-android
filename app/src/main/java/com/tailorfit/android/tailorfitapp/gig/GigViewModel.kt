@@ -22,7 +22,8 @@ enum class ImageUploadStatus { NOT_UPLOADED, UPLOADING, SUCCESS, FAILED }
 
 class GigViewModel @Inject constructor(
     private val gigsRepository: GigsRepository,
-    private val prefsValueHelper: PrefsValueHelper) :
+    private val prefsValueHelper: PrefsValueHelper
+) :
     BaseViewModel() {
 
     private val _imagePlaceHolder = MutableLiveData<List<GigImageModel>>()
@@ -70,7 +71,12 @@ class GigViewModel @Inject constructor(
 
 
     override fun addAllLiveDataToObservablesList() {
-        addAllLiveDataToObservablesList(_imagePlaceHolder, _gigImageUploadStatus)
+        addAllLiveDataToObservablesList(
+            _imagePlaceHolder,
+            _gigImageUploadStatus,
+            _createGigResponse,
+            createGigResponse
+        )
     }
 
 

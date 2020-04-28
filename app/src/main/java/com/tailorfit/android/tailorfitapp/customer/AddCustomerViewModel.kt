@@ -24,7 +24,7 @@ class AddCustomerViewModel @Inject constructor(
     val createCustomerResponse: LiveData<CreateCustomerResponse> = _createCustomerResponse
 
 
-    fun createCustomer(token : String, createCustomerRequest: CreateCustomerRequest) {
+    fun createCustomer(token: String, createCustomerRequest: CreateCustomerRequest) {
         _loadingStatus.value = LoadingStatus.Loading("Adding Customer, please wait")
         customerRepository.createCustomer(token, createCustomerRequest)
             .subscribeBy {
@@ -42,6 +42,9 @@ class AddCustomerViewModel @Inject constructor(
     }
 
     override fun addAllLiveDataToObservablesList() {
-        addAllLiveDataToObservablesList(_createCustomerResponse)
+        addAllLiveDataToObservablesList(
+            _createCustomerResponse,
+            createCustomerResponse
+        )
     }
 }

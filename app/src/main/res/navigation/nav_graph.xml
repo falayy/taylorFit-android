@@ -112,6 +112,9 @@
         <action
             android:id="@+id/action_addGigDetails_to_maleMeasurementFragment"
             app:destination="@id/maleMeasurementFragment" />
+        <action
+            android:id="@+id/action_addGigDetails_to_maleMeasurementFragment2"
+            app:destination="@id/maleMeasurementFragment" />
     </fragment>
     <fragment
         android:id="@+id/femaleMeasurementFragment"
@@ -154,4 +157,9 @@
         android:name="com.tailorfit.android.tailorfitapp.dashboard.CompletedJobsFragment"
         android:label="fragment_completed_jobs"
         tools:layout="@layout/fragment_completed_jobs" />
+    <fragment
+        android:id="@+id/testFragment"
+        android:name="com.tailorfit.android.tailorfitapp.test.TestFragment"
+        android:label="fragment_test"
+        tools:layout="@layout/fragment_test" />
 </navigation>

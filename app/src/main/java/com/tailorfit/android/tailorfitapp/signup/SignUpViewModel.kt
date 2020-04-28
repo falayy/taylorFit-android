@@ -30,18 +30,23 @@ class SignUpViewModel @Inject constructor(
             .subscribeBy {
                 when (it) {
                     is Result.Success -> {
+                        prefsValueHelper.setAccessToken(" ")
                         prefsValueHelper.setAccessToken(it.data.token)
                         prefsValueHelper.setUserId(it.data.id)
                         _signUpResponse.value = it.data
 //                        _loadingStatus.value = LoadingStatus.Success
 
                     }
-                    is Result.Error -> _loadingStatus.value = LoadingStatus.Error(it.errorCode, it.errorMessage)
+                    is Result.Error -> _loadingStatus.value =
+                        LoadingStatus.Error(it.errorCode, it.errorMessage)
                 }
             }.disposeBy(disposeBag)
     }
 
     override fun addAllLiveDataToObservablesList() {
-        addAllLiveDataToObservablesList(signUpResponse)
+        addAllLiveDataToObservablesList(
+            signUpResponse,
+            _signUpResponse
+        )
     }
 }

@@ -44,6 +44,7 @@ class FemaleMeasurementFragment : BaseViewModelFragment() {
         daggerAppComponent.inject(this)
         measurementViewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(MeasurementViewModel::class.java)
+
         binding.createFemaleMeasurementButton.setOnClickListener {
             if (validateTextLayouts(
                     binding.armHoleEditText,
@@ -87,13 +88,15 @@ class FemaleMeasurementFragment : BaseViewModelFragment() {
                     if (it != null) {
                         findNavController().navigate(
                             FemaleMeasurementFragmentDirections
-                                .actionFemaleMeasurementFragmentToMaleMeasurementFragment()
+                                .actionFemaleMeasurementFragmentToDashBoardFragment()
                         )
                     }
                 })
             }
         }
     }
+
+
 
     override fun getViewModel(): BaseViewModel = measurementViewModel
 

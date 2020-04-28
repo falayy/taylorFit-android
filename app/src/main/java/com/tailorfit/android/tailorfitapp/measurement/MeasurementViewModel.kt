@@ -1,5 +1,6 @@
 package com.tailorfit.android.tailorfitapp.measurement
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.tailorfit.android.base.BaseViewModel
 import com.tailorfit.android.networkutils.LoadingStatus
@@ -74,6 +75,6 @@ class MeasurementViewModel @Inject constructor(
     }
 
     override fun addAllLiveDataToObservablesList() {
-        addAllLiveDataToObservablesList()
+        addAllLiveDataToObservablesList(maleResponse, femaleResponse, _femaleResponse, _maleResponse)
     }
 }

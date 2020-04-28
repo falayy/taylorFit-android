@@ -41,7 +41,9 @@ class SignInViewModel @Inject constructor(
     }
 
     override fun addAllLiveDataToObservablesList() {
-        addAllLiveDataToObservablesList(signInResponse)
+        addAllLiveDataToObservablesList(
+            signInResponse,
+            _signInResponse)
     }
 
 }
