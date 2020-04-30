@@ -3,13 +3,17 @@ package com.tailorfit.android.tailorfitapp.gig
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.tailorfit.android.databinding.IndividualStyleImagesImageViewBinding
 import com.tailorfit.android.tailorfitapp.models.request.GigImageModel
 
-class AddGigImageDetailsAdapter(private val imageOnClickListener: OnclickListener) :
+class AddGigImageDetailsAdapter(
+    private val imageOnClickListener: OnclickListener,
+    private var imageView: ImageView
+) :
     ListAdapter<GigImageModel, AddGigImageDetailsAdapter.GigImageViewHolder>(ImageDiffCallback()) {
 
 
@@ -20,13 +24,14 @@ class AddGigImageDetailsAdapter(private val imageOnClickListener: OnclickListene
     override fun onBindViewHolder(holder: GigImageViewHolder, position: Int) {
         val items = getItem(position)
         holder.bind(items)
+        imageView = holder.binding.imageUploadStatusView
         holder.itemView.setOnClickListener {
-            imageOnClickListener.onClickItem(position)
+            imageOnClickListener.onClickItem(holder.adapterPosition)
         }
     }
 
     class GigImageViewHolder private constructor(
-        val binding:
+        var binding:
         IndividualStyleImagesImageViewBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
@@ -38,7 +43,7 @@ class AddGigImageDetailsAdapter(private val imageOnClickListener: OnclickListene
         companion object {
             fun from(parent: ViewGroup): GigImageViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = IndividualStyleImagesImageViewBinding.inflate(
+                var binding = IndividualStyleImagesImageViewBinding.inflate(
                     layoutInflater,
                     parent,
                     false
@@ -60,7 +65,7 @@ class AddGigImageDetailsAdapter(private val imageOnClickListener: OnclickListene
 
     }
 
-    class OnclickListener(val clickListener: (itemPosition : Int) -> Unit) {
-        fun onClickItem(itemPosition : Int) = clickListener(itemPosition)
+    class OnclickListener(val clickListener: (itemPosition: Int) -> Unit) {
+        fun onClickItem(itemPosition: Int) = clickListener(itemPosition)
     }
 }

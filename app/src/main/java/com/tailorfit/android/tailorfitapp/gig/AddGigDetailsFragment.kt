@@ -83,7 +83,7 @@ class AddGigDetailsFragment : BaseViewModelFragment() {
                     }
                 }
             }
-        })
+        }, individualImageViewFromAdapter)
     }
 
     override fun onCreateView(
@@ -206,21 +206,21 @@ class AddGigDetailsFragment : BaseViewModelFragment() {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
             REQUEST_IMAGE_CAPTURE_CODE -> {
-//                showImageOnImageView()
+                showImageOnImageView()
             }
             PICK_IMAGE_REQUEST -> {
-//                showImageOnImageView()
+                showImageOnImageView()
             }
         }
         viewModel.uploadGigStyle(data?.data!!)
     }
 
-//    private fun showImageOnImageView() {
-//        individualImageViewFromAdapter.load(photoFile) {
-//            crossfade(true)
-//            transformations(CircleCropTransformation())
-//        }
-//    }
+    private fun showImageOnImageView() {
+        individualImageViewFromAdapter.load(photoFile) {
+            crossfade(true)
+            transformations(CircleCropTransformation())
+        }
+    }
 
     private fun confirmPermissionResults(results: IntArray): Boolean {
         results.forEach {

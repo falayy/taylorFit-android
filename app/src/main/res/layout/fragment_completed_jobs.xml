@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.tailorfit.android.tailorfitapp.dashboard.CompletedJobsFragment">
+    tools:context="com.tailorfit.android.tailorfitapp.userdashboard.CompletedJobsFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_image"

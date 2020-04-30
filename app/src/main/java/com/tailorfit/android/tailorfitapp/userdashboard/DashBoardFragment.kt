@@ -1,4 +1,4 @@
-package com.tailorfit.android.tailorfitapp.dashboard
+package com.tailorfit.android.tailorfitapp.userdashboard
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,8 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.tailorfit.android.base.BaseFragment
-import com.tailorfit.android.base.BaseViewModel
-import com.tailorfit.android.base.BaseViewModelFragment
 import com.tailorfit.android.databinding.FragmentDashBoardBinding
 import com.tailorfit.android.tailorfitapp.PrefsValueHelper
 import javax.inject.Inject

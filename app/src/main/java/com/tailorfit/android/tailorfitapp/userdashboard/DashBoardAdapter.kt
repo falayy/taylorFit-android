@@ -1,4 +1,4 @@
-package com.tailorfit.android.tailorfitapp.dashboard
+package com.tailorfit.android.tailorfitapp.userdashboard
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

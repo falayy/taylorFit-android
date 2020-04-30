@@ -1,4 +1,4 @@
-package com.tailorfit.android.tailorfitapp.dashboard
+package com.tailorfit.android.tailorfitapp.userdashboard
 
 import androidx.lifecycle.MutableLiveData
 import com.tailorfit.android.base.BaseViewModel

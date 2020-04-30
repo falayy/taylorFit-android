@@ -138,7 +138,7 @@
     </fragment>
     <fragment
         android:id="@+id/dashBoardFragment"
-        android:name="com.tailorfit.android.tailorfitapp.dashboard.DashBoardFragment"
+        android:name="com.tailorfit.android.tailorfitapp.userdashboard.DashBoardFragment"
         android:label="DashBoardFragment" >
         <action
             android:id="@+id/action_dashBoardFragment_to_completedJobsFragment"
@@ -149,12 +149,12 @@
     </fragment>
     <fragment
         android:id="@+id/pendingJobsFragment"
-        android:name="com.tailorfit.android.tailorfitapp.dashboard.PendingJobsFragment"
+        android:name="com.tailorfit.android.tailorfitapp.userdashboard.PendingJobsFragment"
         android:label="fragment_pending_jobs"
         tools:layout="@layout/fragment_pending_jobs" />
     <fragment
         android:id="@+id/completedJobsFragment"
-        android:name="com.tailorfit.android.tailorfitapp.dashboard.CompletedJobsFragment"
+        android:name="com.tailorfit.android.tailorfitapp.userdashboard.CompletedJobsFragment"
         android:label="fragment_completed_jobs"
         tools:layout="@layout/fragment_completed_jobs" />
     <fragment

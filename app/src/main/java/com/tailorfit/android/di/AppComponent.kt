@@ -7,7 +7,7 @@ import com.tailorfit.android.tailorfitapp.baseforms.BaseGigFormFragment
 import com.tailorfit.android.tailorfitapp.customer.AddCustomerGenderFragment
 import com.tailorfit.android.tailorfitapp.customer.AddCustomerNameFragment
 import com.tailorfit.android.tailorfitapp.customer.AddCustomerPhoneFragment
-import com.tailorfit.android.tailorfitapp.dashboard.DashBoardFragment
+import com.tailorfit.android.tailorfitapp.userdashboard.DashBoardFragment
 import com.tailorfit.android.tailorfitapp.gig.AddGigDetailsFragment
 import com.tailorfit.android.tailorfitapp.measurement.FemaleMeasurementFragment
 import com.tailorfit.android.tailorfitapp.measurement.MaleMeasurementFragment
