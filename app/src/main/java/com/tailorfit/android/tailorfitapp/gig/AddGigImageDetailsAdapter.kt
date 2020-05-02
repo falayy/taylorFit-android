@@ -11,8 +11,7 @@ import com.tailorfit.android.databinding.IndividualStyleImagesImageViewBinding
 import com.tailorfit.android.tailorfitapp.models.request.GigImageModel
 
 class AddGigImageDetailsAdapter(
-    private val imageOnClickListener: OnclickListener,
-    private var imageView: ImageView
+    private val imageOnClickListener: OnclickListener
 ) :
     ListAdapter<GigImageModel, AddGigImageDetailsAdapter.GigImageViewHolder>(ImageDiffCallback()) {
 
@@ -24,7 +23,6 @@ class AddGigImageDetailsAdapter(
     override fun onBindViewHolder(holder: GigImageViewHolder, position: Int) {
         val items = getItem(position)
         holder.bind(items)
-        imageView = holder.binding.imageUploadStatusView
         holder.itemView.setOnClickListener {
             imageOnClickListener.onClickItem(holder.adapterPosition)
         }

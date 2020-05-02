@@ -23,10 +23,10 @@ class DashBoardViewModel @Inject constructor(
 
 
     fun userInfo(
-        token: String
+        token: String?
     ) {
         _loadingStatus.value = LoadingStatus.Loading("Loading DashBoard, Please Wait")
-        dashBoardDataRepository.getUserInfo(token)
+        dashBoardDataRepository.getUserInfo(token!!)
             .subscribeBy {
                 when (it) {
                     is Result.Success -> {
@@ -42,12 +42,12 @@ class DashBoardViewModel @Inject constructor(
 
 
     fun getCustomerPendingJobsInfo(
-        token: String,
-        userId: String
+        token: String?,
+        userId: String?
     ) {
         _loadingStatus.value = LoadingStatus.Loading("Loading DashBoard, Please Wait")
         dashBoardDataRepository.getCustomersJobsInfo(
-            token, userId
+            token!!, userId!!
         ).subscribeBy {
             when (it) {
                 is Result.Success -> {
@@ -64,12 +64,12 @@ class DashBoardViewModel @Inject constructor(
     }
 
     fun getCustomerCompletedJobsInfo(
-        token: String,
-        userId: String
+        token: String?,
+        userId: String?
     ) {
         _loadingStatus.value = LoadingStatus.Loading("Loading DashBoard, Please Wait")
         dashBoardDataRepository.getCustomersJobsInfo(
-            token, userId
+            token!!, userId!!
         ).subscribeBy {
             when (it) {
                 is Result.Success -> {
@@ -86,6 +86,11 @@ class DashBoardViewModel @Inject constructor(
     }
 
     override fun addAllLiveDataToObservablesList() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        addAllLiveDataToObservablesList(
+            _userInfoResponse,
+            userInfoResponse,
+            customerInfoResponse,
+            _customerJobsInfoResponse
+        )
     }
 }

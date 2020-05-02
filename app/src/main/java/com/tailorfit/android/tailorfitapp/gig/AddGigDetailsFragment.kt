@@ -83,7 +83,7 @@ class AddGigDetailsFragment : BaseViewModelFragment() {
                     }
                 }
             }
-        }, individualImageViewFromAdapter)
+        })
     }
 
     override fun onCreateView(

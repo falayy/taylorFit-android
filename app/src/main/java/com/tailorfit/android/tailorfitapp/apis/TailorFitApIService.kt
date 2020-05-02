@@ -51,14 +51,14 @@ interface TailorFitApIService {
         @Body body: AddGigToDoneRequest
     )
 
-    @GET("customer/gig")
+    @GET("/customer/gig")
     fun getCustomersJobsInfo(
         @Header("x-auth") token: String,
-        @Header("userId") userId: String
+        @Header("user_id") userId: String
     ): Single<Response<BaseAPIResponse<List<CustomerInfoResponseModel>>>>
 
     @GET("")
-    fun getCustomerMeasurement(
+    fun getCustomeMaleMeasurement(
         @Header("x-auth") token: String,
         @Header("customer_id") customerId: String,
         @Header("gig_id") gigId: String
@@ -66,6 +66,15 @@ interface TailorFitApIService {
 //            : Single<Response<BaseAPIResponse<>>>
 
     @GET("")
+    fun getCustomeFemaleMeasurement(
+        @Header("x-auth") token: String,
+        @Header("customer_id") customerId: String,
+        @Header("gig_id") gigId: String
+    )
+//            : Single<Response<BaseAPIResponse<>>>
+
+
+    @GET("/user/info")
     fun getUserInfo(
         @Header("x-auth") token: String
     ): Single<Response<BaseAPIResponse<UserInfoResponse>>>

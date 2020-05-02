@@ -13,6 +13,8 @@ import com.tailorfit.android.tailorfitapp.measurement.FemaleMeasurementFragment
 import com.tailorfit.android.tailorfitapp.measurement.MaleMeasurementFragment
 import com.tailorfit.android.tailorfitapp.signin.SignInFragment
 import com.tailorfit.android.tailorfitapp.signup.SignUpFragment
+import com.tailorfit.android.tailorfitapp.completedjobs.CompletedJobsFragment
+import com.tailorfit.android.tailorfitapp.pendingjobs.PendingJobsFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -32,6 +34,8 @@ interface AppComponent {
     fun inject(target: MaleMeasurementFragment)
     fun inject(target: FemaleMeasurementFragment)
     fun inject(target: DashBoardFragment)
+    fun inject(target : CompletedJobsFragment)
+    fun inject(target: PendingJobsFragment)
 
 
     @Component.Builder

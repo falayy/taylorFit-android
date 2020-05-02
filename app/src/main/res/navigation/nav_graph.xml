@@ -149,17 +149,29 @@
     </fragment>
     <fragment
         android:id="@+id/pendingJobsFragment"
-        android:name="com.tailorfit.android.tailorfitapp.userdashboard.PendingJobsFragment"
+        android:name="com.tailorfit.android.tailorfitapp.pendingjobs.PendingJobsFragment"
         android:label="fragment_pending_jobs"
-        tools:layout="@layout/fragment_pending_jobs" />
+        tools:layout="@layout/fragment_pending_jobs" >
+        <action
+            android:id="@+id/action_pendingJobsFragment_to_customerDetailsFragment"
+            app:destination="@id/customerDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/completedJobsFragment"
-        android:name="com.tailorfit.android.tailorfitapp.userdashboard.CompletedJobsFragment"
+        android:name="com.tailorfit.android.tailorfitapp.completedjobs.CompletedJobsFragment"
         android:label="fragment_completed_jobs"
-        tools:layout="@layout/fragment_completed_jobs" />
+        tools:layout="@layout/fragment_completed_jobs" >
+        <action
+            android:id="@+id/action_completedJobsFragment_to_customerDetailsFragment"
+            app:destination="@id/customerDetailsFragment" />
+    </fragment>
     <fragment
-        android:id="@+id/testFragment"
-        android:name="com.tailorfit.android.tailorfitapp.test.TestFragment"
-        android:label="fragment_test"
-        tools:layout="@layout/fragment_test" />
+        android:id="@+id/customerDetailsFragment"
+        android:name="com.tailorfit.android.tailorfitapp.customerdetails.CustomerDetailsFragment"
+        android:label="fragment_customer_details"
+        tools:layout="@layout/fragment_customer_details" >
+        <argument
+            android:name="customerInfo"
+            app:argType="com.tailorfit.android.tailorfitapp.models.response.CustomerInfoResponseModel" />
+    </fragment>
 </navigation>

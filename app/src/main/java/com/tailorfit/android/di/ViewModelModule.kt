@@ -7,6 +7,7 @@ import com.tailorfit.android.tailorfitapp.gig.GigViewModel
 import com.tailorfit.android.tailorfitapp.measurement.MeasurementViewModel
 import com.tailorfit.android.tailorfitapp.signin.SignInViewModel
 import com.tailorfit.android.tailorfitapp.signup.SignUpViewModel
+import com.tailorfit.android.tailorfitapp.userdashboard.DashBoardViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -42,4 +43,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MeasurementViewModel::class)
     abstract fun bindMeasurementViewModel(viewModel: MeasurementViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DashBoardViewModel::class)
+    abstract fun bindDashBoardViewModel(viewModel: DashBoardViewModel) : ViewModel
 }
