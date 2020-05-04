@@ -3,8 +3,10 @@ package com.tailorfit.android.tailorfitapp.gig
 
 import android.Manifest
 import android.app.Activity
+import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
@@ -36,10 +38,12 @@ import com.tailorfit.android.tailorfitapp.models.request.CreateGigRequest
 import com.tailorfit.android.tailorfitapp.validateTextLayouts
 import java.io.File
 import java.lang.Exception
+import java.net.URI
 import javax.inject.Inject
 
 
-class AddGigDetailsFragment : BaseViewModelFragment() {
+class AddGigDetailsFragment : BaseViewModelFragment(), AddGigImageDetailsAdapter.OnclickListener {
+
 
     private lateinit var binding: FragmentAddGigDetailsBinding
 
@@ -50,8 +54,9 @@ class AddGigDetailsFragment : BaseViewModelFragment() {
     lateinit var prefsValueHelper: PrefsValueHelper
 
     private lateinit var photoFile: File
+    private lateinit var photoUri: Uri
 
-    private lateinit var individualImageViewFromAdapter: ImageView
+    private lateinit var gigAdapterViewHolder: AddGigImageDetailsAdapter.GigImageViewHolder
 
 
     private val cameraAndStoragePermissions =
@@ -70,20 +75,7 @@ class AddGigDetailsFragment : BaseViewModelFragment() {
 
     private lateinit var viewModel: GigViewModel
     private val addGigImageDetailsAdapter: AddGigImageDetailsAdapter by lazy {
-        AddGigImageDetailsAdapter(AddGigImageDetailsAdapter.OnclickListener {
-            MaterialDialog(context!!).show {
-                listItems(R.array.list_of_image_options) { dialog, index, text ->
-                    when (index) {
-                        0 -> {
-                            if (checkPermissions()) startImageCaptureProcess()
-                        }
-                        1 -> {
-                            if (checkPermissions()) startImageSelectionProcess()
-                        }
-                    }
-                }
-            }
-        })
+        AddGigImageDetailsAdapter(this)
     }
 
     override fun onCreateView(
@@ -103,7 +95,7 @@ class AddGigDetailsFragment : BaseViewModelFragment() {
         getImagePlaceHolder()
 
         binding.createGigButton.setOnClickListener {
-                createGig()
+            createGig()
         }
     }
 
@@ -166,7 +158,7 @@ class AddGigDetailsFragment : BaseViewModelFragment() {
                 showSnackBar(getString(R.string.something_went_wrong))
                 return
             }
-            val photoUri =
+            photoUri =
                 FileProvider.getUriForFile(mainActivity, Misc.FILE_PROVIDER_AUTHORITY, photoFile)
             takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri)
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE_CODE)
@@ -204,21 +196,16 @@ class AddGigDetailsFragment : BaseViewModelFragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        when (requestCode) {
-            REQUEST_IMAGE_CAPTURE_CODE -> {
-                showImageOnImageView()
-            }
-            PICK_IMAGE_REQUEST -> {
-                showImageOnImageView()
-            }
-        }
-        viewModel.uploadGigStyle(data?.data!!)
-    }
+        if (resultCode == RESULT_OK) {
+            when (requestCode) {
+                REQUEST_IMAGE_CAPTURE_CODE -> {
+                    uploadImage(gigAdapterViewHolder, photoUri)
+                }
 
-    private fun showImageOnImageView() {
-        individualImageViewFromAdapter.load(photoFile) {
-            crossfade(true)
-            transformations(CircleCropTransformation())
+                PICK_IMAGE_REQUEST -> {
+                    uploadImageFromGallery(gigAdapterViewHolder, data?.data!!)
+                }
+            }
         }
     }
 
@@ -228,6 +215,63 @@ class AddGigDetailsFragment : BaseViewModelFragment() {
         }
         return true
     }
+
+    private fun uploadImage(
+        gigImageViewHolder: AddGigImageDetailsAdapter.GigImageViewHolder,
+        uri: Uri?
+    ) {
+        prepareHolderForUpload(gigImageViewHolder)
+        viewModel.uploadGigStyle(uri!!)
+    }
+
+    private fun uploadImageFromGallery(
+        gigAdapterViewHolder: AddGigImageDetailsAdapter.GigImageViewHolder,
+        data: Uri
+    ) {
+        prepareHolderForUpload(gigAdapterViewHolder, data)
+        viewModel.uploadGigStyle(data)
+    }
+
+    private fun prepareHolderForUpload(
+        gigImageViewHolder: AddGigImageDetailsAdapter.GigImageViewHolder
+    ) {
+        gigImageViewHolder.itemView.isClickable = false
+        gigImageViewHolder.binding.imageStyle.load(photoFile) {
+            crossfade(true)
+            transformations(CircleCropTransformation())
+        }
+    }
+
+    private fun prepareHolderForUpload(
+        gigImageViewHolder: AddGigImageDetailsAdapter.GigImageViewHolder,
+        uri: Uri
+    ) {
+        gigImageViewHolder.itemView.isClickable = false
+        gigImageViewHolder.binding.imageStyle.load(uri) {
+            crossfade(true)
+            transformations(CircleCropTransformation())
+        }
+    }
+
+    override fun onClickItem(
+        gigImageViewHolder: AddGigImageDetailsAdapter.GigImageViewHolder,
+        itemPosition: Int
+    ) {
+        gigAdapterViewHolder = gigImageViewHolder
+        MaterialDialog(context!!).show {
+            listItems(R.array.list_of_image_options) { _, index, _ ->
+                when (index) {
+                    0 -> {
+                        if (checkPermissions()) startImageCaptureProcess()
+                    }
+                    1 -> {
+                        if (checkPermissions()) startImageSelectionProcess()
+                    }
+                }
+            }
+        }
+    }
+
 
     override fun getViewModel(): BaseViewModel = viewModel
 

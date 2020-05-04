@@ -10,10 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.tailorfit.android.databinding.IndividualStyleImagesImageViewBinding
 import com.tailorfit.android.tailorfitapp.models.request.GigImageModel
 
-class AddGigImageDetailsAdapter(
-    private val imageOnClickListener: OnclickListener
+class AddGigImageDetailsAdapter constructor(
+     private val imageOnClickListener: OnclickListener
 ) :
-    ListAdapter<GigImageModel, AddGigImageDetailsAdapter.GigImageViewHolder>(ImageDiffCallback()) {
+    ListAdapter<GigImageModel,
+            AddGigImageDetailsAdapter.GigImageViewHolder>(ImageDiffCallback()) {
+
+
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GigImageViewHolder {
@@ -24,7 +27,7 @@ class AddGigImageDetailsAdapter(
         val items = getItem(position)
         holder.bind(items)
         holder.itemView.setOnClickListener {
-            imageOnClickListener.onClickItem(holder.adapterPosition)
+            imageOnClickListener.onClickItem(holder, holder.adapterPosition)
         }
     }
 
@@ -32,6 +35,7 @@ class AddGigImageDetailsAdapter(
         var binding:
         IndividualStyleImagesImageViewBinding
     ) : RecyclerView.ViewHolder(binding.root) {
+
 
         fun bind(items: GigImageModel) {
             binding.imageModel = items
@@ -63,7 +67,7 @@ class AddGigImageDetailsAdapter(
 
     }
 
-    class OnclickListener(val clickListener: (itemPosition: Int) -> Unit) {
-        fun onClickItem(itemPosition: Int) = clickListener(itemPosition)
+    interface OnclickListener {
+          fun onClickItem(gigImageViewHolder: GigImageViewHolder, itemPosition: Int)
     }
 }
