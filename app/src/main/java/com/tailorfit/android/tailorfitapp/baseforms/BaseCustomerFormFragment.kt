@@ -48,6 +48,7 @@ abstract class BaseCustomerFormFragment : BaseViewModelFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setDataHints(binding)
+        setUpToolbar()
         setUpDaggerViewModel()
         navigate()
     }
@@ -97,6 +98,11 @@ abstract class BaseCustomerFormFragment : BaseViewModelFragment() {
                 }
             }
         }
+    }
+
+    private fun setUpToolbar() = mainActivity.run {
+        setUpToolBar("", false)
+        invalidateToolbarElevation(0)
     }
 
     private fun createCustomer() {

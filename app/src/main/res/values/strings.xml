@@ -74,4 +74,11 @@
         <item>Camera</item>
         <item>Gallery</item>
     </string-array>
+    <string name="create_shop">Create Shop</string>
+    <string name="take_measurement">Take Measurement</string>
+    <string name="save_gig">Save Gig</string>
+    <string name="create_shop_description">Create your own shop from scratch by yourself</string>
+    <string name="take_measurement_description">Take the measurement details of your customer per gig available</string>
+    <string name="save_gig_description">Save the gig details of your customer available</string>
+    <string name="skip">Skip</string>
 </resources>

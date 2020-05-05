@@ -27,6 +27,8 @@ class DashBoardFragment : BaseViewModelFragment() {
     @Inject
     lateinit var prefsValueHelper: PrefsValueHelper
 
+    private var storeName = ""
+
     private lateinit var dashBoardViewModel: DashBoardViewModel
 
     private lateinit var binding: FragmentDashBoardBinding
@@ -58,12 +60,17 @@ class DashBoardFragment : BaseViewModelFragment() {
             }).attach()
 
         dashBoardViewModel.userInfo(prefsValueHelper.getAccessToken())
-
         dashBoardViewModel.userInfoResponse.observe(viewLifecycleOwner, Observer {
             binding.userNameTextView.text = it.username
             binding.userPhoneTextView.text = it.phoneNumber
+            storeName = it.businessName!!
         })
+        setUpToolbar()
+    }
 
+    private fun setUpToolbar() = mainActivity.run {
+        setUpToolBar(storeName)
+        invalidateToolbarElevation(0)
     }
 
     override fun getViewModel(): BaseViewModel = dashBoardViewModel

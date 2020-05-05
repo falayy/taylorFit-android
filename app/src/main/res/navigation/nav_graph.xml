@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/addGigDetails">
+    app:startDestination="@id/demoFragment">
 
     <fragment
         android:id="@+id/signUpFragment"
@@ -18,6 +18,10 @@
             android:id="@+id/action_signUpFragment_to_addCustomerNameFragment"
             app:destination="@id/addCustomerNameFragment"
             app:enterAnim="@anim/slide_in_left" />
+        <action
+            android:id="@+id/action_signUpFragment_to_demoFragment"
+            app:destination="@id/demoFragment"
+            app:enterAnim="@anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
@@ -173,5 +177,14 @@
         <argument
             android:name="customerInfo"
             app:argType="com.tailorfit.android.tailorfitapp.models.response.CustomerInfoResponseModel" />
+    </fragment>
+    <fragment
+        android:id="@+id/demoFragment"
+        android:name="com.tailorfit.android.tailorfitapp.intro.DemoFragment"
+        android:label="DemoFragment" >
+        <action
+            android:id="@+id/action_demoFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment"
+            app:enterAnim="@anim/fade_in" />
     </fragment>
 </navigation>

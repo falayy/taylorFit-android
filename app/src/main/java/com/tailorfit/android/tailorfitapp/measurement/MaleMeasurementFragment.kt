@@ -42,6 +42,7 @@ class MaleMeasurementFragment : BaseViewModelFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         daggerAppComponent.inject(this)
+        setUpToolbar()
         measurementViewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(MeasurementViewModel::class.java)
 
@@ -88,6 +89,11 @@ class MaleMeasurementFragment : BaseViewModelFragment() {
             }
         }
 
+    }
+
+    private fun setUpToolbar() = mainActivity.run {
+        setUpToolBar("", false)
+        invalidateToolbarElevation(0)
     }
 
     override fun getViewModel(): BaseViewModel = measurementViewModel

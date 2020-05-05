@@ -40,6 +40,7 @@ class CompletedJobsFragment : BaseViewModelFragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentCompletedJobsBinding.inflate(inflater)
+        binding.lifecycleOwner = this
         return binding.root
     }
 

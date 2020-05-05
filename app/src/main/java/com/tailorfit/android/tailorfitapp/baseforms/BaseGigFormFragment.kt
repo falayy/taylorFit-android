@@ -60,6 +60,7 @@ abstract class BaseGigFormFragment : BaseViewModelFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         daggerAppComponent.inject(this)
+        setUpToolbar()
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(GigViewModel::class.java)
         setDataHints(binding)
         navigate()
@@ -117,6 +118,10 @@ abstract class BaseGigFormFragment : BaseViewModelFragment() {
         }
     }
 
+    private fun setUpToolbar() = mainActivity.run {
+        setUpToolBar("", false)
+        invalidateToolbarElevation(0)
+    }
 
     protected abstract fun getGigFormType(): GigFormType
 

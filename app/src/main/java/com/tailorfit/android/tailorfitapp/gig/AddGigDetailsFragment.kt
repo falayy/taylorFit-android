@@ -90,6 +90,7 @@ class AddGigDetailsFragment : BaseViewModelFragment(), AddGigImageDetailsAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         daggerAppComponent.inject(this)
+        setUpToolbar()
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(GigViewModel::class.java)
         viewModel.getImagePlaceHolders()
         getImagePlaceHolder()
@@ -251,6 +252,11 @@ class AddGigDetailsFragment : BaseViewModelFragment(), AddGigImageDetailsAdapter
             crossfade(true)
             transformations(CircleCropTransformation())
         }
+    }
+
+    private fun setUpToolbar() = mainActivity.run {
+        setUpToolBar("",  false)
+        invalidateToolbarElevation(0)
     }
 
     override fun onClickItem(
