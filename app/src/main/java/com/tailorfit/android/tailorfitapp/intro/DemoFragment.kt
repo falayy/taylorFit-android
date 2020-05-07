@@ -26,9 +26,9 @@ class DemoFragment : BaseFragment() {
     private var currentPageNumber = 0
 
     private val dataModels = listOf(
-        PageDataModel(R.string.create_shop, R.string.create_shop_description, R.drawable.common_full_open_on_phone),
-        PageDataModel(R.string.take_measurement, R.string.take_measurement_description, R.drawable.common_full_open_on_phone),
-        PageDataModel(R.string.save_gig, R.string.save_gig_description, R.drawable.common_full_open_on_phone)
+        PageDataModel(R.string.create_shop, R.string.create_shop_description, R.drawable.ic_group_82),
+        PageDataModel(R.string.take_measurement, R.string.take_measurement_description, R.drawable.ic_group_83),
+        PageDataModel(R.string.save_gig, R.string.save_gig_description, R.drawable.ic_group_84)
     )
 
 

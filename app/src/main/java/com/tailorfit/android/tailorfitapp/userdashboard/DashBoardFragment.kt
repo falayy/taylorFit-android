@@ -1,6 +1,7 @@
 package com.tailorfit.android.tailorfitapp.userdashboard
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -64,8 +65,9 @@ class DashBoardFragment : BaseViewModelFragment() {
             binding.userNameTextView.text = it.username
             binding.userPhoneTextView.text = it.phoneNumber
             storeName = it.businessName!!
+            setUpToolbar()
         })
-        setUpToolbar()
+
     }
 
     private fun setUpToolbar() = mainActivity.run {
@@ -86,6 +88,7 @@ class DashBoardFragment : BaseViewModelFragment() {
             when (position) {
 
                 0 -> {
+                    Log.d("TAG","about to open pending fragment")
                     fragment = PendingJobsFragment()
                 }
 

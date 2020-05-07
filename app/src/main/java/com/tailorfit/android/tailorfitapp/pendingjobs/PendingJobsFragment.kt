@@ -2,6 +2,7 @@ package com.tailorfit.android.tailorfitapp.pendingjobs
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,6 +41,7 @@ class PendingJobsFragment : BaseViewModelFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Log.d("TAG","open pending fragment")
         binding = FragmentPendingJobsBinding.inflate(inflater)
         binding.lifecycleOwner = this
         return binding.root
