@@ -37,10 +37,22 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
         supportActionBar!!.setDisplayShowTitleEnabled(false)
     }
 
-    fun setUpToolBar(toolbarTitle: String, isRootPage: Boolean = false) {
+    fun setUpToolBar(
+        toolbarTitle: String,
+        isRootPage: Boolean = false
+        , isDashBoard: Boolean = false
+    ) {
+
         supportActionBar!!.run {
             setDisplayHomeAsUpEnabled(!isRootPage)
-            setHomeAsUpIndicator(if (!isRootPage) R.drawable.ic_arrow_white_24dp else 0)
+            var toolbarDrawable = if (!isRootPage && !isDashBoard) {
+                R.drawable.ic_arrow_white_24dp
+            } else if (isDashBoard) {
+                R.drawable.ic_store_24
+            } else {
+                0
+            }
+            setHomeAsUpIndicator(toolbarDrawable)
             toolbarTitleTextView.text = toolbarTitle
             val leftRightPaddingRes = if (isRootPage) R.dimen.toolbar_left_right_padding_root else
                 R.dimen.toolbar_left_right_padding

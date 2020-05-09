@@ -52,10 +52,6 @@ class DemoFragment : BaseFragment() {
                 viewPager.currentItem = currentPageNumber + 1
             }
         }
-
-        binding.slideActionButton.setOnClickListener {
-            findNavController().navigate(DemoFragmentDirections.actionDemoFragmentToSignUpFragment())
-        }
     }
 
     override fun onBackPressed(): Boolean {

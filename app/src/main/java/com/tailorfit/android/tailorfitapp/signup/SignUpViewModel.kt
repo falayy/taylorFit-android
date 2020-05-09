@@ -30,7 +30,6 @@ class SignUpViewModel @Inject constructor(
             .subscribeBy {
                 when (it) {
                     is Result.Success -> {
-                        prefsValueHelper.setAccessToken(" ")
                         prefsValueHelper.setAccessToken(it.data.token)
                         prefsValueHelper.setUserId(it.data.id)
                         _signUpResponse.value = it.data

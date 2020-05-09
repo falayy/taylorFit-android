@@ -45,7 +45,6 @@ class SignUpFragment : BaseViewModelFragment() {
             findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToSignInFragment())
         }
         binding.signupButton.setOnClickListener {
-            findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToAddCustomerNameFragment())
             if (validateTextLayouts(
                     binding.nameEditText,
                     binding.phoneEditText,

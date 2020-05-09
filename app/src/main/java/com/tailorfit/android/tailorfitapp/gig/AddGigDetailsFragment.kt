@@ -102,7 +102,6 @@ class AddGigDetailsFragment : BaseViewModelFragment(), AddGigImageDetailsAdapter
 
 
     private fun createGig() {
-        Toast.makeText(context, "nawa 1", Toast.LENGTH_LONG).show()
         val createGigRequest = CreateGigRequest(
             prefsValueHelper.getCustomerId(),
             prefsValueHelper.getGigDueDate(),
@@ -118,8 +117,6 @@ class AddGigDetailsFragment : BaseViewModelFragment(), AddGigImageDetailsAdapter
             prefsValueHelper.getAccessToken()!!,
             createGigRequest
         )
-        Toast.makeText(context, "nawa 2", Toast.LENGTH_LONG).show()
-
 
         viewModel.createGigResponse.observe(viewLifecycleOwner, Observer {
             if (it != null) {

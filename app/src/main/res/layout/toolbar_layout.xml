@@ -24,7 +24,7 @@
         android:paddingTop="2dp"
         android:paddingEnd="16dp"
         android:paddingBottom="2dp"
-        android:textColor="@color/primaryColorChocolate"
+        android:textColor="@color/secondaryColorChocolate"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
         android:textSize="24sp"
         tools:text="BaseProj" />

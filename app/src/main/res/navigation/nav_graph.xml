@@ -181,7 +181,8 @@
     <fragment
         android:id="@+id/demoFragment"
         android:name="com.tailorfit.android.tailorfitapp.intro.DemoFragment"
-        android:label="DemoFragment" >
+        android:label="DemoFragment"
+        app:startDestination="@id/action_demoFragment_to_signUpFragment">
         <action
             android:id="@+id/action_demoFragment_to_signUpFragment"
             app:destination="@id/signUpFragment"

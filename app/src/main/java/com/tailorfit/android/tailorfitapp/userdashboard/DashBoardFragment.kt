@@ -15,6 +15,7 @@ import com.tailorfit.android.base.BaseViewModel
 import com.tailorfit.android.base.BaseViewModelFragment
 import com.tailorfit.android.tailorfitapp.completedjobs.CompletedJobsFragment
 import com.tailorfit.android.databinding.FragmentDashBoardBinding
+import com.tailorfit.android.extensions.onPageChanged
 import com.tailorfit.android.tailorfitapp.pendingjobs.PendingJobsFragment
 import com.tailorfit.android.tailorfitapp.PrefsValueHelper
 import javax.inject.Inject
@@ -29,6 +30,7 @@ class DashBoardFragment : BaseViewModelFragment() {
     lateinit var prefsValueHelper: PrefsValueHelper
 
     private var storeName = ""
+
 
     private lateinit var dashBoardViewModel: DashBoardViewModel
 
@@ -59,7 +61,6 @@ class DashBoardFragment : BaseViewModelFragment() {
                     1 -> tab.text = tabLayoutList[1]
                 }
             }).attach()
-
         dashBoardViewModel.userInfo(prefsValueHelper.getAccessToken())
         dashBoardViewModel.userInfoResponse.observe(viewLifecycleOwner, Observer {
             binding.userNameTextView.text = it.username
@@ -67,11 +68,17 @@ class DashBoardFragment : BaseViewModelFragment() {
             storeName = it.businessName!!
             setUpToolbar()
         })
+        dashBoardViewModel.apply {
+            getCustomerPendingJobsInfo(
+                prefsValueHelper.getAccessToken(),
+                prefsValueHelper.getUserId()
+            )
+        }
 
     }
 
     private fun setUpToolbar() = mainActivity.run {
-        setUpToolBar(storeName)
+        setUpToolBar(storeName, isDashBoard = true)
         invalidateToolbarElevation(0)
     }
 
@@ -80,23 +87,27 @@ class DashBoardFragment : BaseViewModelFragment() {
 
     private inner class DashBoardViewPagerAdapter(fragment: Fragment) :
         FragmentStateAdapter(fragment) {
-        private lateinit var fragment: Fragment
 
         override fun getItemCount(): Int = tabLayoutList.size
 
-        override fun createFragment(position: Int): Fragment {
-            when (position) {
+        override fun createFragment(position: Int): Fragment = PendingJobsFragment()
 
-                0 -> {
-                    Log.d("TAG","about to open pending fragment")
-                    fragment = PendingJobsFragment()
-                }
-
-                1 -> {
-                    fragment = CompletedJobsFragment()
-                }
-            }
-            return fragment
-        }
     }
+
+//    {
+//        return when (position) {
+//            0 -> {
+//                Log.d("TAG","about to open pending fragment")
+//                PendingJobsFragment()
+//            }
+//
+//            1 -> {
+//                CompletedJobsFragment()
+//            }
+//
+//            else -> {
+//                PendingJobsFragment()
+//            }
+//        }
+//    }
 }

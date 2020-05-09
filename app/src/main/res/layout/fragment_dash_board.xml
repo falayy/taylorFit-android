@@ -4,14 +4,16 @@
 
     <ScrollView
         android:layout_width="match_parent"
+        android:background="@color/backgroundPrimaryWhite"
         android:layout_marginTop="?attr/actionBarSize"
         android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
         android:orientation="vertical"
         tools:context="com.tailorfit.android.tailorfitapp.userdashboard.DashBoardFragment">
 
@@ -20,8 +22,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cardCornerRadius="35dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:strokeColor="@color/gold"
@@ -42,7 +42,7 @@
             android:layout_margin="10dp"
             android:text="@string/customer_hint_name"
             android:textColor="@color/textColorDark"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/user_phone_text_view"
             app:layout_constraintLeft_toRightOf="@id/user_avatar_image_container"
@@ -55,7 +55,7 @@
             android:layout_margin="10dp"
             android:text="@string/customer_number_hint"
             android:textColor="@color/textColorPrimaryGrey"
-            android:textSize="15sp"
+            android:textSize="12sp"
             android:textStyle="bold"
             app:layout_constraintLeft_toRightOf="@id/user_avatar_image_container"
             app:layout_constraintTop_toBottomOf="@id/user_name_text_view" />
@@ -66,7 +66,7 @@
         android:id="@+id/tabs"
         style="@style/Widget.Design.TabLayout"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="25dp"
@@ -85,8 +85,8 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="15dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginRight="24dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:orientation="vertical" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
