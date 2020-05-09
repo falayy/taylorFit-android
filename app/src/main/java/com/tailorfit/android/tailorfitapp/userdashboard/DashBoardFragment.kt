@@ -103,9 +103,11 @@ class DashBoardFragment : BaseViewModelFragment() {
             return when (position) {
                     0 -> {
                         Log.d("TAG","about to open pending fragment")
+                        Log.d("TAG","about to open pending fragment $position")
                         PendingJobsFragment()
                     }
                     1 -> {
+                        Log.d("TAG","about to open completed fragment $position")
                         Log.d("TAG","about to open completed fragment")
                         CompletedJobsFragment()
                     }
