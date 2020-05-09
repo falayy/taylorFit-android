@@ -44,8 +44,7 @@ class SignUpViewModel @Inject constructor(
 
     override fun addAllLiveDataToObservablesList() {
         addAllLiveDataToObservablesList(
-            signUpResponse,
-            _signUpResponse
+            signUpResponse
         )
     }
 }

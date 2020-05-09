@@ -61,6 +61,7 @@ class DashBoardFragment : BaseViewModelFragment() {
                     1 -> tab.text = tabLayoutList[1]
                 }
             }).attach()
+
         dashBoardViewModel.userInfo(prefsValueHelper.getAccessToken())
         dashBoardViewModel.userInfoResponse.observe(viewLifecycleOwner, Observer {
             binding.userNameTextView.text = it.username
@@ -88,26 +89,34 @@ class DashBoardFragment : BaseViewModelFragment() {
     private inner class DashBoardViewPagerAdapter(fragment: Fragment) :
         FragmentStateAdapter(fragment) {
 
-        override fun getItemCount(): Int = tabLayoutList.size
+        init {
+            Log.d("TAG","about to open  viewpager adapter")
+        }
 
-        override fun createFragment(position: Int): Fragment = PendingJobsFragment()
+        override fun getItemCount(): Int {
+            Log.d("TAG","about to open  viewpager adapter ${tabLayoutList.size}")
+            return tabLayoutList.size
+        }
+
+        override fun createFragment(position: Int): Fragment {
+            Log.d("TAG","about to open  one of the fragment")
+            return when (position) {
+                    0 -> {
+                        Log.d("TAG","about to open pending fragment")
+                        PendingJobsFragment()
+                    }
+                    1 -> {
+                        Log.d("TAG","about to open completed fragment")
+                        CompletedJobsFragment()
+                    }
+                    else -> {
+                        Log.d("TAG","about to open  default pending fragment")
+                        PendingJobsFragment()
+                    }
+                }
+            }
 
     }
 
-//    {
-//        return when (position) {
-//            0 -> {
-//                Log.d("TAG","about to open pending fragment")
-//                PendingJobsFragment()
-//            }
-//
-//            1 -> {
-//                CompletedJobsFragment()
-//            }
-//
-//            else -> {
-//                PendingJobsFragment()
-//            }
-//        }
-//    }
+
 }

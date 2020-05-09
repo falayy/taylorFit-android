@@ -43,7 +43,6 @@ class AddCustomerViewModel @Inject constructor(
 
     override fun addAllLiveDataToObservablesList() {
         addAllLiveDataToObservablesList(
-            _createCustomerResponse,
             createCustomerResponse
         )
     }

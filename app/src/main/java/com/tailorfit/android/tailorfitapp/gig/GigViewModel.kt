@@ -72,9 +72,6 @@ class GigViewModel @Inject constructor(
 
     override fun addAllLiveDataToObservablesList() {
         addAllLiveDataToObservablesList(
-            _imagePlaceHolder,
-            _gigImageUploadStatus,
-            _createGigResponse,
             createGigResponse
         )
     }

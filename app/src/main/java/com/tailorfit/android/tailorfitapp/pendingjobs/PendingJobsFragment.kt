@@ -52,12 +52,12 @@ class PendingJobsFragment : BaseViewModelFragment() {
         daggerAppComponent.inject(this)
         dashBoardViewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(DashBoardViewModel::class.java)
-        dashBoardViewModel.getCustomerPendingJobsInfo(
-            prefsValueHelper.getAccessToken(),
-            prefsValueHelper.getUserId()
-        )
+//        dashBoardViewModel.getCustomerPendingJobsInfo(
+//            prefsValueHelper.getAccessToken(),
+//            prefsValueHelper.getUserId()
+//        )
 
-        binding.recyclerViewImage.adapter = dashBoardAdapter
+//        binding.recyclerViewImage.adapter = dashBoardAdapter
 
 
     }

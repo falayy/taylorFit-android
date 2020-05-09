@@ -77,6 +77,7 @@ class DashBoardViewModel @Inject constructor(
                         .sortedBy { fetchCustomerInfoResponse ->
                             fetchCustomerInfoResponse.isDone == true
                         }
+                    _loadingStatus.value = LoadingStatus.Success
                 }
                 is Result.Error -> {
                     LoadingStatus.Error(it.errorCode, it.errorMessage)
