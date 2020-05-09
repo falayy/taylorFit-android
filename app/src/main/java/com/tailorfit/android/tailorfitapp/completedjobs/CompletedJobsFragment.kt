@@ -6,9 +6,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.tailorfit.android.base.BaseViewModel
 import com.tailorfit.android.base.BaseViewModelFragment
 import com.tailorfit.android.databinding.FragmentCompletedJobsBinding
@@ -56,7 +58,18 @@ class CompletedJobsFragment : BaseViewModelFragment() {
             prefsValueHelper.getAccessToken(),
             prefsValueHelper.getUserId()
         )
-        binding.recyclerViewImage.adapter = dashBoardAdapter
+        dashBoardViewModel.customerInfoResponse.observe(viewLifecycleOwner, Observer {
+            binding.recyclerViewImage.apply {
+                layoutManager = LinearLayoutManager(
+                    context,
+                    LinearLayoutManager.VERTICAL,
+                    false
+                )
+                adapter = dashBoardAdapter.apply {
+                    submitList(it)
+                }
+            }
+        })
 
     }
 

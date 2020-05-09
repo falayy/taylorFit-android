@@ -6,9 +6,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.tailorfit.android.base.BaseViewModel
 import com.tailorfit.android.base.BaseViewModelFragment
 import com.tailorfit.android.tailorfitapp.completedjobs.CompletedJobsFragmentDirections
@@ -41,7 +43,6 @@ class PendingJobsFragment : BaseViewModelFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.d("TAG","open pending fragment")
         binding = FragmentPendingJobsBinding.inflate(inflater)
         binding.lifecycleOwner = this
         return binding.root
@@ -52,14 +53,23 @@ class PendingJobsFragment : BaseViewModelFragment() {
         daggerAppComponent.inject(this)
         dashBoardViewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(DashBoardViewModel::class.java)
-//        dashBoardViewModel.getCustomerPendingJobsInfo(
-//            prefsValueHelper.getAccessToken(),
-//            prefsValueHelper.getUserId()
-//        )
+        dashBoardViewModel.getCustomerPendingJobsInfo(
+            prefsValueHelper.getAccessToken(),
+            prefsValueHelper.getUserId()
+        )
 
-//        binding.recyclerViewImage.adapter = dashBoardAdapter
-
-
+        dashBoardViewModel.customerInfoResponse.observe(viewLifecycleOwner, Observer {
+            binding.recyclerViewImage.apply {
+                layoutManager = LinearLayoutManager(
+                    context,
+                    LinearLayoutManager.VERTICAL,
+                    false
+                )
+                adapter = dashBoardAdapter.apply {
+                    submitList(it)
+                }
+            }
+        })
     }
 
     override fun getViewModel(): BaseViewModel = dashBoardViewModel

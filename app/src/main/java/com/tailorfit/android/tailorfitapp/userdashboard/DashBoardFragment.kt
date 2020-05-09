@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 import com.tailorfit.android.base.BaseViewModel
@@ -53,7 +54,9 @@ class DashBoardFragment : BaseViewModelFragment() {
         daggerAppComponent.inject(this)
         dashBoardViewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(DashBoardViewModel::class.java)
+
         binding.tabLayoutViewHolder.adapter = DashBoardViewPagerAdapter(this)
+
         TabLayoutMediator(binding.tabs, binding.tabLayoutViewHolder,
             TabLayoutMediator.OnConfigureTabCallback { tab, position ->
                 when (position) {
@@ -63,17 +66,23 @@ class DashBoardFragment : BaseViewModelFragment() {
             }).attach()
 
         dashBoardViewModel.userInfo(prefsValueHelper.getAccessToken())
+
         dashBoardViewModel.userInfoResponse.observe(viewLifecycleOwner, Observer {
             binding.userNameTextView.text = it.username
             binding.userPhoneTextView.text = it.phoneNumber
             storeName = it.businessName!!
             setUpToolbar()
         })
+
         dashBoardViewModel.apply {
             getCustomerPendingJobsInfo(
                 prefsValueHelper.getAccessToken(),
                 prefsValueHelper.getUserId()
             )
+        }
+
+        binding.dashboardFab.setOnClickListener {
+            findNavController().navigate(DashBoardFragmentDirections.actionDashBoardFragmentToAddCustomerNameFragment())
         }
 
     }
@@ -89,36 +98,27 @@ class DashBoardFragment : BaseViewModelFragment() {
     private inner class DashBoardViewPagerAdapter(fragment: Fragment) :
         FragmentStateAdapter(fragment) {
 
-        init {
-            Log.d("TAG","about to open  viewpager adapter")
-        }
+        override fun getItemCount(): Int = tabLayoutList.size
 
-        override fun getItemCount(): Int {
-            Log.d("TAG","about to open  viewpager adapter ${tabLayoutList.size}")
-            return tabLayoutList.size
-        }
 
         override fun createFragment(position: Int): Fragment {
-            Log.d("TAG","about to open  one of the fragment")
+
             return when (position) {
-                    0 -> {
-                        Log.d("TAG","about to open pending fragment")
-                        Log.d("TAG","about to open pending fragment $position")
-                        PendingJobsFragment()
-                    }
-                    1 -> {
-                        Log.d("TAG","about to open completed fragment $position")
-                        Log.d("TAG","about to open completed fragment")
-                        CompletedJobsFragment()
-                    }
-                    else -> {
-                        Log.d("TAG","about to open  default pending fragment")
-                        PendingJobsFragment()
-                    }
+
+                0 -> {
+                    PendingJobsFragment()
                 }
+
+                1 -> {
+                    CompletedJobsFragment()
+                }
+
+                else -> {
+                    PendingJobsFragment()
+                }
+
             }
-
+        }
     }
-
 
 }

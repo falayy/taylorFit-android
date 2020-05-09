@@ -9,6 +9,7 @@ import com.tailorfit.android.Constants
 import com.tailorfit.android.R
 import com.tailorfit.android.tailorfitapp.models.response.CustomerInfoResponseModel
 import com.tailorfit.android.tailorfitapp.userdashboard.DashBoardAdapter
+import com.tailorfit.android.utils.DateUtils
 import timber.log.Timber
 
 @BindingAdapter("listCustomerInfo")

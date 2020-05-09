@@ -150,6 +150,9 @@
         <action
             android:id="@+id/action_dashBoardFragment_to_pendingJobsFragment"
             app:destination="@id/pendingJobsFragment" />
+        <action
+            android:id="@+id/action_dashBoardFragment_to_addCustomerNameFragment"
+            app:destination="@id/addCustomerNameFragment" />
     </fragment>
     <fragment
         android:id="@+id/pendingJobsFragment"

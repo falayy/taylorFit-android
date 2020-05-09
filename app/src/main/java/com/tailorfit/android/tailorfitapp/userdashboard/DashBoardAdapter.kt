@@ -40,6 +40,8 @@ class DashBoardAdapter(
         fun bind(
             customerInfoResponseModel: CustomerInfoResponseModel
         ) {
+            binding.customerInfo = customerInfoResponseModel
+            binding.executePendingBindings()
 
         }
 
