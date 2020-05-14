@@ -5,10 +5,7 @@ import com.tailorfit.android.tailorfitapp.models.request.*
 import com.tailorfit.android.tailorfitapp.models.response.*
 import io.reactivex.Single
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface TailorFitApIService {
 
@@ -63,7 +60,7 @@ interface TailorFitApIService {
         @Header("customer_id") customerId: String,
         @Header("gig_id") gigId: String
     )
-//            : Single<Response<BaseAPIResponse<>>>
+            : Single<Response<BaseAPIResponse<MaleMeasurementResponse>>>
 
     @GET("")
     fun getCustomeFemaleMeasurement(
@@ -71,7 +68,7 @@ interface TailorFitApIService {
         @Header("customer_id") customerId: String,
         @Header("gig_id") gigId: String
     )
-//            : Single<Response<BaseAPIResponse<>>>
+            : Single<Response<BaseAPIResponse<FemaleMeasurementResponse>>>
 
 
     @GET("/user/info")

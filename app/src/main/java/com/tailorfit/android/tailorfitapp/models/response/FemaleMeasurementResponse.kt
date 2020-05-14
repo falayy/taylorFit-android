@@ -4,6 +4,14 @@ package com.tailorfit.android.tailorfitapp.models.response
 import com.google.gson.annotations.SerializedName
 
 data class FemaleMeasurementResponse(
+    @SerializedName("_id")
+    val _id: String? = null,
+    @SerializedName("user_id")
+    val userId: Int? = null,
+    @SerializedName("customer_id")
+    val customerId: Int? = null,
+    @SerializedName("gig_id")
+    val gigId: Int? = null,
     @SerializedName("arm_hole")
     val armHole: Int? = null,
     @SerializedName("arm_round")

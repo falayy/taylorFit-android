@@ -42,7 +42,6 @@ class GigViewModel @Inject constructor(
 
 
     fun getImagePlaceHolders() {
-        Timber.d("size is ${gigsRepository.getImagePlaceHolder().size}")
         _imagePlaceHolder.value = gigsRepository.getImagePlaceHolder()
     }
 
@@ -50,7 +49,9 @@ class GigViewModel @Inject constructor(
     fun uploadGigStyle(
         photoUri: Uri
     ) {
+//        _gigImageUploadStatus.value = ImageUploadStatus.UPLOADING
         gigsRepository.uploadImage(photoUri)
+//        _gigImageUploadStatus.value = ImageUploadStatus.SUCCESS
     }
 
     fun createGig(token: String, createGigRequest: CreateGigRequest) {

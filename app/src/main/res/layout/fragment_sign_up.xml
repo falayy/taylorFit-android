@@ -143,8 +143,6 @@
                 style="@style/TextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/textColorSecondaryWhite"
-                app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout"
                 android:hint="@string/store_name">
 
                 <com.google.android.material.textfield.TextInputEditText

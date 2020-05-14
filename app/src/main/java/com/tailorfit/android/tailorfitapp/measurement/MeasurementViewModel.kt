@@ -1,6 +1,5 @@
 package com.tailorfit.android.tailorfitapp.measurement
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.tailorfit.android.base.BaseViewModel
 import com.tailorfit.android.networkutils.LoadingStatus
@@ -71,6 +70,42 @@ class MeasurementViewModel @Inject constructor(
                 }
             }.disposeBy(disposeBag)
 
+
+    }
+
+    fun getMaleMeasurement(token: String?, gigId: String?, customerId: String?) {
+        _loadingStatus.value = LoadingStatus.Loading("Getting Measurements, Please Wait......")
+        measurementRepository.getMaleMeasurement(token!!, gigId!!, customerId!!)
+            .subscribeBy {
+                when (it) {
+                    is Result.Success -> {
+                        _maleResponse.value = it.data
+                        _loadingStatus.value = LoadingStatus.Success
+                    }
+                    is Result.Error -> {
+                        _loadingStatus.value =
+                            LoadingStatus.Error(it.errorCode, it.errorMessage)
+                    }
+                }
+            }.disposeBy(disposeBag)
+
+    }
+
+    fun getFemaleMeasurement(token: String?, gigId: String?, customerId: String?) {
+        _loadingStatus.value = LoadingStatus.Loading("Getting Measurements, Please Wait......")
+        measurementRepository.getFemaleMeasurement(token!!, gigId!!, customerId!!)
+            .subscribeBy {
+                when (it) {
+                    is Result.Success -> {
+                        _femaleResponse.value = it.data
+                        _loadingStatus.value = LoadingStatus.Success
+                    }
+                    is Result.Error -> {
+                        _loadingStatus.value =
+                            LoadingStatus.Error(it.errorCode, it.errorMessage)
+                    }
+                }
+            }.disposeBy(disposeBag)
 
     }
 

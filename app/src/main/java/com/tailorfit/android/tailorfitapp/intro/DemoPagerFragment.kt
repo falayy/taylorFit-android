@@ -20,6 +20,7 @@ class DemoPagerFragment : BaseFragment() {
             it.arguments = Bundle().apply { putParcelable(PAGER_MODEL_KEY, pagerDataModel) }
         }
     }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         binding = FragmentDemoPagerBinding.inflate(inflater)

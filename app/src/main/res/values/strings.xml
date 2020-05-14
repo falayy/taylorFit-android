@@ -81,4 +81,5 @@
     <string name="take_measurement_description">Take the measurement details of your customer per gig available</string>
     <string name="save_gig_description">Save the gig details of your customer available</string>
     <string name="skip">Skip</string>
+    <string name="here_are_your_measurements">Here are your Measurements</string>
 </resources>

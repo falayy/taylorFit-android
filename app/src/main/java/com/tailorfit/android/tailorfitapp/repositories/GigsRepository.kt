@@ -1,6 +1,7 @@
 package com.tailorfit.android.tailorfitapp.repositories
 
 import android.net.Uri
+import android.util.Log
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
 import com.google.firebase.storage.FirebaseStorage
@@ -26,6 +27,7 @@ class GigsRepository @Inject constructor(private val tailorFitApIService: Tailor
     private val gigImageModelB = GigImageModel("2nd", "b")
     private val gigImageModelC = GigImageModel("3rd", "c")
     private val gigImageModelD = GigImageModel("4th", "d")
+    private val imageStyle = mutableListOf<String>()
 
     private val imagePlaceHolderList =
         listOf(gigImageModelA, gigImageModelB, gigImageModelC, gigImageModelD)
@@ -35,6 +37,7 @@ class GigsRepository @Inject constructor(private val tailorFitApIService: Tailor
     //------uploads style images to firebase
 
     fun uploadImage(imageFilePath: Uri?) {
+
         firebaseStore = FirebaseStorage.getInstance()
         storageReference = FirebaseStorage.getInstance().reference
 
@@ -54,8 +57,8 @@ class GigsRepository @Inject constructor(private val tailorFitApIService: Tailor
         )?.addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 downloadUrl = task.result.toString()
-            } else {
-                // TODO handle failures
+                imageStyle.add(downloadUrl)
+                Log.d("TAG", "style size is ${imageStyle.size}")
             }
         }
     }
@@ -63,6 +66,7 @@ class GigsRepository @Inject constructor(private val tailorFitApIService: Tailor
 
     fun createGig(token: String, createGigRequest: CreateGigRequest):
             Single<Result<CreateGigResponse>> {
+        createGigRequest.style = imageStyle
         return tailorFitApIService.createGig(token, createGigRequest).toResult()
     }
 }

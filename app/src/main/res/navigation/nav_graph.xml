@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/dashBoardFragment">
+    app:startDestination="@id/demoFragment">
 
     <fragment
         android:id="@+id/signUpFragment"
@@ -180,6 +180,9 @@
         <argument
             android:name="customerInfo"
             app:argType="com.tailorfit.android.tailorfitapp.models.response.CustomerInfoResponseModel" />
+        <action
+            android:id="@+id/action_customerDetailsFragment_to_getMeasurementFragment"
+            app:destination="@id/getMeasurementFragment" />
     </fragment>
     <fragment
         android:id="@+id/demoFragment"
@@ -190,5 +193,13 @@
             android:id="@+id/action_demoFragment_to_signUpFragment"
             app:destination="@id/signUpFragment"
             app:enterAnim="@anim/fade_in" />
+    </fragment>
+    <fragment
+        android:id="@+id/getMeasurementFragment"
+        android:name="com.tailorfit.android.tailorfitapp.measurement.GetMeasurementFragment"
+        android:label="GetMeasurementFragment" >
+        <argument
+            android:name="gender"
+            app:argType="string" />
     </fragment>
 </navigation>
