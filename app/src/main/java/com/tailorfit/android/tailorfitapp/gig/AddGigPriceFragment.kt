@@ -13,7 +13,7 @@ class AddGigPriceFragment : BaseGigFormFragment() {
 
     override fun setDataHints(binding: FragmentBaseFormBinding) {
        binding.formDescription.text = getString(R.string.gig_price_message)
-        binding.editText.hint = getString(R.string.gig_price_hint)
+        binding.formValueInputLayout.hint = getString(R.string.gig_price_hint)
         binding.editText.inputType = InputType.TYPE_CLASS_NUMBER
     }
 

@@ -153,6 +153,9 @@
         <action
             android:id="@+id/action_dashBoardFragment_to_addCustomerNameFragment"
             app:destination="@id/addCustomerNameFragment" />
+        <action
+            android:id="@+id/action_dashBoardFragment_to_customerDetailsFragment"
+            app:destination="@id/customerDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/pendingJobsFragment"

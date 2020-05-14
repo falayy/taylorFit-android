@@ -42,7 +42,6 @@ class CompletedJobsFragment : BaseViewModelFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        Log.d("TAG","open completed fragment")
         binding = FragmentCompletedJobsBinding.inflate(inflater)
         binding.lifecycleOwner = this
         return binding.root
@@ -51,7 +50,6 @@ class CompletedJobsFragment : BaseViewModelFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         daggerAppComponent.inject(this)
-        Log.d("TAG","open completed fragment in onview created")
         dashBoardViewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(DashBoardViewModel::class.java)
         dashBoardViewModel.getCustomerCompletedJobsInfo(
