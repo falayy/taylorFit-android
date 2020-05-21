@@ -2,10 +2,12 @@ package com.tailorfit.android.tailorfitapp.customerdetails
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import coil.api.load
+import coil.transform.CircleCropTransformation
 import com.tailorfit.android.base.BaseFragment
 import com.tailorfit.android.databinding.FragmentStyleImagesPagerBinding
 
@@ -33,7 +35,11 @@ class StyleImagesPagerFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val image = arguments!!.getString(IMAGE_LIST_KEY)
-        binding.styleImages.load(image)
+        Log.d("TAG", " here here $image")
+        binding.styleImages.load(image){
+            crossfade(true)
+            transformations(CircleCropTransformation())
+        }
     }
 
 }

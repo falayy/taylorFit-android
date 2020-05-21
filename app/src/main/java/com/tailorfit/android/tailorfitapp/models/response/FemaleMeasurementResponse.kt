@@ -7,33 +7,33 @@ data class FemaleMeasurementResponse(
     @SerializedName("_id")
     val _id: String? = null,
     @SerializedName("user_id")
-    val userId: Int? = null,
+    val userId: Double = 0.0,
     @SerializedName("customer_id")
-    val customerId: Int? = null,
+    val customerId: String? = null,
     @SerializedName("gig_id")
-    val gigId: Int? = null,
+    val gigId: String? = null,
     @SerializedName("arm_hole")
-    val armHole: Int? = null,
+    val armHole: Double = 0.0,
     @SerializedName("arm_round")
-    val armRound: Int? = null,
+    val armRound: Double = 0.0,
     @SerializedName("bust_line")
-    val bustLine: Int? = null,
+    val bustLine: Double = 0.0,
     @SerializedName("full_length")
-    val fullLength: Int? = null,
+    val fullLength: Double = 0.0,
     @SerializedName("half_sleeve")
-    val halfSleeve: Int? = null,
+    val halfSleeve:Double = 0.0,
     @SerializedName("hip_line")
-    val hipLine: Int? = null,
+    val hipLine: Double = 0.0,
     @SerializedName("hip_round")
-    val hipRound: Int? = null,
+    val hipRound: Double = 0.0,
     @SerializedName("natural_waist_line")
-    val naturalWaistLine: Int? = null,
+    val naturalWaistLine: Double = 0.0,
     @SerializedName("natural_waist_round")
-    val naturalWaistRound: Int? = null,
+    val naturalWaistRound: Double = 0.0,
     @SerializedName("shoulder_shoulder")
-    val shoulderShoulder: Int? = null,
+    val shoulderShoulder: Double = 0.0,
     @SerializedName("sleeve_length")
-    val sleeveLength: Int? = null,
+    val sleeveLength: Double = 0.0,
     @SerializedName("under_bust")
-    val underBust: Int? = null
+    val underBust: Double = 0.0
 )

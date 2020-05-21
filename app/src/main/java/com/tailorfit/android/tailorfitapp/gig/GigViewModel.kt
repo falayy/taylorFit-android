@@ -37,6 +37,8 @@ class GigViewModel @Inject constructor(
     val imageUploadStatus: LiveData<ImageUploadStatus>
         get() = _gigImageUploadStatus
 
+    private val _uriResponse = MutableLiveData<Uri>()
+
     private val _createGigResponse = MutableLiveData<CreateGigResponse>()
     val createGigResponse: LiveData<CreateGigResponse> = _createGigResponse
 
@@ -49,9 +51,19 @@ class GigViewModel @Inject constructor(
     fun uploadGigStyle(
         photoUri: Uri
     ) {
-//        _gigImageUploadStatus.value = ImageUploadStatus.UPLOADING
+        _gigImageUploadStatus.value = ImageUploadStatus.UPLOADING
         gigsRepository.uploadImage(photoUri)
-//        _gigImageUploadStatus.value = ImageUploadStatus.SUCCESS
+            .subscribeBy {
+                when (it) {
+                    is Result.Success -> {
+                        _uriResponse.value = it.data
+                        _gigImageUploadStatus.value = ImageUploadStatus.SUCCESS
+                    }
+                    is Result.Error -> {
+                        _gigImageUploadStatus.value = ImageUploadStatus.FAILED
+                    }
+                }
+            }.disposeBy(disposeBag)
     }
 
     fun createGig(token: String, createGigRequest: CreateGigRequest) {

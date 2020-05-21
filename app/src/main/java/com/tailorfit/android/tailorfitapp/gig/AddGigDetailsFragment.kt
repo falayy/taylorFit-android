@@ -30,9 +30,7 @@ import com.tailorfit.android.R
 import com.tailorfit.android.base.BaseViewModel
 import com.tailorfit.android.base.BaseViewModelFragment
 import com.tailorfit.android.databinding.FragmentAddGigDetailsBinding
-import com.tailorfit.android.extensions.createImageFile
-import com.tailorfit.android.extensions.hasPermissions
-import com.tailorfit.android.extensions.stringContent
+import com.tailorfit.android.extensions.*
 import com.tailorfit.android.tailorfitapp.PrefsValueHelper
 import com.tailorfit.android.tailorfitapp.models.request.CreateGigRequest
 import com.tailorfit.android.tailorfitapp.validateTextLayouts
@@ -41,7 +39,7 @@ import java.lang.Exception
 import java.net.URI
 import javax.inject.Inject
 
-
+enum class UPLOADTYPE { GALLERY, CAMERA }
 class AddGigDetailsFragment : BaseViewModelFragment(), AddGigImageDetailsAdapter.OnclickListener {
 
 
@@ -238,6 +236,7 @@ class AddGigDetailsFragment : BaseViewModelFragment(), AddGigImageDetailsAdapter
             crossfade(true)
             transformations(CircleCropTransformation())
         }
+        observeImageUpload(null, photoFile)
     }
 
     private fun prepareHolderForUpload(
@@ -249,10 +248,11 @@ class AddGigDetailsFragment : BaseViewModelFragment(), AddGigImageDetailsAdapter
             crossfade(true)
             transformations(CircleCropTransformation())
         }
+        observeImageUpload(uri,  null)
     }
 
     private fun setUpToolbar() = mainActivity.run {
-        setUpToolBar("",  false)
+        setUpToolBar("", false)
         invalidateToolbarElevation(0)
     }
 
@@ -275,6 +275,44 @@ class AddGigDetailsFragment : BaseViewModelFragment(), AddGigImageDetailsAdapter
         }
     }
 
+    private fun observeImageUpload(uri: Uri?, file: File?) {
+        viewModel.imageUploadStatus.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                ImageUploadStatus.NOT_UPLOADED -> {
+                    gigAdapterViewHolder.binding.apply {
+                        indeterminateImageUploadProgressBar.hide()
+                        imageUploadStatusView.hide()
+                    }
+                }
+                ImageUploadStatus.UPLOADING -> {
+                    gigAdapterViewHolder.binding.apply {
+                        indeterminateImageUploadProgressBar.show()
+                        imageUploadStatusView.hide()
+                    }
+                }
+                ImageUploadStatus.SUCCESS -> {
+                    gigAdapterViewHolder.binding.apply {
+                        imageUploadStatusView.load(R.drawable.image_upload_done_status) {
+                            transformations(CircleCropTransformation())
+                        }
+                        indeterminateImageUploadProgressBar.hide()
+                        imageUploadStatusView.show()
+                    }
+
+                }
+                ImageUploadStatus.FAILED -> {
+                    gigAdapterViewHolder.binding.apply {
+                        imageUploadStatusView.load(R.drawable.image_upload_refresh) {
+                            transformations(CircleCropTransformation())
+                        }
+                        imageUploadStatusView.show()
+                        indeterminateImageUploadProgressBar.hide()
+                    }
+
+                }
+            }
+        })
+    }
 
     override fun getViewModel(): BaseViewModel = viewModel
 

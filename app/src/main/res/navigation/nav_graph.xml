@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/demoFragment">
+    app:startDestination="@id/dashBoardFragment">
 
     <fragment
         android:id="@+id/signUpFragment"
@@ -22,6 +22,12 @@
             android:id="@+id/action_signUpFragment_to_demoFragment"
             app:destination="@id/demoFragment"
             app:enterAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_signUpFragment_to_customerDetailsFragment"
+            app:destination="@id/customerDetailsFragment" />
+        <action
+            android:id="@+id/action_signUpFragment_to_testifyFragment"
+            app:destination="@id/testifyFragment" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
@@ -180,12 +186,12 @@
         android:name="com.tailorfit.android.tailorfitapp.customerdetails.CustomerDetailsFragment"
         android:label="fragment_customer_details"
         tools:layout="@layout/fragment_customer_details" >
-        <argument
-            android:name="customerInfo"
-            app:argType="com.tailorfit.android.tailorfitapp.models.response.CustomerInfoResponseModel" />
         <action
             android:id="@+id/action_customerDetailsFragment_to_getMeasurementFragment"
             app:destination="@id/getMeasurementFragment" />
+        <argument
+            android:name="customer_details_response"
+            app:argType="com.tailorfit.android.tailorfitapp.models.response.CustomerInfoResponseModel" />
     </fragment>
     <fragment
         android:id="@+id/demoFragment"
@@ -204,5 +210,14 @@
         <argument
             android:name="gender"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/testifyFragment"
+        android:name="com.tailorfit.android.tailorfitapp.debug.TestifyFragment"
+        android:label="fragment_testify"
+        tools:layout="@layout/fragment_testify" >
+        <argument
+            android:name="sign"
+            app:argType="com.tailorfit.android.tailorfitapp.models.request.SignUpRequest" />
     </fragment>
 </navigation>

@@ -14,7 +14,7 @@ class AddGigDueDateFragment : BaseGigFormFragment()  {
 
     override fun setDataHints(binding: FragmentBaseFormBinding) {
         binding.formDescription.text = getString(R.string.gig_due_date_message)
-        binding.formValueInputLayout.hint = getString(R.string.gig_due_date_hint)
+        binding.formValueInputLayout.hint = getString(R.string.due_date)
     }
 
 }

@@ -57,7 +57,7 @@ class SignUpFragment : BaseViewModelFragment() {
                         binding.storeEditText.stringContent(),
                         binding.nameEditText.stringContent(),
                         binding.passwordEditText.stringContent(),
-                        binding.phoneEditText.stringContent() 
+                        binding.phoneEditText.stringContent()
                     )
                 )
             }
@@ -68,6 +68,20 @@ class SignUpFragment : BaseViewModelFragment() {
                 findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToAddCustomerNameFragment())
             }
         })
+
+        binding.alreadyHaveAccountText.setOnClickListener {
+            findNavController().navigate(
+                SignUpFragmentDirections
+                    .actionSignUpFragmentToTestifyFragment(
+                        SignUpRequest(
+                            binding.storeEditText.stringContent(),
+                            binding.nameEditText.stringContent(),
+                            binding.passwordEditText.stringContent(),
+                            binding.phoneEditText.stringContent()
+                        )
+                    )
+            )
+        }
     }
 
     override fun getViewModel(): BaseViewModel = viewModel

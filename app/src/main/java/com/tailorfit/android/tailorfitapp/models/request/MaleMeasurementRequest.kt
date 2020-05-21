@@ -5,29 +5,29 @@ import com.google.gson.annotations.SerializedName
 
 data class MaleMeasurementRequest(
     @SerializedName("arm_length")
-    val armLength: Int? = null,
+    val armLength: Double = 0.0,
     @SerializedName("calf")
-    val calf: Int? = null,
+    val calf: Double = 0.0,
     @SerializedName("chest_circumference")
-    val chestCircumference: Int? = null,
+    val chestCircumference: Double = 0.0,
     @SerializedName("customer_id")
     val customerId: String? = null,
     @SerializedName("full_length")
-    val fullLength: Int? = null,
+    val fullLength: Double = 0.0,
     @SerializedName("gig_id")
     val gigId: String? = null,
     @SerializedName("hips_circumference")
-    val hipsCircumference: Int? = null,
+    val hipsCircumference: Double = 0.0,
     @SerializedName("neck_circumference")
-    val neckCircumference: Int? = null,
+    val neckCircumference: Double = 0.0,
     @SerializedName("shoulder_breadth")
-    val shoulderBreadth: Int? = null,
+    val shoulderBreadth: Double = 0.0,
     @SerializedName("thigh")
-    val thigh: Int? = null,
+    val thigh: Double = 0.0,
     @SerializedName("user_id")
     val userId: String? = null,
     @SerializedName("waist_circumference")
-    val waistCircumference: Int? = null,
+    val waistCircumference: Double = 0.0,
     @SerializedName("wrist_circumference")
-    val wristCircumference: Int? = null
+    val wristCircumference: Double = 0.0
 )

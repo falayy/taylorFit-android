@@ -29,7 +29,6 @@ class AddCustomerNameFragment : BaseCustomerFormFragment() {
 
     override fun setDataHints(binding: FragmentBaseFormBinding) {
         binding.formDescription.text = getString(R.string.customer_name_message)
-        binding.editText.hint = getString(R.string.customer_hint_name)
         binding.formValueInputLayout.hint = getString(R.string.name)
     }
 

@@ -15,9 +15,9 @@ import com.tailorfit.android.base.BaseViewModelFragment
 import com.tailorfit.android.databinding.FragmentPendingJobsBinding
 import com.tailorfit.android.tailorfitapp.PrefsValueHelper
 import com.tailorfit.android.tailorfitapp.userdashboard.DashBoardAdapter
+import com.tailorfit.android.tailorfitapp.userdashboard.DashBoardFragmentDirections
 import com.tailorfit.android.tailorfitapp.userdashboard.DashBoardViewModel
 import javax.inject.Inject
-
 
 class PendingJobsFragment : BaseViewModelFragment() {
 
@@ -32,7 +32,9 @@ class PendingJobsFragment : BaseViewModelFragment() {
 
     private val dashBoardAdapter by lazy {
         DashBoardAdapter(DashBoardAdapter.OnclickListener {
-            findNavController().navigate(PendingJobsFragmentDirections.actionPendingJobsFragmentToCustomerDetailsFragment(it))
+            this.findNavController().navigate(
+                    DashBoardFragmentDirections.actionDashBoardFragmentToCustomerDetailsFragment(it)
+            )
         })
     }
 
@@ -56,18 +58,21 @@ class PendingJobsFragment : BaseViewModelFragment() {
             prefsValueHelper.getUserId()
         )
 
-        dashBoardViewModel.customerInfoResponse.observe(viewLifecycleOwner, Observer {
-            binding.recyclerViewImage.apply {
-                layoutManager = LinearLayoutManager(
-                    context,
-                    LinearLayoutManager.VERTICAL,
-                    false
-                )
-                adapter = dashBoardAdapter.apply {
-                    submitList(it)
+        dashBoardViewModel
+            .customerInfoResponse.observe(
+            viewLifecycleOwner,
+            Observer {
+                binding.recyclerViewImage.apply {
+                    layoutManager = LinearLayoutManager(
+                        context,
+                        LinearLayoutManager.VERTICAL,
+                        false
+                    )
+                    adapter = dashBoardAdapter.apply {
+                        submitList(it)
+                    }
                 }
-            }
-        })
+            })
     }
 
     override fun getViewModel(): BaseViewModel = dashBoardViewModel

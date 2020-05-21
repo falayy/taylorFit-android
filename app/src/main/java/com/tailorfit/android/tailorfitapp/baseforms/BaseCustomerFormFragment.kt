@@ -47,13 +47,13 @@ abstract class BaseCustomerFormFragment : BaseViewModelFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setDataHints(binding)
         setUpToolbar()
         setUpDaggerViewModel()
         navigate()
     }
 
     private fun navigate() {
+        setDataHints(binding)
         when (getCustomerFormType()) {
             CustomerFormType.AddCustomerFragment -> {
                 binding.FormProceedButton.setOnClickListener {

@@ -39,7 +39,9 @@ class CustomerDetailsFragment : BaseViewModelFragment() {
 
     var imageIndex = 0
 
-    private lateinit var args: CustomerDetailsFragmentArgs
+    private val args by lazy {
+        CustomerDetailsFragmentArgs.fromBundle(arguments!!)
+    }
 
 
     override fun onCreateView(
@@ -59,13 +61,12 @@ class CustomerDetailsFragment : BaseViewModelFragment() {
         binding.imagesViewpager.adapter = StyleImagePagerAdapter(this)
         TabLayoutMediator(binding.tabLayout, binding.imagesViewpager) { _, _ -> }.attach()
         binding.imagesViewpager.onPageChanged { imageIndex = it }
-        args = CustomerDetailsFragmentArgs.fromBundle(arguments!!)
 
-        if (!args.customerInfo.isDone!!) binding.isDoneButton.show()
+        if (!args.customerDetailsResponse.isDone!!) binding.isDoneButton.show()
 
         binding.viewMeasurementTextView.setOnClickListener {
 
-            when (args.customerInfo.customerGender) {
+            when (args.customerDetailsResponse.customerGender) {
 
                 Gender.MALE -> {
                     findNavController().navigate(
@@ -103,10 +104,10 @@ class CustomerDetailsFragment : BaseViewModelFragment() {
     private inner class StyleImagePagerAdapter(fragment: Fragment) :
         FragmentStateAdapter(fragment) {
 
-        override fun getItemCount() = args.customerInfo.style!!.size
+        override fun getItemCount() = args.customerDetailsResponse.style!!.size
 
         override fun createFragment(position: Int): Fragment = StyleImagesPagerFragment.newInstance(
-            args.customerInfo.style?.get(imageIndex)
+            args.customerDetailsResponse.style?.get(imageIndex)
         )
 
     }
