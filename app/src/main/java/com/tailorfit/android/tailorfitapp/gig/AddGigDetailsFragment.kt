@@ -100,14 +100,16 @@ class AddGigDetailsFragment : BaseViewModelFragment(), AddGigImageDetailsAdapter
 
 
     private fun createGig() {
+        val args = AddGigDetailsFragmentArgs.fromBundle(arguments!!)
+        val gigRequestArgs = args.createGig
         val createGigRequest = CreateGigRequest(
             prefsValueHelper.getCustomerId(),
-            prefsValueHelper.getGigDueDate(),
+            "12 December, 2019",
             binding.additionalEditText.stringContent(),
-            prefsValueHelper.getGigPrice(),
+            gigRequestArgs.price,
             null,
-            prefsValueHelper.getGigStyleName(),
-            prefsValueHelper.getGigTitle(),
+            gigRequestArgs.styleName,
+            gigRequestArgs.title,
             prefsValueHelper.getUserId()
         )
 

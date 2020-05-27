@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.tailorfit.android.base.BaseViewModel
 import com.tailorfit.android.base.BaseViewModelFragment
 import com.tailorfit.android.databinding.FragmentMeasurementBinding
-import com.tailorfit.android.extensions.toInteger
+import com.tailorfit.android.extensions.toDouble
 import com.tailorfit.android.tailorfitapp.PrefsValueHelper
 import com.tailorfit.android.tailorfitapp.models.request.MaleMeasurementRequest
 import com.tailorfit.android.tailorfitapp.validateTextLayouts
@@ -47,35 +47,35 @@ class MaleMeasurementFragment : BaseViewModelFragment() {
             .get(MeasurementViewModel::class.java)
 
         binding.createMaleMeasurementButton.setOnClickListener {
-            if (validateTextLayouts(
-                    binding.armLengthEditText,
-                    binding.calfEditText,
-                    binding.chestCircumferenceEditText,
-                    binding.fullLengthEditText,
-                    binding.hipsCircumferenceEditText,
-                    binding.neckCircumferenceEditText,
-                    binding.shoulderBreadthEditText,
-                    binding.thighEditText,
-                    binding.waistCircumferenceEditText,
-                    binding.wristCircumferenceEditText
-                )
-            ) {
+//            if (validateTextLayouts(
+//                    binding.armLengthEditText,
+//                    binding.calfEditText,
+//                    binding.chestCircumferenceEditText,
+//                    binding.fullLengthEditText,
+//                    binding.hipsCircumferenceEditText,
+//                    binding.neckCircumferenceEditText,
+//                    binding.shoulderBreadthEditText,
+//                    binding.thighEditText,
+//                    binding.waistCircumferenceEditText,
+//                    binding.wristCircumferenceEditText
+//                )
+//            ) {
                 measurementViewModel.createMaleMeasurement(
                     prefsValueHelper.getAccessToken(),
                     MaleMeasurementRequest(
-                        binding.armLengthEditText.toInteger(),
-                        binding.calfEditText.toInteger(),
-                        binding.chestCircumferenceEditText.toInteger(),
+                        binding.armLengthEditText.toDouble(),
+                        binding.calfEditText.toDouble(),
+                        binding.chestCircumferenceEditText.toDouble(),
                         prefsValueHelper.getCustomerId(),
-                        binding.fullLengthEditText.toInteger(),
+                        binding.fullLengthEditText.toDouble(),
                         prefsValueHelper.getGigId(),
-                        binding.hipsCircumferenceEditText.toInteger(),
-                        binding.neckCircumferenceEditText.toInteger(),
-                        binding.shoulderBreadthEditText.toInteger(),
-                        binding.thighEditText.toInteger(),
+                        binding.hipsCircumferenceEditText.toDouble(),
+                        binding.neckCircumferenceEditText.toDouble(),
+                        binding.shoulderBreadthEditText.toDouble(),
+                        binding.thighEditText.toDouble(),
                         prefsValueHelper.getUserId(),
-                        binding.waistCircumferenceEditText.toInteger(),
-                        binding.wristCircumferenceEditText.toInteger()
+                        binding.waistCircumferenceEditText.toDouble(),
+                        binding.wristCircumferenceEditText.toDouble()
                     )
                 )
                 measurementViewModel.maleResponse.observe(viewLifecycleOwner, Observer {
@@ -86,7 +86,7 @@ class MaleMeasurementFragment : BaseViewModelFragment() {
                         )
                     }
                 })
-            }
+
         }
 
     }

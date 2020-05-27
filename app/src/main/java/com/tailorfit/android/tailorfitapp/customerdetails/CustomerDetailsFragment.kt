@@ -61,12 +61,23 @@ class CustomerDetailsFragment : BaseViewModelFragment() {
         binding.imagesViewpager.adapter = StyleImagePagerAdapter(this)
         TabLayoutMediator(binding.tabLayout, binding.imagesViewpager) { _, _ -> }.attach()
         binding.imagesViewpager.onPageChanged { imageIndex = it }
+        val customerDetailsResponseArgs = args.customerDetailsResponse
 
-        if (!args.customerDetailsResponse.isDone!!) binding.isDoneButton.show()
+        if (!customerDetailsResponseArgs.isDone!!) binding.isDoneButton.show()
+
+
+        binding.apply {
+            customerName.text = customerDetailsResponseArgs.customerName
+            customerNumberTextView.text = customerDetailsResponseArgs.customerNumber
+            styleConstantTextView.text = customerDetailsResponseArgs.styleName
+            gigTitleTextView.text = customerDetailsResponseArgs.gigTitle
+            gigDueDateTextView.text = customerDetailsResponseArgs.deliveryDate
+            gigPriceTextView.text = customerDetailsResponseArgs.price.toString()
+        }
+
 
         binding.viewMeasurementTextView.setOnClickListener {
-
-            when (args.customerDetailsResponse.customerGender) {
+            when (customerDetailsResponseArgs.customerGender) {
 
                 Gender.MALE -> {
                     findNavController().navigate(

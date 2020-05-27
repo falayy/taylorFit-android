@@ -1,6 +1,7 @@
 package com.tailorfit.android.tailorfitapp.baseforms
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,10 +12,7 @@ import com.tailorfit.android.base.BaseViewModelFragment
 import com.tailorfit.android.databinding.FragmentBaseFormBinding
 import com.tailorfit.android.extensions.stringContent
 import com.tailorfit.android.tailorfitapp.PrefsValueHelper
-import com.tailorfit.android.tailorfitapp.customer.AddCustomerGenderFragmentDirections
-import com.tailorfit.android.tailorfitapp.customer.AddCustomerNameFragmentDirections
-import com.tailorfit.android.tailorfitapp.customer.AddCustomerPhoneFragmentDirections
-import com.tailorfit.android.tailorfitapp.customer.AddCustomerViewModel
+import com.tailorfit.android.tailorfitapp.customer.*
 import com.tailorfit.android.tailorfitapp.models.request.CreateCustomerRequest
 import com.tailorfit.android.tailorfitapp.validateTextLayouts
 import javax.inject.Inject
@@ -34,7 +32,6 @@ abstract class BaseCustomerFormFragment : BaseViewModelFragment() {
 
     private lateinit var binding: FragmentBaseFormBinding
     private lateinit var createCustomerRequest: CreateCustomerRequest
-    private var data = ""
 
 
     override fun onCreateView(
@@ -54,14 +51,17 @@ abstract class BaseCustomerFormFragment : BaseViewModelFragment() {
 
     private fun navigate() {
         setDataHints(binding)
+        createCustomerRequest = CreateCustomerRequest()
         when (getCustomerFormType()) {
             CustomerFormType.AddCustomerFragment -> {
                 binding.FormProceedButton.setOnClickListener {
                     if (validateTextLayouts(binding.editText)) {
                         val name = binding.editText.stringContent()
-                        prefsValueHelper.setCustomerName(name)
+//                        prefsValueHelper.setCustomerName(name)
+                        createCustomerRequest.name = name
                         findNavController().navigate(
-                            AddCustomerNameFragmentDirections.actionAddCustomerNameFragmentToAddCustomerPhoneFragment()
+                            AddCustomerNameFragmentDirections.
+                                actionAddCustomerNameFragmentToAddCustomerPhoneFragment(createCustomerRequest)
                         )
                     } else {
                         return@setOnClickListener
@@ -72,9 +72,12 @@ abstract class BaseCustomerFormFragment : BaseViewModelFragment() {
                 binding.FormProceedButton.setOnClickListener {
                     if (validateTextLayouts(binding.editText)) {
                         val phoneNumber = binding.editText.stringContent()
-                        prefsValueHelper.setCustomerPhone(phoneNumber)
+//                        prefsValueHelper.setCustomerPhone(phoneNumber)
+                        var args = AddCustomerPhoneFragmentArgs.fromBundle(arguments!!)
+                        createCustomerRequest.phoneNumber = phoneNumber
+                        createCustomerRequest.name = args.createCustomer.name
                         findNavController().navigate(
-                            AddCustomerPhoneFragmentDirections.actionAddCustomerPhoneFragmentToAddCustomerGenderFragment()
+                            AddCustomerPhoneFragmentDirections.actionAddCustomerPhoneFragmentToAddCustomerGenderFragment(createCustomerRequest)
                         )
                     } else {
                         return@setOnClickListener
@@ -84,13 +87,12 @@ abstract class BaseCustomerFormFragment : BaseViewModelFragment() {
             CustomerFormType.AddCustomerGenderFragment -> {
                 binding.FormProceedButton.setOnClickListener {
                     if (validateTextLayouts(binding.editText)) {
-                        data = binding.editText.stringContent()
-                        createCustomerRequest = CreateCustomerRequest(
-                            data,
-                            prefsValueHelper.getCustomerName(),
-                            prefsValueHelper.getCustomerPhone(),
-                            prefsValueHelper.getUserId()
-                        )
+                        var gender = binding.editText.stringContent()
+                        val args = AddCustomerGenderFragmentArgs.fromBundle(arguments!!)
+                        createCustomerRequest.gender =  gender
+                        createCustomerRequest.phoneNumber = args.createCustomer.phoneNumber
+                        createCustomerRequest.name = args.createCustomer.name
+                        createCustomerRequest.userId = prefsValueHelper.getUserId()
                         createCustomer()
                     } else {
                         return@setOnClickListener

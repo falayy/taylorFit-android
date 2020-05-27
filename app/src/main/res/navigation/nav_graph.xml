@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/dashBoardFragment">
+    app:startDestination="@id/demoFragment">
 
     <fragment
         android:id="@+id/signUpFragment"
@@ -25,9 +25,6 @@
         <action
             android:id="@+id/action_signUpFragment_to_customerDetailsFragment"
             app:destination="@id/customerDetailsFragment" />
-        <action
-            android:id="@+id/action_signUpFragment_to_testifyFragment"
-            app:destination="@id/testifyFragment" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
@@ -53,6 +50,9 @@
             android:id="@+id/action_addCustomerPhoneFragment_to_addCustomerGenderFragment"
             app:destination="@id/addCustomerGenderFragment"
             app:enterAnim="@anim/fade_out" />
+        <argument
+            android:name="createCustomer"
+            app:argType="com.tailorfit.android.tailorfitapp.models.request.CreateCustomerRequest" />
     </fragment>
     <fragment
         android:id="@+id/addCustomerGenderFragment"
@@ -62,6 +62,9 @@
             android:id="@+id/action_addCustomerGenderFragment_to_addGigTitleFragment"
             app:destination="@id/addGigTitleFragment"
             app:enterAnim="@anim/nav_default_enter_anim" />
+        <argument
+            android:name="createCustomer"
+            app:argType="com.tailorfit.android.tailorfitapp.models.request.CreateCustomerRequest" />
     </fragment>
     <fragment
         android:id="@+id/addGigTitleFragment"
@@ -81,6 +84,9 @@
             android:id="@+id/action_addGigStyleFragment_to_addGigDueDateFragment"
             app:destination="@id/addGigDueDateFragment"
             app:enterAnim="@anim/slide_out_left" />
+        <argument
+            android:name="createGig"
+            app:argType="com.tailorfit.android.tailorfitapp.models.request.CreateGigRequest" />
     </fragment>
     <fragment
         android:id="@+id/addGigDueDateFragment"
@@ -90,6 +96,9 @@
             android:id="@+id/action_addGigDueDateFragment_to_addGigPriceFragment"
             app:destination="@id/addGigPriceFragment"
             app:enterAnim="@anim/slide_out_right" />
+        <argument
+            android:name="createGig"
+            app:argType="com.tailorfit.android.tailorfitapp.models.request.CreateGigRequest" />
     </fragment>
     <fragment
         android:id="@+id/addGigPriceFragment"
@@ -98,6 +107,9 @@
         <action
             android:id="@+id/action_addGigPriceFragment_to_addGigDetails"
             app:destination="@id/addGigDetails" />
+        <argument
+            android:name="createGig"
+            app:argType="com.tailorfit.android.tailorfitapp.models.request.CreateGigRequest" />
     </fragment>
     <fragment
         android:id="@+id/addCustomerNameFragment"
@@ -125,6 +137,9 @@
         <action
             android:id="@+id/action_addGigDetails_to_maleMeasurementFragment2"
             app:destination="@id/maleMeasurementFragment" />
+        <argument
+            android:name="createGig"
+            app:argType="com.tailorfit.android.tailorfitapp.models.request.CreateGigRequest" />
     </fragment>
     <fragment
         android:id="@+id/femaleMeasurementFragment"
@@ -210,14 +225,5 @@
         <argument
             android:name="gender"
             app:argType="string" />
-    </fragment>
-    <fragment
-        android:id="@+id/testifyFragment"
-        android:name="com.tailorfit.android.tailorfitapp.debug.TestifyFragment"
-        android:label="fragment_testify"
-        tools:layout="@layout/fragment_testify" >
-        <argument
-            android:name="sign"
-            app:argType="com.tailorfit.android.tailorfitapp.models.request.SignUpRequest" />
     </fragment>
 </navigation>

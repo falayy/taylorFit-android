@@ -16,7 +16,7 @@ class CustomerDetailsViewModel @Inject constructor(private val measurementReposi
     }
 
     override fun addAllLiveDataToObservablesList() {
-        addAllLiveDataToObservablesList()
+        addAllLiveDataToObservablesList(loadingStatus)
     }
 
 }

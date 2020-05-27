@@ -12,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.tailorfit.android.base.BaseViewModel
 import com.tailorfit.android.base.BaseViewModelFragment
 import com.tailorfit.android.databinding.FragmentFemaleMeasurementBinding
-import com.tailorfit.android.extensions.toInteger
+import com.tailorfit.android.extensions.toDouble
 import com.tailorfit.android.tailorfitapp.PrefsValueHelper
 import com.tailorfit.android.tailorfitapp.models.request.FemaleMeasurementRequest
 import com.tailorfit.android.tailorfitapp.validateTextLayouts
@@ -47,40 +47,40 @@ class FemaleMeasurementFragment : BaseViewModelFragment() {
             .get(MeasurementViewModel::class.java)
 
         binding.createFemaleMeasurementButton.setOnClickListener {
-            if (validateTextLayouts(
-                    binding.armHoleEditText,
-                    binding.armRoundEditText,
-                    binding.bustLineEditText,
-                    binding.bustRoundEditText,
-                    binding.shoulderToShoulderEditText,
-                    binding.fullLengthEditText,
-                    binding.halfSleeveEditText,
-                    binding.hipLineEditText,
-                    binding.hipRoundEditText,
-                    binding.naturalWaistLineEditText,
-                    binding.sleeveLengthEditText,
-                    binding.underBustEditText,
-                    binding.naturalWaistRoundEditText
-                )
-            ) {
+//            if (validateTextLayouts(
+//                    binding.armHoleEditText,
+//                    binding.armRoundEditText,
+//                    binding.bustLineEditText,
+//                    binding.bustRoundEditText,
+//                    binding.shoulderToShoulderEditText,
+//                    binding.fullLengthEditText,
+//                    binding.halfSleeveEditText,
+//                    binding.hipLineEditText,
+//                    binding.hipRoundEditText,
+//                    binding.naturalWaistLineEditText,
+//                    binding.sleeveLengthEditText,
+//                    binding.underBustEditText,
+//                    binding.naturalWaistRoundEditText
+//                )
+//            ) {
                 measurementViewModel.createFemaleMeasurement(
                     prefsValueHelper.getAccessToken(),
                     FemaleMeasurementRequest(
-                        binding.armHoleEditText.toInteger(),
-                        binding.armRoundEditText.toInteger(),
-                        binding.bustLineEditText.toInteger(),
-                        binding.bustRoundEditText.toInteger(),
+                        binding.armHoleEditText.toDouble(),
+                        binding.armRoundEditText.toDouble(),
+                        binding.bustLineEditText.toDouble(),
+                        binding.bustRoundEditText.toDouble(),
                         prefsValueHelper.getCustomerId(),
-                        binding.fullLengthEditText.toInteger(),
+                        binding.fullLengthEditText.toDouble(),
                         prefsValueHelper.getGigId(),
-                        binding.halfSleeveEditText.toInteger(),
-                        binding.hipLineEditText.toInteger(),
-                        binding.hipRoundEditText.toInteger(),
-                        binding.naturalWaistLineEditText.toInteger(),
-                        binding.naturalWaistRoundEditText.toInteger(),
-                        binding.shoulderToShoulderEditText.toInteger(),
-                        binding.sleeveLengthEditText.toInteger(),
-                        binding.underBustEditText.toInteger(),
+                        binding.halfSleeveEditText.toDouble(),
+                        binding.hipLineEditText.toDouble(),
+                        binding.hipRoundEditText.toDouble(),
+                        binding.naturalWaistLineEditText.toDouble(),
+                        binding.naturalWaistRoundEditText.toDouble(),
+                        binding.shoulderToShoulderEditText.toDouble(),
+                        binding.sleeveLengthEditText.toDouble(),
+                        binding.underBustEditText.toDouble(),
                         prefsValueHelper.getUserId()
 
                     )
@@ -93,7 +93,7 @@ class FemaleMeasurementFragment : BaseViewModelFragment() {
                         )
                     }
                 })
-            }
+
         }
     }
 

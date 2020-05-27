@@ -3,6 +3,7 @@ package com.tailorfit.android.tailorfitapp.baseforms
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,6 +45,8 @@ abstract class BaseGigFormFragment : BaseViewModelFragment() {
 
     private lateinit var viewModel: GigViewModel
 
+    private lateinit var createGigRequest: CreateGigRequest
+
     private var dateString = ""
     private var dob = ""
     private val REQUEST_CODE = 11
@@ -67,14 +70,20 @@ abstract class BaseGigFormFragment : BaseViewModelFragment() {
     }
 
     private fun navigate() {
+        createGigRequest = CreateGigRequest()
         when (getGigFormType()) {
             GigFormType.AddGigTitleFragment -> {
                 binding.FormProceedButton.setOnClickListener {
                     if (validateTextLayouts(binding.editText)) {
                         val title = binding.editText.stringContent()
                         prefsValueHelper.setGigTitle(title)
-                        findNavController().navigate(AddGigTitleFragmentDirections.actionAddGigTitleFragmentToAddGigStyleFragment())
-                    }else {
+                        createGigRequest.title = title
+                        findNavController().navigate(
+                            AddGigTitleFragmentDirections.actionAddGigTitleFragmentToAddGigStyleFragment(
+                                createGigRequest
+                            )
+                        )
+                    } else {
                         return@setOnClickListener
                     }
                 }
@@ -83,10 +92,16 @@ abstract class BaseGigFormFragment : BaseViewModelFragment() {
                 binding.FormProceedButton.setOnClickListener {
                     if (validateTextLayouts(binding.editText)) {
                         val style = binding.editText.stringContent()
+                        val args = AddGigStyleFragmentArgs.fromBundle(arguments!!)
+                        createGigRequest.title = args.createGig.title
+                        createGigRequest.styleName = style
                         prefsValueHelper.setGigStyleName(style)
-                        findNavController().navigate(AddGigStyleFragmentDirections.actionAddGigStyleFragmentToAddGigDueDateFragment())
-                    }
-                    else {
+                        findNavController().navigate(
+                            AddGigStyleFragmentDirections.actionAddGigStyleFragmentToAddGigDueDateFragment(
+                                createGigRequest
+                            )
+                        )
+                    } else {
                         return@setOnClickListener
                     }
                 }
@@ -97,18 +112,32 @@ abstract class BaseGigFormFragment : BaseViewModelFragment() {
                     newFragment.setTargetFragment(this, REQUEST_CODE)
                     newFragment.show(fragmentManager!!, "datePicker")
                 }
+                val args = AddGigDueDateFragmentArgs.fromBundle(arguments!!)
+                createGigRequest.date = dob
+                createGigRequest.title = args.createGig.title
+                createGigRequest.styleName = args.createGig.styleName
+                Log.d("TAG", "date logged ${createGigRequest.date} $dob")
                 binding.FormProceedButton.setOnClickListener {
-                    findNavController().navigate(AddGigDueDateFragmentDirections.actionAddGigDueDateFragmentToAddGigPriceFragment())
+                    findNavController().navigate(
+                        AddGigDueDateFragmentDirections.actionAddGigDueDateFragmentToAddGigPriceFragment(
+                            createGigRequest
+                        )
+                    )
                 }
             }
             GigFormType.AddGigPriceFragment -> {
                 binding.FormProceedButton.setOnClickListener {
                     if (validateTextLayouts(binding.editText)) {
                         val price = binding.editText.stringContent()
-                        prefsValueHelper.setGigDueDate("12, 09, 12")
-                        prefsValueHelper.setGigPrice(price)
+                        val args = AddGigPriceFragmentArgs.fromBundle(arguments!!)
+                        createGigRequest.date = args.createGig.date
+                        createGigRequest.title = args.createGig.title
+                        createGigRequest.styleName = args.createGig.styleName
+                        createGigRequest.price = price
                         findNavController().navigate(
-                            AddGigPriceFragmentDirections.actionAddGigPriceFragmentToAddGigDetails()
+                            AddGigPriceFragmentDirections.actionAddGigPriceFragmentToAddGigDetails(
+                                createGigRequest
+                            )
                         )
                     } else {
                         return@setOnClickListener
