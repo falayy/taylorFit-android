@@ -29,6 +29,7 @@ class MaleMeasurementFragment : BaseViewModelFragment() {
     lateinit var prefsValueHelper: PrefsValueHelper
 
     private lateinit var measurementViewModel: MeasurementViewModel
+    private val map = HashMap<String, String>()
 
 
     override fun onCreateView(
@@ -47,45 +48,46 @@ class MaleMeasurementFragment : BaseViewModelFragment() {
             .get(MeasurementViewModel::class.java)
 
         binding.createMaleMeasurementButton.setOnClickListener {
-//            if (validateTextLayouts(
-//                    binding.armLengthEditText,
-//                    binding.calfEditText,
-//                    binding.chestCircumferenceEditText,
-//                    binding.fullLengthEditText,
-//                    binding.hipsCircumferenceEditText,
-//                    binding.neckCircumferenceEditText,
-//                    binding.shoulderBreadthEditText,
-//                    binding.thighEditText,
-//                    binding.waistCircumferenceEditText,
-//                    binding.wristCircumferenceEditText
-//                )
-//            ) {
-                measurementViewModel.createMaleMeasurement(
-                    prefsValueHelper.getAccessToken(),
-                    MaleMeasurementRequest(
-                        binding.armLengthEditText.toDouble(),
-                        binding.calfEditText.toDouble(),
-                        binding.chestCircumferenceEditText.toDouble(),
-                        prefsValueHelper.getCustomerId(),
-                        binding.fullLengthEditText.toDouble(),
-                        prefsValueHelper.getGigId(),
-                        binding.hipsCircumferenceEditText.toDouble(),
-                        binding.neckCircumferenceEditText.toDouble(),
-                        binding.shoulderBreadthEditText.toDouble(),
-                        binding.thighEditText.toDouble(),
-                        prefsValueHelper.getUserId(),
-                        binding.waistCircumferenceEditText.toDouble(),
-                        binding.wristCircumferenceEditText.toDouble()
-                    )
+
+            map[binding.armLengthTextInputLayout.hint.toString()] =
+                binding.armLengthEditText.text.toString()
+            map[binding.calfTextInputLayout.hint.toString()] =
+                binding.calfEditText.text.toString()
+            map[binding.chestCircumferenceTextInputLayout.hint.toString()] =
+                binding.chestCircumferenceEditText.text.toString()
+            map[binding.fullLengthTextInputLayout.hint.toString()] =
+                binding.fullLengthEditText.text.toString()
+            map[binding.hipsCircumferenceTextInputLayout.hint.toString()] =
+                binding.hipsCircumferenceEditText.text.toString()
+            map[binding.neckCircumferenceTextInputLayout.hint.toString()] =
+                binding.neckCircumferenceEditText.text.toString()
+            map[binding.shoulderBreadthTextInputLayout.hint.toString()] =
+                binding.shoulderBreadthEditText.text.toString()
+            map[binding.thighTextInputLayout.hint.toString()] =
+                binding.thighEditText.text.toString()
+            map[binding.waistCircumferenceTextInputLayout.hint.toString()] =
+                binding.waistCircumferenceEditText.text.toString()
+            map[binding.wristCircumferenceTextInputLayout.hint.toString()] =
+                binding.wristCircumferenceEditText.text.toString()
+
+            measurementViewModel.createMaleMeasurement(
+                prefsValueHelper.getAccessToken(),
+                MaleMeasurementRequest(
+                    prefsValueHelper.getUserId(),
+                    prefsValueHelper.getCustomerId(),
+                    prefsValueHelper.getGigId(),
+                    map
                 )
-                measurementViewModel.maleResponse.observe(viewLifecycleOwner, Observer {
-                    if (it != null) {
-                        findNavController().navigate(
-                            MaleMeasurementFragmentDirections
-                                .actionMaleMeasurementFragmentToDashBoardFragment()
-                        )
-                    }
-                })
+            )
+
+            measurementViewModel.maleResponse.observe(viewLifecycleOwner, Observer {
+                if (it != null) {
+                    findNavController().navigate(
+                        MaleMeasurementFragmentDirections
+                            .actionMaleMeasurementFragmentToDashBoardFragment()
+                    )
+                }
+            })
 
         }
 

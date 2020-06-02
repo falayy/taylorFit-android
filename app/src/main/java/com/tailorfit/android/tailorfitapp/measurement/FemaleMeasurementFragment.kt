@@ -29,6 +29,7 @@ class FemaleMeasurementFragment : BaseViewModelFragment() {
     lateinit var prefsValueHelper: PrefsValueHelper
 
     private lateinit var measurementViewModel: MeasurementViewModel
+    private val map = HashMap<String, String>()
 
 
     override fun onCreateView(
@@ -47,52 +48,49 @@ class FemaleMeasurementFragment : BaseViewModelFragment() {
             .get(MeasurementViewModel::class.java)
 
         binding.createFemaleMeasurementButton.setOnClickListener {
-//            if (validateTextLayouts(
-//                    binding.armHoleEditText,
-//                    binding.armRoundEditText,
-//                    binding.bustLineEditText,
-//                    binding.bustRoundEditText,
-//                    binding.shoulderToShoulderEditText,
-//                    binding.fullLengthEditText,
-//                    binding.halfSleeveEditText,
-//                    binding.hipLineEditText,
-//                    binding.hipRoundEditText,
-//                    binding.naturalWaistLineEditText,
-//                    binding.sleeveLengthEditText,
-//                    binding.underBustEditText,
-//                    binding.naturalWaistRoundEditText
-//                )
-//            ) {
-                measurementViewModel.createFemaleMeasurement(
-                    prefsValueHelper.getAccessToken(),
-                    FemaleMeasurementRequest(
-                        binding.armHoleEditText.toDouble(),
-                        binding.armRoundEditText.toDouble(),
-                        binding.bustLineEditText.toDouble(),
-                        binding.bustRoundEditText.toDouble(),
-                        prefsValueHelper.getCustomerId(),
-                        binding.fullLengthEditText.toDouble(),
-                        prefsValueHelper.getGigId(),
-                        binding.halfSleeveEditText.toDouble(),
-                        binding.hipLineEditText.toDouble(),
-                        binding.hipRoundEditText.toDouble(),
-                        binding.naturalWaistLineEditText.toDouble(),
-                        binding.naturalWaistRoundEditText.toDouble(),
-                        binding.shoulderToShoulderEditText.toDouble(),
-                        binding.sleeveLengthEditText.toDouble(),
-                        binding.underBustEditText.toDouble(),
-                        prefsValueHelper.getUserId()
-
-                    )
+            map[binding.armHoleTextInputLayout.hint.toString()] =
+                binding.armHoleEditText.text.toString()
+            map[binding.armRoundTextInputLayout.hint.toString()] =
+                binding.armRoundEditText.text.toString()
+            map[binding.bustLineTextInputLayout.hint.toString()] =
+                binding.bustLineEditText.text.toString()
+            map[binding.bustRoundTextInputLayout.hint.toString()] =
+                binding.bustRoundEditText.text.toString()
+            map[binding.halfSleeveTextInputLayout.hint.toString()] =
+                binding.halfSleeveEditText.text.toString()
+            map[binding.fullLengthTextInputLayout.hint.toString()] =
+                binding.fullLengthEditText.text.toString()
+            map[binding.hipLineTextInputLayout.hint.toString()] =
+                binding.hipLineEditText.text.toString()
+            map[binding.hipRoundTextInputLayout.hint.toString()] =
+                binding.hipRoundEditText.text.toString()
+            map[binding.naturalWaistTextInputLayout.hint.toString()] =
+                binding.naturalWaistLineEditText.text.toString()
+            map[binding.naturalWaistRoundTextInputLayout.hint.toString()] =
+                binding.naturalWaistRoundEditText.text.toString()
+            map[binding.shoulderToShoulderTextInputLayout.hint.toString()] =
+                binding.shoulderToShoulderEditText.text.toString()
+            map[binding.sleeveLengthTextInputLayout.hint.toString()] =
+                binding.sleeveLengthEditText.text.toString()
+            map[binding.underBustTextInputLayout.hint.toString()] =
+                binding.underBustEditText.text.toString()
+            measurementViewModel.createFemaleMeasurement(
+                prefsValueHelper.getAccessToken(),
+                FemaleMeasurementRequest(
+                    prefsValueHelper.getUserId(),
+                    prefsValueHelper.getCustomerId(),
+                    prefsValueHelper.getGigId(),
+                    map
                 )
-                measurementViewModel.femaleResponse.observe(viewLifecycleOwner, Observer {
-                    if (it != null) {
-                        findNavController().navigate(
-                            FemaleMeasurementFragmentDirections
-                                .actionFemaleMeasurementFragmentToDashBoardFragment()
-                        )
-                    }
-                })
+            )
+            measurementViewModel.femaleResponse.observe(viewLifecycleOwner, Observer {
+                if (it != null) {
+                    findNavController().navigate(
+                        FemaleMeasurementFragmentDirections
+                            .actionFemaleMeasurementFragmentToDashBoardFragment()
+                    )
+                }
+            })
 
         }
     }
@@ -101,7 +99,6 @@ class FemaleMeasurementFragment : BaseViewModelFragment() {
         setUpToolBar("", false)
         invalidateToolbarElevation(0)
     }
-
 
 
     override fun getViewModel(): BaseViewModel = measurementViewModel
