@@ -11,10 +11,8 @@ import androidx.navigation.fragment.findNavController
 import com.tailorfit.android.base.BaseViewModel
 import com.tailorfit.android.base.BaseViewModelFragment
 import com.tailorfit.android.databinding.FragmentMeasurementBinding
-import com.tailorfit.android.extensions.toDouble
 import com.tailorfit.android.tailorfitapp.PrefsValueHelper
-import com.tailorfit.android.tailorfitapp.models.request.MaleMeasurementRequest
-import com.tailorfit.android.tailorfitapp.validateTextLayouts
+import com.tailorfit.android.tailorfitapp.models.request.MeasurementRequest
 import javax.inject.Inject
 
 
@@ -70,9 +68,9 @@ class MaleMeasurementFragment : BaseViewModelFragment() {
             map[binding.wristCircumferenceTextInputLayout.hint.toString()] =
                 binding.wristCircumferenceEditText.text.toString()
 
-            measurementViewModel.createMaleMeasurement(
+            measurementViewModel.createMeasurement(
                 prefsValueHelper.getAccessToken(),
-                MaleMeasurementRequest(
+                MeasurementRequest(
                     prefsValueHelper.getUserId(),
                     prefsValueHelper.getCustomerId(),
                     prefsValueHelper.getGigId(),
@@ -80,7 +78,7 @@ class MaleMeasurementFragment : BaseViewModelFragment() {
                 )
             )
 
-            measurementViewModel.maleResponse.observe(viewLifecycleOwner, Observer {
+            measurementViewModel.createMeasurementResponse.observe(viewLifecycleOwner, Observer {
                 if (it != null) {
                     findNavController().navigate(
                         MaleMeasurementFragmentDirections

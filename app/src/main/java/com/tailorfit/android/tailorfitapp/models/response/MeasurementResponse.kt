@@ -1,9 +1,10 @@
-package com.tailorfit.android.tailorfitapp.models.request
-
+package com.tailorfit.android.tailorfitapp.models.response
 
 import com.google.gson.annotations.SerializedName
 
-data class FemaleMeasurementRequest(
+data class MeasurementResponse(
+    @SerializedName("_id")
+    val _id: String? = null,
     @SerializedName("user_id")
     val userId: String? = null,
     @SerializedName("customer_id")

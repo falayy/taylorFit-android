@@ -21,6 +21,11 @@ fun bindRecyclerView(recyclerView: RecyclerView, customerInfo: List<CustomerInfo
     }
 }
 
+
+/***
+ * For Get Customer Info Adapter
+ */
+
 @BindingAdapter("gender")
 fun bindGender(imgView: ImageView, string: String) {
     string.let {
@@ -39,7 +44,6 @@ fun bindGender(imgView: ImageView, string: String) {
         }
     }
 }
-
 
 @BindingAdapter("styleName")
 fun bindStyle(textView: TextView, string: String) {
@@ -68,3 +72,24 @@ fun bindDate(textView: TextView, string: String) {
         textView.text = it
     }
 }
+
+
+/***
+ * For Measurement Adapter
+ */
+
+@BindingAdapter("measurementKey")
+fun bindMeasurementKey(textView: TextView, string: String) {
+    string.let {
+        textView.text = it
+    }
+}
+
+@BindingAdapter("measurementValue")
+fun bindMeasurementValue(textView: TextView, string: String) {
+    string.let {
+        textView.text = it
+    }
+}
+
+

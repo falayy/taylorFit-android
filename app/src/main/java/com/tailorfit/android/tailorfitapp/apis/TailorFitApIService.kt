@@ -28,19 +28,12 @@ interface TailorFitApIService {
         @Body body: CreateGigRequest
     ): Single<Response<BaseAPIResponse<CreateGigResponse>>>
 
-    @POST("/customer/measurement/male")
-    fun createMaleMeasurement(
-        @Header("x-auth") token: String,
-        @Body body: MaleMeasurementRequest
-    )
-            : Single<Response<BaseAPIResponse<MaleMeasurementResponse>>>
-
     @POST("/customer/measurement/female")
     fun createFemaleMeasurement(
         @Header("x-auth") token: String,
-        @Body body: FemaleMeasurementRequest
+        @Body body: MeasurementRequest
     )
-            : Single<Response<BaseAPIResponse<FemaleMeasurementResponse>>>
+            : Single<Response<BaseAPIResponse<MeasurementResponse>>>
 
     @POST("/gig/done")
     fun addGigToDone(
@@ -54,21 +47,13 @@ interface TailorFitApIService {
         @Header("user_id") userId: String
     ): Single<Response<BaseAPIResponse<List<CustomerInfoResponseModel>>>>
 
-    @GET("")
-    fun getCustomeMaleMeasurement(
+    @GET("/measurement")
+    fun getMeasurement(
         @Header("x-auth") token: String,
         @Header("customer_id") customerId: String,
         @Header("gig_id") gigId: String
     )
-            : Single<Response<BaseAPIResponse<MaleMeasurementResponse>>>
-
-    @GET("")
-    fun getCustomeFemaleMeasurement(
-        @Header("x-auth") token: String,
-        @Header("customer_id") customerId: String,
-        @Header("gig_id") gigId: String
-    )
-            : Single<Response<BaseAPIResponse<FemaleMeasurementResponse>>>
+            : Single<Response<BaseAPIResponse<MeasurementResponse>>>
 
 
     @GET("/user/info")

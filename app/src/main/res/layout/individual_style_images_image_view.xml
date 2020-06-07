@@ -9,9 +9,6 @@
             name="imageModel"
             type="com.tailorfit.android.tailorfitapp.models.request.GigImageModel" />
 
-        <variable
-            name="viewmodel"
-            type="com.tailorfit.android.tailorfitapp.gig.GigViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

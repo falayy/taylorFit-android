@@ -76,39 +76,27 @@ class CustomerDetailsFragment : BaseViewModelFragment() {
         }
 
 
-        binding.viewMeasurementTextView.setOnClickListener {
-            when (customerDetailsResponseArgs.customerGender) {
+        binding.apply {
+            viewMeasurementTextView.setOnClickListener {
+                findNavController().navigate(
+                    CustomerDetailsFragmentDirections.actionCustomerDetailsFragmentToGetMeasurementFragment(customerDetailsResponseArgs)
+                )
+            }
 
-                Gender.MALE -> {
-                    findNavController().navigate(
-                        CustomerDetailsFragmentDirections
-                            .actionCustomerDetailsFragmentToGetMeasurementFragment(
-                                Gender.MALE
-                            )
+            isDoneButton.setOnClickListener {
+                customerDetailsViewModel.addGigToDone(
+                    prefsValueHelper.getAccessToken(),
+                    AddGigToDoneRequest(
+                        customerDetailsResponseArgs.customerId,
+                        customerDetailsResponseArgs.gigId
                     )
-                }
-
-                Gender.FEMALE -> {
-                    findNavController().navigate(
-                        CustomerDetailsFragmentDirections.actionCustomerDetailsFragmentToGetMeasurementFragment(
-                            Gender.FEMALE
-                        )
-                    )
-                }
+                )
             }
         }
 
-        binding.isDoneButton.setOnClickListener {
-            customerDetailsViewModel.addGigToDone(
-                prefsValueHelper.getAccessToken(),
-                AddGigToDoneRequest(
-                    prefsValueHelper.getCustomerId(),
-                    prefsValueHelper.getGigId()
-                )
-            )
-        }
 
     }
+
 
     override fun getViewModel(): BaseViewModel = customerDetailsViewModel
 

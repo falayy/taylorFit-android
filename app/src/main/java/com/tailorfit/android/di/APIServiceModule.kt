@@ -29,15 +29,12 @@ class APIServiceModule {
     @Named("TailorFitApIService")
     @Singleton
     fun provideExampleServiceHttpClient(
-        upstream: OkHttpClient,
-        accessTokenProvider: AccessTokenProvider
+        upstream: OkHttpClient
     ): OkHttpClient {
         return upstream.newBuilder()
-//            .addInterceptor(AccessTokenInterceptor(accessTokenProvider))
             .build()
     }
 
-    //.authenticator(AccessTokenAuthenticator(accessTokenProvider))
 
     @Provides
     @Singleton

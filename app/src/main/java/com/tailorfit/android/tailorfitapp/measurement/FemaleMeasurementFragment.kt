@@ -12,10 +12,8 @@ import androidx.navigation.fragment.findNavController
 import com.tailorfit.android.base.BaseViewModel
 import com.tailorfit.android.base.BaseViewModelFragment
 import com.tailorfit.android.databinding.FragmentFemaleMeasurementBinding
-import com.tailorfit.android.extensions.toDouble
 import com.tailorfit.android.tailorfitapp.PrefsValueHelper
-import com.tailorfit.android.tailorfitapp.models.request.FemaleMeasurementRequest
-import com.tailorfit.android.tailorfitapp.validateTextLayouts
+import com.tailorfit.android.tailorfitapp.models.request.MeasurementRequest
 import javax.inject.Inject
 
 class FemaleMeasurementFragment : BaseViewModelFragment() {
@@ -74,16 +72,17 @@ class FemaleMeasurementFragment : BaseViewModelFragment() {
                 binding.sleeveLengthEditText.text.toString()
             map[binding.underBustTextInputLayout.hint.toString()] =
                 binding.underBustEditText.text.toString()
-            measurementViewModel.createFemaleMeasurement(
+            measurementViewModel.createMeasurement(
                 prefsValueHelper.getAccessToken(),
-                FemaleMeasurementRequest(
+                MeasurementRequest(
                     prefsValueHelper.getUserId(),
                     prefsValueHelper.getCustomerId(),
                     prefsValueHelper.getGigId(),
                     map
                 )
             )
-            measurementViewModel.femaleResponse.observe(viewLifecycleOwner, Observer {
+            measurementViewModel.createMeasurementResponse
+                .observe(viewLifecycleOwner, Observer {
                 if (it != null) {
                     findNavController().navigate(
                         FemaleMeasurementFragmentDirections
