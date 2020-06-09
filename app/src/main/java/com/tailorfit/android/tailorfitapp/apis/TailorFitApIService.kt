@@ -10,26 +10,29 @@ import retrofit2.http.*
 interface TailorFitApIService {
 
     @POST("/register")
-    fun signUp(@Body body: SignUpRequest): Single<Response<BaseAPIResponse<SignUpResponse>>>
+    fun signUp(@Body body: SignUpRequest)
+            : Single<Response<BaseAPIResponse<SignUpResponse>>>
 
     @POST("/login")
-    fun signIn(@Body body: SignInRequest): Single<Response<BaseAPIResponse<SignUpResponse>>>
+    fun signIn(@Body body: SignInRequest)
+            : Single<Response<BaseAPIResponse<SignUpResponse>>>
 
     @POST("/customer/register")
     fun createCustomer(
         @Header("x-auth") token: String,
         @Body body: CreateCustomerRequest
-    ):
-            Single<Response<BaseAPIResponse<CreateCustomerResponse>>>
+    )
+            : Single<Response<BaseAPIResponse<CreateCustomerResponse>>>
 
     @POST("/gigs/register")
     fun createGig(
         @Header("x-auth") token: String,
         @Body body: CreateGigRequest
-    ): Single<Response<BaseAPIResponse<CreateGigResponse>>>
+    )
+            : Single<Response<BaseAPIResponse<CreateGigResponse>>>
 
-    @POST("/customer/measurement/female")
-    fun createFemaleMeasurement(
+    @POST("/customer/measurement")
+    fun createMeasurement(
         @Header("x-auth") token: String,
         @Body body: MeasurementRequest
     )
@@ -39,13 +42,21 @@ interface TailorFitApIService {
     fun addGigToDone(
         @Header("x-auth") token: String,
         @Body body: AddGigToDoneRequest
-    )
+    ) : Single<Response<BaseAPIResponse<AddToDoneResponse>>>
 
-    @GET("/customer/gig")
-    fun getCustomersJobsInfo(
+    @GET("/customer/gig/pending")
+    fun getCustomersPendingJobsInfo(
         @Header("x-auth") token: String,
         @Header("user_id") userId: String
-    ): Single<Response<BaseAPIResponse<List<CustomerInfoResponseModel>>>>
+    )
+            : Single<Response<BaseAPIResponse<List<CustomerInfoResponseModel>>>>
+
+    @GET("/customer/gig/finish")
+    fun getCustomersCompletedJobsInfo(
+        @Header("x-auth") token: String,
+        @Header("user_id") userId: String
+    )
+            : Single<Response<BaseAPIResponse<List<CustomerInfoResponseModel>>>>
 
     @GET("/measurement")
     fun getMeasurement(
@@ -59,7 +70,8 @@ interface TailorFitApIService {
     @GET("/user/info")
     fun getUserInfo(
         @Header("x-auth") token: String
-    ): Single<Response<BaseAPIResponse<UserInfoResponse>>>
+    )
+            : Single<Response<BaseAPIResponse<UserInfoResponse>>>
 
 }
 

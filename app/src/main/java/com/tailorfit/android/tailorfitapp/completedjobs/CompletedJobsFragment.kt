@@ -2,7 +2,6 @@ package com.tailorfit.android.tailorfitapp.completedjobs
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,6 +15,7 @@ import com.tailorfit.android.base.BaseViewModelFragment
 import com.tailorfit.android.databinding.FragmentCompletedJobsBinding
 import com.tailorfit.android.tailorfitapp.PrefsValueHelper
 import com.tailorfit.android.tailorfitapp.userdashboard.DashBoardAdapter
+import com.tailorfit.android.tailorfitapp.userdashboard.DashBoardFragmentDirections
 import com.tailorfit.android.tailorfitapp.userdashboard.DashBoardViewModel
 import javax.inject.Inject
 
@@ -33,7 +33,11 @@ class CompletedJobsFragment : BaseViewModelFragment() {
 
     private val dashBoardAdapter by lazy {
         DashBoardAdapter(DashBoardAdapter.OnclickListener {
-              findNavController().navigate(CompletedJobsFragmentDirections.actionCompletedJobsFragmentToCustomerDetailsFragment(it))
+            findNavController().navigate(
+                DashBoardFragmentDirections.actionDashBoardFragmentToCustomerDetailsFragment(
+                    it!!
+                )
+            )
         })
     }
 
@@ -56,18 +60,24 @@ class CompletedJobsFragment : BaseViewModelFragment() {
             prefsValueHelper.getAccessToken(),
             prefsValueHelper.getUserId()
         )
-        dashBoardViewModel.customerInfoResponse.observe(viewLifecycleOwner, Observer {
-            binding.recyclerViewImage.apply {
-                layoutManager = LinearLayoutManager(
-                    context,
-                    LinearLayoutManager.VERTICAL,
-                    false
-                )
-                adapter = dashBoardAdapter.apply {
-                    submitList(it)
+        dashBoardViewModel.completedCustomerInfoResponse.observe(
+            viewLifecycleOwner,
+            Observer {
+                if (it != null) {
+                    binding.recyclerViewImage.apply {
+                        visibility = View.VISIBLE
+                        layoutManager = LinearLayoutManager(
+                            context,
+                            LinearLayoutManager.VERTICAL,
+                            false
+                        )
+                        adapter = dashBoardAdapter.apply {
+                            submitList(it)
+                        }
+                    }
                 }
-            }
-        })
+
+            })
 
     }
 

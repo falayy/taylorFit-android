@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
@@ -69,7 +70,7 @@ class CustomerDetailsFragment : BaseViewModelFragment() {
         binding.apply {
             customerName.text = customerDetailsResponseArgs.customerName
             customerNumberTextView.text = customerDetailsResponseArgs.customerNumber
-            styleConstantTextView.text = customerDetailsResponseArgs.styleName
+            styleTextView.text = customerDetailsResponseArgs.styleName
             gigTitleTextView.text = customerDetailsResponseArgs.gigTitle
             gigDueDateTextView.text = customerDetailsResponseArgs.deliveryDate
             gigPriceTextView.text = customerDetailsResponseArgs.price.toString()
@@ -79,7 +80,9 @@ class CustomerDetailsFragment : BaseViewModelFragment() {
         binding.apply {
             viewMeasurementTextView.setOnClickListener {
                 findNavController().navigate(
-                    CustomerDetailsFragmentDirections.actionCustomerDetailsFragmentToGetMeasurementFragment(customerDetailsResponseArgs)
+                    CustomerDetailsFragmentDirections.actionCustomerDetailsFragmentToGetMeasurementFragment(
+                        customerDetailsResponseArgs
+                    )
                 )
             }
 
@@ -92,6 +95,12 @@ class CustomerDetailsFragment : BaseViewModelFragment() {
                     )
                 )
             }
+
+            customerDetailsViewModel.addToDoneResponse.observe(viewLifecycleOwner, Observer {
+                if (it != null) {
+                    showSnackBar(context!!.getString(R.string.gig_completed))
+                }
+            })
         }
 
 

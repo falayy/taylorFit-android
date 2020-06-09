@@ -9,7 +9,6 @@ import com.tailorfit.android.Constants
 import com.tailorfit.android.R
 import com.tailorfit.android.tailorfitapp.models.response.CustomerInfoResponseModel
 import com.tailorfit.android.tailorfitapp.userdashboard.DashBoardAdapter
-import com.tailorfit.android.utils.DateUtils
 import timber.log.Timber
 
 @BindingAdapter("listCustomerInfo")
@@ -27,8 +26,8 @@ fun bindRecyclerView(recyclerView: RecyclerView, customerInfo: List<CustomerInfo
  */
 
 @BindingAdapter("gender")
-fun bindGender(imgView: ImageView, string: String) {
-    string.let {
+fun bindGender(imgView: ImageView, string: String?) {
+    string?.let {
         when (it) {
             Constants.Gender.FEMALE -> {
                 imgView.load(R.drawable.ic_female)
@@ -46,29 +45,29 @@ fun bindGender(imgView: ImageView, string: String) {
 }
 
 @BindingAdapter("styleName")
-fun bindStyle(textView: TextView, string: String) {
-    string.let {
+fun bindStyle(textView: TextView, string: String?) {
+    string?.let {
         textView.text = it
     }
 }
 
 @BindingAdapter("customerName")
-fun bindCustomerName(textView: TextView, string: String) {
-    string.let {
+fun bindCustomerName(textView: TextView, string: String?) {
+    string?.let {
         textView.text = it
     }
 }
 
 @BindingAdapter("stylePrice")
-fun bindPrice(textView: TextView, int: Int) {
-    int.let {
+fun bindPrice(textView: TextView, int: Int?) {
+    int?.let {
         textView.text = it.toString()
     }
 }
 
 @BindingAdapter("styleDate")
-fun bindDate(textView: TextView, string: String) {
-    string.let {
+fun bindDate(textView: TextView, string: String?) {
+    string?.let {
         textView.text = it
     }
 }

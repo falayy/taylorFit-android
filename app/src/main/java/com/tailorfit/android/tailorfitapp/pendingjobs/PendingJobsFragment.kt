@@ -2,6 +2,7 @@ package com.tailorfit.android.tailorfitapp.pendingjobs
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,7 +34,7 @@ class PendingJobsFragment : BaseViewModelFragment() {
     private val dashBoardAdapter by lazy {
         DashBoardAdapter(DashBoardAdapter.OnclickListener {
             this.findNavController().navigate(
-                    DashBoardFragmentDirections.actionDashBoardFragmentToCustomerDetailsFragment(it)
+                DashBoardFragmentDirections.actionDashBoardFragmentToCustomerDetailsFragment(it!!)
             )
         })
     }
@@ -59,17 +60,20 @@ class PendingJobsFragment : BaseViewModelFragment() {
         )
 
         dashBoardViewModel
-            .customerInfoResponse.observe(
+            .pendingCustomerInfoResponse.observe(
             viewLifecycleOwner,
             Observer {
-                binding.recyclerViewImage.apply {
-                    layoutManager = LinearLayoutManager(
-                        context,
-                        LinearLayoutManager.VERTICAL,
-                        false
-                    )
-                    adapter = dashBoardAdapter.apply {
-                        submitList(it)
+                if (it != null) {
+                    binding.recyclerViewImage.apply {
+                        visibility = View.VISIBLE
+                        layoutManager = LinearLayoutManager(
+                            context,
+                            LinearLayoutManager.VERTICAL,
+                            false
+                        )
+                        adapter = dashBoardAdapter.apply {
+                            submitList(it)
+                        }
                     }
                 }
             })

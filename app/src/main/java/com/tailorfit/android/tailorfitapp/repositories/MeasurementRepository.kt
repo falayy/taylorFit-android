@@ -5,6 +5,7 @@ import com.tailorfit.android.networkutils.toResult
 import com.tailorfit.android.networkutils.Result
 import com.tailorfit.android.tailorfitapp.models.request.AddGigToDoneRequest
 import com.tailorfit.android.tailorfitapp.models.request.MeasurementRequest
+import com.tailorfit.android.tailorfitapp.models.response.AddToDoneResponse
 import com.tailorfit.android.tailorfitapp.models.response.MeasurementResponse
 import io.reactivex.Single
 import javax.inject.Inject
@@ -13,7 +14,7 @@ class MeasurementRepository @Inject constructor(private val tailorFitApIService:
 
     fun createMeasurement(token: String, measurementRequest: MeasurementRequest)
             : Single<Result<MeasurementResponse>> {
-        return tailorFitApIService.createFemaleMeasurement(token, measurementRequest)
+        return tailorFitApIService.createMeasurement(token, measurementRequest)
             .toResult()
     }
 
@@ -24,8 +25,9 @@ class MeasurementRepository @Inject constructor(private val tailorFitApIService:
     }
 
 
-    fun markAsDone(token: String, addGigToDoneRequest: AddGigToDoneRequest) {
-        tailorFitApIService.addGigToDone(token, addGigToDoneRequest)
+    fun markAsDone(token: String, addGigToDoneRequest: AddGigToDoneRequest)
+            : Single<Result<AddToDoneResponse>> {
+        return tailorFitApIService.addGigToDone(token, addGigToDoneRequest).toResult()
     }
 
 }

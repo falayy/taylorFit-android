@@ -18,8 +18,13 @@ class DashBoardViewModel @Inject constructor(
     private var _userInfoResponse = MutableLiveData<UserInfoResponse>()
     val userInfoResponse = _userInfoResponse
 
-    private var _customerJobsInfoResponse = MutableLiveData<List<CustomerInfoResponseModel>>()
-    val customerInfoResponse = _customerJobsInfoResponse
+    private var _pendingCustomerJobsInfoResponse =
+        MutableLiveData<List<CustomerInfoResponseModel>?>()
+    val pendingCustomerInfoResponse = _pendingCustomerJobsInfoResponse
+
+    private var _completedCustomerJobsInfoResponse =
+        MutableLiveData<List<CustomerInfoResponseModel>?>()
+    val completedCustomerInfoResponse = _completedCustomerJobsInfoResponse
 
 
     fun userInfo(
@@ -46,12 +51,12 @@ class DashBoardViewModel @Inject constructor(
         userId: String?
     ) {
         _loadingStatus.value = LoadingStatus.Loading("Loading DashBoard, Please Wait")
-        dashBoardDataRepository.getCustomersJobsInfo(
+        dashBoardDataRepository.getCustomersPendingJobsInfo(
             token!!, userId!!
         ).subscribeBy {
             when (it) {
                 is Result.Success -> {
-                    _customerJobsInfoResponse.value = it.data
+                    _pendingCustomerJobsInfoResponse.value = it.data
                         .sortedBy { fetchCustomerInfoResponse ->
                             fetchCustomerInfoResponse.isDone == false
                         }
@@ -68,12 +73,12 @@ class DashBoardViewModel @Inject constructor(
         userId: String?
     ) {
         _loadingStatus.value = LoadingStatus.Loading("Loading DashBoard, Please Wait")
-        dashBoardDataRepository.getCustomersJobsInfo(
+        dashBoardDataRepository.getCustomersCompletedJobsInfo(
             token!!, userId!!
         ).subscribeBy {
             when (it) {
                 is Result.Success -> {
-                    _customerJobsInfoResponse.value = it.data
+                    _completedCustomerJobsInfoResponse.value = it.data
                         .sortedBy { fetchCustomerInfoResponse ->
                             fetchCustomerInfoResponse.isDone == true
                         }
@@ -91,8 +96,8 @@ class DashBoardViewModel @Inject constructor(
         addAllLiveDataToObservablesList(
             _userInfoResponse,
             userInfoResponse,
-            customerInfoResponse,
-            _customerJobsInfoResponse
+            completedCustomerInfoResponse,
+            pendingCustomerInfoResponse
         )
     }
 }

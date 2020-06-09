@@ -25,20 +25,21 @@ class DashBoardAdapter(
 
     override fun onBindViewHolder(holder: DashBoardViewHolder, position: Int) {
 
-        val items = getItem(position)
+        val items: CustomerInfoResponseModel? = getItem(position)
         holder.itemView.setOnClickListener {
             customerJobDetailsOnClickListener.onClick(items)
         }
         holder.bind(items)
+
+
     }
 
 
     class DashBoardViewHolder private constructor(val binding: IndividualCustomerDashboardBinding) :
-
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(
-            customerInfoResponseModel: CustomerInfoResponseModel
+            customerInfoResponseModel: CustomerInfoResponseModel?
         ) {
             binding.customerInfo = customerInfoResponseModel
             binding.executePendingBindings()
@@ -77,10 +78,10 @@ class DashBoardAdapter(
     class OnclickListener(
         val clickListener:
             (
-            customerInfoResponseModel: CustomerInfoResponseModel
+            customerInfoResponseModel: CustomerInfoResponseModel?
         ) -> Unit
     ) {
-        fun onClick(customerInfoResponseModel: CustomerInfoResponseModel) =
+        fun onClick(customerInfoResponseModel: CustomerInfoResponseModel?) =
             clickListener(customerInfoResponseModel)
     }
 }

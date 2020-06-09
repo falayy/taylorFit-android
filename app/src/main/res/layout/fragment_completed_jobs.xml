@@ -2,12 +2,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-        <variable
-            name="viewmodel"
-            type="com.tailorfit.android.tailorfitapp.userdashboard.DashBoardViewModel" />
-
-    </data>
 
     <FrameLayout
         android:layout_width="wrap_content"
@@ -21,7 +15,6 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_marginTop="10dp"
-            app:listCustomerInfo="@{viewmodel.customerInfoResponse}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
 
