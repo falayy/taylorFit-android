@@ -14,6 +14,7 @@
     <color name="textColorSecondaryGrey">#8F000000</color>
     <color name="textColorDark">#DB000000</color>
     <color name="textColorLightGrey">#B5B5B5</color>
+    <color name="transparent">#26000000</color>
 
     <color name="secondaryColorChocolate">#3D1818</color>
     <color name="primaryColorChocolate">#5E2E00</color>

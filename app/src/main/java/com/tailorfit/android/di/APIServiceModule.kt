@@ -18,6 +18,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Named
 import javax.inject.Singleton
 
@@ -28,14 +29,12 @@ class APIServiceModule {
     @Named("TailorFitApIService")
     @Singleton
     fun provideExampleServiceHttpClient(
-        upstream: OkHttpClient,
-        accessTokenProvider: AccessTokenProvider
+        upstream: OkHttpClient
     ): OkHttpClient {
         return upstream.newBuilder()
-            .addInterceptor(AccessTokenInterceptor(accessTokenProvider))
-            .authenticator(AccessTokenAuthenticator(accessTokenProvider))
             .build()
     }
+
 
     @Provides
     @Singleton
@@ -73,7 +72,9 @@ class APIServiceModule {
     @Provides
     @Singleton
     fun provideGenericOkHttpClient(interceptor: HttpLoggingInterceptor): OkHttpClient =
-        OkHttpClient.Builder().addInterceptor(interceptor).build()
+        OkHttpClient.Builder().addInterceptor(interceptor)
+            .connectTimeout(30, TimeUnit.SECONDS)
+            .build()
 
     @Provides
     @Singleton

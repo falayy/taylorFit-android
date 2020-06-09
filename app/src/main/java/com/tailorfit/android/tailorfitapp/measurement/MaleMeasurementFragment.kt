@@ -11,10 +11,8 @@ import androidx.navigation.fragment.findNavController
 import com.tailorfit.android.base.BaseViewModel
 import com.tailorfit.android.base.BaseViewModelFragment
 import com.tailorfit.android.databinding.FragmentMeasurementBinding
-import com.tailorfit.android.extensions.toInteger
 import com.tailorfit.android.tailorfitapp.PrefsValueHelper
-import com.tailorfit.android.tailorfitapp.models.request.MaleMeasurementRequest
-import com.tailorfit.android.tailorfitapp.validateTextLayouts
+import com.tailorfit.android.tailorfitapp.models.request.MeasurementRequest
 import javax.inject.Inject
 
 
@@ -29,6 +27,7 @@ class MaleMeasurementFragment : BaseViewModelFragment() {
     lateinit var prefsValueHelper: PrefsValueHelper
 
     private lateinit var measurementViewModel: MeasurementViewModel
+    private val map = HashMap<String, String>()
 
 
     override fun onCreateView(
@@ -42,52 +41,59 @@ class MaleMeasurementFragment : BaseViewModelFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         daggerAppComponent.inject(this)
+        setUpToolbar()
         measurementViewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(MeasurementViewModel::class.java)
 
         binding.createMaleMeasurementButton.setOnClickListener {
-            if (validateTextLayouts(
-                    binding.armLengthEditText,
-                    binding.calfEditText,
-                    binding.chestCircumferenceEditText,
-                    binding.fullLengthEditText,
-                    binding.hipsCircumferenceEditText,
-                    binding.neckCircumferenceEditText,
-                    binding.shoulderBreadthEditText,
-                    binding.thighEditText,
-                    binding.waistCircumferenceEditText,
-                    binding.wristCircumferenceEditText
+
+            map[binding.armLengthTextInputLayout.hint.toString()] =
+                binding.armLengthEditText.text.toString()
+            map[binding.calfTextInputLayout.hint.toString()] =
+                binding.calfEditText.text.toString()
+            map[binding.chestCircumferenceTextInputLayout.hint.toString()] =
+                binding.chestCircumferenceEditText.text.toString()
+            map[binding.fullLengthTextInputLayout.hint.toString()] =
+                binding.fullLengthEditText.text.toString()
+            map[binding.hipsCircumferenceTextInputLayout.hint.toString()] =
+                binding.hipsCircumferenceEditText.text.toString()
+            map[binding.neckCircumferenceTextInputLayout.hint.toString()] =
+                binding.neckCircumferenceEditText.text.toString()
+            map[binding.shoulderBreadthTextInputLayout.hint.toString()] =
+                binding.shoulderBreadthEditText.text.toString()
+            map[binding.thighTextInputLayout.hint.toString()] =
+                binding.thighEditText.text.toString()
+            map[binding.waistCircumferenceTextInputLayout.hint.toString()] =
+                binding.waistCircumferenceEditText.text.toString()
+            map[binding.wristCircumferenceTextInputLayout.hint.toString()] =
+                binding.wristCircumferenceEditText.text.toString()
+
+            measurementViewModel.createMeasurement(
+                prefsValueHelper.getAccessToken(),
+                MeasurementRequest(
+                    prefsValueHelper.getUserId(),
+                    prefsValueHelper.getCustomerId(),
+                    prefsValueHelper.getGigId(),
+                    map
                 )
-            ) {
-                measurementViewModel.createMaleMeasurement(
-                    prefsValueHelper.getAccessToken(),
-                    MaleMeasurementRequest(
-                        binding.armLengthEditText.toInteger(),
-                        binding.calfEditText.toInteger(),
-                        binding.chestCircumferenceEditText.toInteger(),
-                        prefsValueHelper.getCustomerId(),
-                        binding.fullLengthEditText.toInteger(),
-                        prefsValueHelper.getGigId(),
-                        binding.hipsCircumferenceEditText.toInteger(),
-                        binding.neckCircumferenceEditText.toInteger(),
-                        binding.shoulderBreadthEditText.toInteger(),
-                        binding.thighEditText.toInteger(),
-                        prefsValueHelper.getUserId(),
-                        binding.waistCircumferenceEditText.toInteger(),
-                        binding.wristCircumferenceEditText.toInteger()
+            )
+
+            measurementViewModel.createMeasurementResponse.observe(viewLifecycleOwner, Observer {
+                if (it != null) {
+                    findNavController().navigate(
+                        MaleMeasurementFragmentDirections
+                            .actionMaleMeasurementFragmentToDashBoardFragment()
                     )
-                )
-                measurementViewModel.maleResponse.observe(viewLifecycleOwner, Observer {
-                    if (it != null) {
-                        findNavController().navigate(
-                            MaleMeasurementFragmentDirections
-                                .actionMaleMeasurementFragmentToDashBoardFragment()
-                        )
-                    }
-                })
-            }
+                }
+            })
+
         }
 
+    }
+
+    private fun setUpToolbar() = mainActivity.run {
+        setUpToolBar("", false)
+        invalidateToolbarElevation(0)
     }
 
     override fun getViewModel(): BaseViewModel = measurementViewModel

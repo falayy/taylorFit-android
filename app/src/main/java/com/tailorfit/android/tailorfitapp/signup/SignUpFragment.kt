@@ -9,7 +9,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-import com.tailorfit.android.base.BaseFragment
 import com.tailorfit.android.base.BaseViewModel
 import com.tailorfit.android.base.BaseViewModelFragment
 import com.tailorfit.android.databinding.FragmentSignUpBinding
@@ -46,7 +45,6 @@ class SignUpFragment : BaseViewModelFragment() {
             findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToSignInFragment())
         }
         binding.signupButton.setOnClickListener {
-            findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToAddCustomerNameFragment())
             if (validateTextLayouts(
                     binding.nameEditText,
                     binding.phoneEditText,
@@ -59,7 +57,7 @@ class SignUpFragment : BaseViewModelFragment() {
                         binding.storeEditText.stringContent(),
                         binding.nameEditText.stringContent(),
                         binding.passwordEditText.stringContent(),
-                        binding.phoneEditText.stringContent() 
+                        binding.phoneEditText.stringContent()
                     )
                 )
             }
@@ -67,7 +65,7 @@ class SignUpFragment : BaseViewModelFragment() {
 
         viewModel.signUpResponse.observe(this, Observer {
             if (it != null) {
-//                findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToAddCustomerFragment())
+                findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToAddCustomerNameFragment())
             }
         })
     }

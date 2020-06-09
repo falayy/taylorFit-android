@@ -15,9 +15,14 @@ class DashBoardDataRepository @Inject constructor(private val tailorFitApIServic
        return tailorFitApIService.getUserInfo(token).toResult()
     }
 
-    fun getCustomersJobsInfo(token : String, userId : String)
+    fun getCustomersPendingJobsInfo(token : String, userId : String)
     : Single<Result<List<CustomerInfoResponseModel>>> {
-        return tailorFitApIService.getCustomersJobsInfo(token, userId).toResult()
+        return tailorFitApIService.getCustomersPendingJobsInfo(token, userId).toResult()
+    }
+
+    fun getCustomersCompletedJobsInfo(token : String, userId : String)
+            : Single<Result<List<CustomerInfoResponseModel>>> {
+        return tailorFitApIService.getCustomersCompletedJobsInfo(token, userId).toResult()
     }
 
 }

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/signUpFragment">
+    app:startDestination="@id/dashBoardFragment">
 
     <fragment
         android:id="@+id/signUpFragment"
@@ -17,7 +17,14 @@
         <action
             android:id="@+id/action_signUpFragment_to_addCustomerNameFragment"
             app:destination="@id/addCustomerNameFragment"
+            app:enterAnim="@anim/slide_in_left" />
+        <action
+            android:id="@+id/action_signUpFragment_to_demoFragment"
+            app:destination="@id/demoFragment"
             app:enterAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_signUpFragment_to_customerDetailsFragment"
+            app:destination="@id/customerDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
@@ -41,7 +48,11 @@
         android:label="AddCustomerPhoneFragment">
         <action
             android:id="@+id/action_addCustomerPhoneFragment_to_addCustomerGenderFragment"
-            app:destination="@id/addCustomerGenderFragment" />
+            app:destination="@id/addCustomerGenderFragment"
+            app:enterAnim="@anim/fade_out" />
+        <argument
+            android:name="createCustomer"
+            app:argType="com.tailorfit.android.tailorfitapp.models.request.CreateCustomerRequest" />
     </fragment>
     <fragment
         android:id="@+id/addCustomerGenderFragment"
@@ -49,15 +60,21 @@
         android:label="AddCustomerGenderFragment" >
         <action
             android:id="@+id/action_addCustomerGenderFragment_to_addGigTitleFragment"
-            app:destination="@id/addGigTitleFragment" />
+            app:destination="@id/addGigTitleFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
+        <argument
+            android:name="createCustomer"
+            app:argType="com.tailorfit.android.tailorfitapp.models.request.CreateCustomerRequest" />
     </fragment>
     <fragment
         android:id="@+id/addGigTitleFragment"
         android:name="com.tailorfit.android.tailorfitapp.gig.AddGigTitleFragment"
-        android:label="fragment_add_gig_title">
+        android:label="fragment_add_gig_title"
+        app:startDestination="@id/action_addGigTitleFragment_to_addGigStyleFragment">
         <action
             android:id="@+id/action_addGigTitleFragment_to_addGigStyleFragment"
-            app:destination="@id/addGigStyleFragment" />
+            app:destination="@id/addGigStyleFragment"
+            app:enterAnim="@anim/nav_default_pop_enter_anim" />
     </fragment>
     <fragment
         android:id="@+id/addGigStyleFragment"
@@ -65,7 +82,11 @@
         android:label="fragment_add_gig_style_fragment">
         <action
             android:id="@+id/action_addGigStyleFragment_to_addGigDueDateFragment"
-            app:destination="@id/addGigDueDateFragment" />
+            app:destination="@id/addGigDueDateFragment"
+            app:enterAnim="@anim/slide_out_left" />
+        <argument
+            android:name="createGig"
+            app:argType="com.tailorfit.android.tailorfitapp.models.request.CreateGigRequest" />
     </fragment>
     <fragment
         android:id="@+id/addGigDueDateFragment"
@@ -73,7 +94,11 @@
         android:label="fragment_add_gig_due_date">
         <action
             android:id="@+id/action_addGigDueDateFragment_to_addGigPriceFragment"
-            app:destination="@id/addGigPriceFragment" />
+            app:destination="@id/addGigPriceFragment"
+            app:enterAnim="@anim/slide_out_right" />
+        <argument
+            android:name="createGig"
+            app:argType="com.tailorfit.android.tailorfitapp.models.request.CreateGigRequest" />
     </fragment>
     <fragment
         android:id="@+id/addGigPriceFragment"
@@ -82,6 +107,9 @@
         <action
             android:id="@+id/action_addGigPriceFragment_to_addGigDetails"
             app:destination="@id/addGigDetails" />
+        <argument
+            android:name="createGig"
+            app:argType="com.tailorfit.android.tailorfitapp.models.request.CreateGigRequest" />
     </fragment>
     <fragment
         android:id="@+id/addCustomerNameFragment"
@@ -89,7 +117,8 @@
         android:label="AddCustomerNameFragment" >
         <action
             android:id="@+id/action_addCustomerNameFragment_to_addCustomerPhoneFragment"
-            app:destination="@id/addCustomerPhoneFragment" />
+            app:destination="@id/addCustomerPhoneFragment"
+            app:enterAnim="@anim/fade_in" />
         <action
             android:id="@+id/action_addCustomerNameFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
@@ -105,6 +134,12 @@
         <action
             android:id="@+id/action_addGigDetails_to_maleMeasurementFragment"
             app:destination="@id/maleMeasurementFragment" />
+        <action
+            android:id="@+id/action_addGigDetails_to_maleMeasurementFragment2"
+            app:destination="@id/maleMeasurementFragment" />
+        <argument
+            android:name="createGig"
+            app:argType="com.tailorfit.android.tailorfitapp.models.request.CreateGigRequest" />
     </fragment>
     <fragment
         android:id="@+id/femaleMeasurementFragment"
@@ -114,6 +149,9 @@
         <action
             android:id="@+id/action_femaleMeasurementFragment_to_dashBoardFragment"
             app:destination="@id/dashBoardFragment" />
+        <action
+            android:id="@+id/action_femaleMeasurementFragment_to_maleMeasurementFragment"
+            app:destination="@id/maleMeasurementFragment" />
     </fragment>
     <fragment
         android:id="@+id/maleMeasurementFragment"
@@ -125,23 +163,68 @@
     </fragment>
     <fragment
         android:id="@+id/dashBoardFragment"
-        android:name="com.tailorfit.android.tailorfitapp.dashboard.DashBoardFragment"
-        android:label="DashBoardFragment" >
+        android:name="com.tailorfit.android.tailorfitapp.userdashboard.DashBoardFragment"
+        android:label="DashBoardFragment"
+        app:startDestination="@id/action_dashBoardFragment_to_addCustomerNameFragment">
         <action
             android:id="@+id/action_dashBoardFragment_to_completedJobsFragment"
             app:destination="@id/completedJobsFragment" />
         <action
             android:id="@+id/action_dashBoardFragment_to_pendingJobsFragment"
             app:destination="@id/pendingJobsFragment" />
+        <action
+            android:id="@+id/action_dashBoardFragment_to_addCustomerNameFragment"
+            app:destination="@id/addCustomerNameFragment" />
+        <action
+            android:id="@+id/action_dashBoardFragment_to_customerDetailsFragment"
+            app:destination="@id/customerDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/pendingJobsFragment"
-        android:name="com.tailorfit.android.tailorfitapp.dashboard.PendingJobsFragment"
+        android:name="com.tailorfit.android.tailorfitapp.pendingjobs.PendingJobsFragment"
         android:label="fragment_pending_jobs"
-        tools:layout="@layout/fragment_pending_jobs" />
+        tools:layout="@layout/fragment_pending_jobs" >
+        <action
+            android:id="@+id/action_pendingJobsFragment_to_customerDetailsFragment"
+            app:destination="@id/customerDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/completedJobsFragment"
-        android:name="com.tailorfit.android.tailorfitapp.dashboard.CompletedJobsFragment"
+        android:name="com.tailorfit.android.tailorfitapp.completedjobs.CompletedJobsFragment"
         android:label="fragment_completed_jobs"
-        tools:layout="@layout/fragment_completed_jobs" />
+        tools:layout="@layout/fragment_completed_jobs" >
+        <action
+            android:id="@+id/action_completedJobsFragment_to_customerDetailsFragment"
+            app:destination="@id/customerDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/customerDetailsFragment"
+        android:name="com.tailorfit.android.tailorfitapp.customerdetails.CustomerDetailsFragment"
+        android:label="fragment_customer_details"
+        tools:layout="@layout/fragment_customer_details" >
+        <action
+            android:id="@+id/action_customerDetailsFragment_to_getMeasurementFragment"
+            app:destination="@id/getMeasurementFragment" />
+        <argument
+            android:name="customer_details_response"
+            app:argType="com.tailorfit.android.tailorfitapp.models.response.CustomerInfoResponseModel" />
+    </fragment>
+    <fragment
+        android:id="@+id/demoFragment"
+        android:name="com.tailorfit.android.tailorfitapp.intro.DemoFragment"
+        android:label="DemoFragment"
+        app:startDestination="@id/action_demoFragment_to_signUpFragment">
+        <action
+            android:id="@+id/action_demoFragment_to_signUpFragment"
+            app:destination="@id/signUpFragment"
+            app:enterAnim="@anim/fade_in" />
+    </fragment>
+    <fragment
+        android:id="@+id/getMeasurementFragment"
+        android:name="com.tailorfit.android.tailorfitapp.measurement.GetMeasurementFragment"
+        android:label="GetMeasurementFragment" >
+        <argument
+            android:name="customerInfo"
+            app:argType="com.tailorfit.android.tailorfitapp.models.response.CustomerInfoResponseModel" />
+    </fragment>
 </navigation>

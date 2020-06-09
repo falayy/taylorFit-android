@@ -22,7 +22,8 @@ enum class ImageUploadStatus { NOT_UPLOADED, UPLOADING, SUCCESS, FAILED }
 
 class GigViewModel @Inject constructor(
     private val gigsRepository: GigsRepository,
-    private val prefsValueHelper: PrefsValueHelper) :
+    private val prefsValueHelper: PrefsValueHelper
+) :
     BaseViewModel() {
 
     private val _imagePlaceHolder = MutableLiveData<List<GigImageModel>>()
@@ -36,12 +37,13 @@ class GigViewModel @Inject constructor(
     val imageUploadStatus: LiveData<ImageUploadStatus>
         get() = _gigImageUploadStatus
 
+    private val _uriResponse = MutableLiveData<Uri>()
+
     private val _createGigResponse = MutableLiveData<CreateGigResponse>()
     val createGigResponse: LiveData<CreateGigResponse> = _createGigResponse
 
 
     fun getImagePlaceHolders() {
-        Timber.d("size is ${gigsRepository.getImagePlaceHolder().size}")
         _imagePlaceHolder.value = gigsRepository.getImagePlaceHolder()
     }
 
@@ -49,11 +51,23 @@ class GigViewModel @Inject constructor(
     fun uploadGigStyle(
         photoUri: Uri
     ) {
+        _gigImageUploadStatus.value = ImageUploadStatus.UPLOADING
         gigsRepository.uploadImage(photoUri)
+            .subscribeBy {
+                when (it) {
+                    is Result.Success -> {
+                        _uriResponse.value = it.data
+                        _gigImageUploadStatus.value = ImageUploadStatus.SUCCESS
+                    }
+                    is Result.Error -> {
+                        _gigImageUploadStatus.value = ImageUploadStatus.FAILED
+                    }
+                }
+            }.disposeBy(disposeBag)
     }
 
     fun createGig(token: String, createGigRequest: CreateGigRequest) {
-        _loadingStatus.value = LoadingStatus.Loading("Creating Gig, please wait")
+        _loadingStatus.value = LoadingStatus.Loading("Creating Gig, please wait...")
         gigsRepository.createGig(token, createGigRequest)
             .subscribeBy {
                 when (it) {
@@ -70,7 +84,9 @@ class GigViewModel @Inject constructor(
 
 
     override fun addAllLiveDataToObservablesList() {
-        addAllLiveDataToObservablesList(_imagePlaceHolder, _gigImageUploadStatus)
+        addAllLiveDataToObservablesList(
+            createGigResponse
+        )
     }
 
 

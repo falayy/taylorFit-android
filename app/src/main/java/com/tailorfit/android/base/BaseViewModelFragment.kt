@@ -1,4 +1,3 @@
-
 package com.tailorfit.android.base
 
 import androidx.lifecycle.Observer
@@ -22,6 +21,7 @@ abstract class BaseViewModelFragment : BaseFragment() {
             }
         })
     }
+    //showLoading(it.message)
 
     override fun onDestroyView() {
         super.onDestroyView()

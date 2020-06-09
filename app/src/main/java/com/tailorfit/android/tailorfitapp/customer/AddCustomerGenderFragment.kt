@@ -29,7 +29,7 @@ class AddCustomerGenderFragment : BaseCustomerFormFragment() {
 
     override fun setDataHints(binding: FragmentBaseFormBinding) {
         binding.formDescription.text = getString(R.string.customer_gender_message)
-        binding.editText.hint = getString(R.string.customer_gender_hint)
+        binding.formValueInputLayout.hint = getString(R.string.gender)
     }
 
 }

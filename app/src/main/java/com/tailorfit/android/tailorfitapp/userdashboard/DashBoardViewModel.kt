@@ -1,4 +1,4 @@
-package com.tailorfit.android.tailorfitapp.dashboard
+package com.tailorfit.android.tailorfitapp.userdashboard
 
 import androidx.lifecycle.MutableLiveData
 import com.tailorfit.android.base.BaseViewModel
@@ -18,15 +18,20 @@ class DashBoardViewModel @Inject constructor(
     private var _userInfoResponse = MutableLiveData<UserInfoResponse>()
     val userInfoResponse = _userInfoResponse
 
-    private var _customerJobsInfoResponse = MutableLiveData<List<CustomerInfoResponseModel>>()
-    val customerInfoResponse = _customerJobsInfoResponse
+    private var _pendingCustomerJobsInfoResponse =
+        MutableLiveData<List<CustomerInfoResponseModel>?>()
+    val pendingCustomerInfoResponse = _pendingCustomerJobsInfoResponse
+
+    private var _completedCustomerJobsInfoResponse =
+        MutableLiveData<List<CustomerInfoResponseModel>?>()
+    val completedCustomerInfoResponse = _completedCustomerJobsInfoResponse
 
 
     fun userInfo(
-        token: String
+        token: String?
     ) {
         _loadingStatus.value = LoadingStatus.Loading("Loading DashBoard, Please Wait")
-        dashBoardDataRepository.getUserInfo(token)
+        dashBoardDataRepository.getUserInfo(token!!)
             .subscribeBy {
                 when (it) {
                     is Result.Success -> {
@@ -42,16 +47,16 @@ class DashBoardViewModel @Inject constructor(
 
 
     fun getCustomerPendingJobsInfo(
-        token: String,
-        userId: String
+        token: String?,
+        userId: String?
     ) {
         _loadingStatus.value = LoadingStatus.Loading("Loading DashBoard, Please Wait")
-        dashBoardDataRepository.getCustomersJobsInfo(
-            token, userId
+        dashBoardDataRepository.getCustomersPendingJobsInfo(
+            token!!, userId!!
         ).subscribeBy {
             when (it) {
                 is Result.Success -> {
-                    _customerJobsInfoResponse.value = it.data
+                    _pendingCustomerJobsInfoResponse.value = it.data
                         .sortedBy { fetchCustomerInfoResponse ->
                             fetchCustomerInfoResponse.isDone == false
                         }
@@ -64,19 +69,20 @@ class DashBoardViewModel @Inject constructor(
     }
 
     fun getCustomerCompletedJobsInfo(
-        token: String,
-        userId: String
+        token: String?,
+        userId: String?
     ) {
         _loadingStatus.value = LoadingStatus.Loading("Loading DashBoard, Please Wait")
-        dashBoardDataRepository.getCustomersJobsInfo(
-            token, userId
+        dashBoardDataRepository.getCustomersCompletedJobsInfo(
+            token!!, userId!!
         ).subscribeBy {
             when (it) {
                 is Result.Success -> {
-                    _customerJobsInfoResponse.value = it.data
+                    _completedCustomerJobsInfoResponse.value = it.data
                         .sortedBy { fetchCustomerInfoResponse ->
                             fetchCustomerInfoResponse.isDone == true
                         }
+                    _loadingStatus.value = LoadingStatus.Success
                 }
                 is Result.Error -> {
                     LoadingStatus.Error(it.errorCode, it.errorMessage)
@@ -85,7 +91,13 @@ class DashBoardViewModel @Inject constructor(
         }.disposeBy(disposeBag)
     }
 
+
     override fun addAllLiveDataToObservablesList() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        addAllLiveDataToObservablesList(
+            _userInfoResponse,
+            userInfoResponse,
+            completedCustomerInfoResponse,
+            pendingCustomerInfoResponse
+        )
     }
 }

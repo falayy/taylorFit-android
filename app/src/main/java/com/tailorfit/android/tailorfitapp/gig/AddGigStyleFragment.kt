@@ -15,7 +15,7 @@ class AddGigStyleFragment : BaseGigFormFragment() {
 
     override fun setDataHints(binding: FragmentBaseFormBinding) {
         binding.formDescription.text = getString(R.string.gig_style_message)
-        binding.editText.hint = getString(R.string.gig_style_hint)
+        binding.formValueInputLayout.hint = getString(R.string.style)
     }
 
 

@@ -15,7 +15,7 @@ class AddGigTitleFragment : BaseGigFormFragment() {
 
     override fun setDataHints(binding: FragmentBaseFormBinding) {
         binding.formDescription.text = getString(R.string.gig_title_message)
-        binding.editText.hint = getString(R.string.gig_title_hint)
+        binding.formValueInputLayout.hint = getString(R.string.gig_title)
     }
 
 

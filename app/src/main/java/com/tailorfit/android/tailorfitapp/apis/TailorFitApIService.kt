@@ -5,70 +5,73 @@ import com.tailorfit.android.tailorfitapp.models.request.*
 import com.tailorfit.android.tailorfitapp.models.response.*
 import io.reactivex.Single
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface TailorFitApIService {
 
     @POST("/register")
-    fun signUp(@Body body: SignUpRequest): Single<Response<BaseAPIResponse<SignUpResponse>>>
+    fun signUp(@Body body: SignUpRequest)
+            : Single<Response<BaseAPIResponse<SignUpResponse>>>
 
     @POST("/login")
-    fun signIn(@Body body: SignInRequest): Single<Response<BaseAPIResponse<SignUpResponse>>>
+    fun signIn(@Body body: SignInRequest)
+            : Single<Response<BaseAPIResponse<SignUpResponse>>>
 
     @POST("/customer/register")
     fun createCustomer(
         @Header("x-auth") token: String,
         @Body body: CreateCustomerRequest
-    ):
-            Single<Response<BaseAPIResponse<CreateCustomerResponse>>>
+    )
+            : Single<Response<BaseAPIResponse<CreateCustomerResponse>>>
 
     @POST("/gigs/register")
     fun createGig(
         @Header("x-auth") token: String,
         @Body body: CreateGigRequest
-    ): Single<Response<BaseAPIResponse<CreateGigResponse>>>
-
-    @POST("/customer/measurement/male")
-    fun createMaleMeasurement(
-        @Header("x-auth") token: String,
-        @Body body: MaleMeasurementRequest
     )
-            : Single<Response<BaseAPIResponse<MaleMeasurementResponse>>>
+            : Single<Response<BaseAPIResponse<CreateGigResponse>>>
 
-    @POST("/customer/measurement/female")
-    fun createFemaleMeasurement(
+    @POST("/customer/measurement")
+    fun createMeasurement(
         @Header("x-auth") token: String,
-        @Body body: FemaleMeasurementRequest
+        @Body body: MeasurementRequest
     )
-            : Single<Response<BaseAPIResponse<FemaleMeasurementResponse>>>
+            : Single<Response<BaseAPIResponse<MeasurementResponse>>>
 
     @POST("/gig/done")
     fun addGigToDone(
         @Header("x-auth") token: String,
         @Body body: AddGigToDoneRequest
-    )
+    ) : Single<Response<BaseAPIResponse<AddToDoneResponse>>>
 
-    @GET("customer/gig")
-    fun getCustomersJobsInfo(
+    @GET("/customer/gig/pending")
+    fun getCustomersPendingJobsInfo(
         @Header("x-auth") token: String,
-        @Header("userId") userId: String
-    ): Single<Response<BaseAPIResponse<List<CustomerInfoResponseModel>>>>
+        @Header("user_id") userId: String
+    )
+            : Single<Response<BaseAPIResponse<List<CustomerInfoResponseModel>>>>
 
-    @GET("")
-    fun getCustomerMeasurement(
+    @GET("/customer/gig/finish")
+    fun getCustomersCompletedJobsInfo(
+        @Header("x-auth") token: String,
+        @Header("user_id") userId: String
+    )
+            : Single<Response<BaseAPIResponse<List<CustomerInfoResponseModel>>>>
+
+    @GET("/measurement")
+    fun getMeasurement(
         @Header("x-auth") token: String,
         @Header("customer_id") customerId: String,
         @Header("gig_id") gigId: String
     )
-//            : Single<Response<BaseAPIResponse<>>>
+            : Single<Response<BaseAPIResponse<MeasurementResponse>>>
 
-    @GET("")
+
+    @GET("/user/info")
     fun getUserInfo(
         @Header("x-auth") token: String
-    ): Single<Response<BaseAPIResponse<UserInfoResponse>>>
+    )
+            : Single<Response<BaseAPIResponse<UserInfoResponse>>>
 
 }
 

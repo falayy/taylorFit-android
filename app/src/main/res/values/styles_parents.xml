@@ -2,7 +2,7 @@
 
     <style name="AppThemeParent" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:windowBackground">@color/backgroundPrimaryWhite</item>
-        <item name="android:statusBarColor">@color/backgroundPrimaryWhite</item>
+        <item name="android:statusBarColor">#26000000</item>
 
         <item name="colorPrimary">@color/backgroundPrimaryWhite</item>
         <item name="colorPrimaryDark">@color/secondaryColorChocolate</item>

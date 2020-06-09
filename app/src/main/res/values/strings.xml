@@ -65,8 +65,23 @@
     <string name="due_date">DUE DATE</string>
     <string name="pending_jobs">Pending Jobs</string>
     <string name="completed_jobs">Completed Jobs</string>
+    <string name="full_name_constant">FULL NAME</string>
+    <string name="phone_number_constant">PHONE NUMBER</string>
+    <string name="gig_title">GIG TITLE</string>
+    <string name="view_measurement"><u>View Measurement</u></string>
+    <string name="mark_as_done">MARK AS DONE</string>
     <string-array name="list_of_image_options">
         <item>Camera</item>
         <item>Gallery</item>
     </string-array>
+    <string name="create_shop">Create Shop</string>
+    <string name="take_measurement">Take Measurement</string>
+    <string name="save_gig">Save Gig</string>
+    <string name="create_shop_description">Create your own shop from scratch by yourself</string>
+    <string name="take_measurement_description">Take the measurement details of your customer per gig available</string>
+    <string name="save_gig_description">Save the gig details of your customer available</string>
+    <string name="skip">Skip</string>
+    <string name="here_are_your_measurements">Here are your Measurements</string>
+    <string name="gender">Gender</string>
+    <string name="gig_completed">Gig Completed, Well-done</string>
 </resources>

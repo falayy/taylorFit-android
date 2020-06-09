@@ -1,4 +1,4 @@
-package com.tailorfit.android.tailorfitapp.dashboard
+package com.tailorfit.android.tailorfitapp.debug
 
 
 import android.os.Bundle
@@ -8,13 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.tailorfit.android.R
 
-
-class PendingJobsFragment : Fragment() {
+class TestifyFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pending_jobs, container, false)
+        return inflater.inflate(R.layout.fragment_testify, container, false)
     }
 
 

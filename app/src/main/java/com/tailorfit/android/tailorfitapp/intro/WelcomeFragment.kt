@@ -1,4 +1,4 @@
-package com.tailorfit.android.tailorfitapp.dashboard
+package com.tailorfit.android.tailorfitapp.intro
 
 
 import android.os.Bundle
@@ -8,13 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import com.tailorfit.android.R
 
-
-class CompletedJobsFragment : Fragment() {
+/**
+ * A simple [Fragment] subclass.
+ */
+class WelcomeFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_completed_jobs, container, false)
+        return inflater.inflate(R.layout.fragment_welcome, container, false)
     }
 
 

@@ -31,7 +31,7 @@ class AddCustomerPhoneFragment : BaseCustomerFormFragment() {
 
     override fun setDataHints(binding: FragmentBaseFormBinding) {
         binding.formDescription.text = getString(R.string.customer_number_message)
-        binding.editText.hint = getString(R.string.customer_number_hint)
+        binding.formValueInputLayout.hint = getString(R.string.phone_number)
         binding.editText.inputType = InputType.TYPE_CLASS_NUMBER
 
     }

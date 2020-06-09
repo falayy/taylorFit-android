@@ -1,5 +1,6 @@
 package com.tailorfit.android.tailorfitapp.signup
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.tailorfit.android.base.BaseViewModel
@@ -24,7 +25,7 @@ class SignUpViewModel @Inject constructor(
         get() = _signUpResponse
 
     fun signUp(signUpRequest: SignUpRequest) {
-        _loadingStatus.value = LoadingStatus.Loading("Signing up, please wait")
+//        _loadingStatus.value = LoadingStatus.Loading("Signing up, please wait...")
         accountRepository.signUp(signUpRequest)
             .subscribeBy {
                 when (it) {
@@ -32,14 +33,18 @@ class SignUpViewModel @Inject constructor(
                         prefsValueHelper.setAccessToken(it.data.token)
                         prefsValueHelper.setUserId(it.data.id)
                         _signUpResponse.value = it.data
-                        _loadingStatus.value = LoadingStatus.Success
+//                        _loadingStatus.value = LoadingStatus.Success
+
                     }
-                    is Result.Error -> _loadingStatus.value = LoadingStatus.Error(it.errorCode, it.errorMessage)
+                    is Result.Error -> _loadingStatus.value =
+                        LoadingStatus.Error(it.errorCode, it.errorMessage)
                 }
             }.disposeBy(disposeBag)
     }
 
     override fun addAllLiveDataToObservablesList() {
-        addAllLiveDataToObservablesList(signUpResponse)
+        addAllLiveDataToObservablesList(
+            signUpResponse
+        )
     }
 }
