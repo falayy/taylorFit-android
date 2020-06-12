@@ -10,8 +10,6 @@ object Constants {
     }
 
     object Misc {
-        const val DEFAULT_FILENAME = "yyyy-MM-dd-HH-mm-ss-SSS"
-        const val DEFAULT_PHOTO_EXTENSION = ".jpg"
         const val FILE_PROVIDER_AUTHORITY = "${BuildConfig.APPLICATION_ID}.fileprovider"
     }
 
@@ -19,4 +17,5 @@ object Constants {
         const val FEMALE = "female"
         const val MALE = "male"
     }
+
 }

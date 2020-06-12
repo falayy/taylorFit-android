@@ -34,6 +34,7 @@ class StyleImagesPagerFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val image = arguments!!.getString(IMAGE_LIST_KEY)
         Log.d("TAG", " here here $image")
         binding.styleImages.load(image){

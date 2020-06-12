@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.tailorfit.android.base.BaseViewModel
 import com.tailorfit.android.base.BaseViewModelFragment
-import com.tailorfit.android.databinding.FragmentMeasurementBinding
+import com.tailorfit.android.databinding.FragmentMaleMeasurementBinding
 import com.tailorfit.android.tailorfitapp.PrefsValueHelper
 import com.tailorfit.android.tailorfitapp.models.request.MeasurementRequest
 import javax.inject.Inject
@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 class MaleMeasurementFragment : BaseViewModelFragment() {
 
-    private lateinit var binding: FragmentMeasurementBinding
+    private lateinit var binding: FragmentMaleMeasurementBinding
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -34,7 +34,7 @@ class MaleMeasurementFragment : BaseViewModelFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentMeasurementBinding.inflate(inflater)
+        binding = FragmentMaleMeasurementBinding.inflate(inflater)
         return binding.root
     }
 

@@ -29,6 +29,7 @@ class DashBoardAdapter(
         holder.itemView.setOnClickListener {
             customerJobDetailsOnClickListener.onClick(items)
         }
+
         holder.bind(items)
 
 

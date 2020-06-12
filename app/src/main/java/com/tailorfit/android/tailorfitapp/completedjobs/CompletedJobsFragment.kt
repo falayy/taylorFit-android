@@ -54,12 +54,15 @@ class CompletedJobsFragment : BaseViewModelFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         daggerAppComponent.inject(this)
+
         dashBoardViewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(DashBoardViewModel::class.java)
+
         dashBoardViewModel.getCustomerCompletedJobsInfo(
             prefsValueHelper.getAccessToken(),
             prefsValueHelper.getUserId()
         )
+
         dashBoardViewModel.completedCustomerInfoResponse.observe(
             viewLifecycleOwner,
             Observer {

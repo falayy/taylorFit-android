@@ -1,7 +1,7 @@
 <resources>
 
     <style name="AppThemeParent" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="android:windowBackground">@color/backgroundPrimaryWhite</item>
+<!--        <item name="android:windowBackground">@drawable/splash_background</item>-->
         <item name="android:statusBarColor">#26000000</item>
 
         <item name="colorPrimary">@color/backgroundPrimaryWhite</item>

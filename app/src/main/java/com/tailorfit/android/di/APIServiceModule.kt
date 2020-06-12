@@ -1,11 +1,8 @@
-
 package com.tailorfit.android.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.tailorfit.android.BuildConfig
-import com.tailorfit.android.auth.AccessTokenAuthenticator
-import com.tailorfit.android.auth.AccessTokenInterceptor
 import com.tailorfit.android.auth.AccessTokenProvider
 import com.tailorfit.android.tailorfitapp.accesstoken.AccessTokenProviderImpl
 import com.tailorfit.android.tailorfitapp.apis.TailorFitApIService

@@ -42,7 +42,8 @@ interface TailorFitApIService {
     fun addGigToDone(
         @Header("x-auth") token: String,
         @Body body: AddGigToDoneRequest
-    ) : Single<Response<BaseAPIResponse<AddToDoneResponse>>>
+    )
+            : Single<Response<BaseAPIResponse<AddToDoneResponse>>>
 
     @GET("/customer/gig/pending")
     fun getCustomersPendingJobsInfo(

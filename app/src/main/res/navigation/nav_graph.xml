@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/dashBoardFragment">
+    app:startDestination="@id/demoFragment">
 
     <fragment
         android:id="@+id/signUpFragment"
@@ -103,7 +103,8 @@
     <fragment
         android:id="@+id/addGigPriceFragment"
         android:name="com.tailorfit.android.tailorfitapp.gig.AddGigPriceFragment"
-        android:label="AddGigPriceFragment" >
+        android:label="AddGigPriceFragment"
+        app:startDestination="@id/action_addGigPriceFragment_to_addGigDetails">
         <action
             android:id="@+id/action_addGigPriceFragment_to_addGigDetails"
             app:destination="@id/addGigDetails" />
