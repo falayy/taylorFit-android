@@ -2,6 +2,8 @@
 
     <style name="AppTheme" parent="AppThemeParent" />
 
+
+
     <style name="AppTheme.HorizontalButtonAppearance" parent="Widget.MaterialComponents.Button.Icon">
         <item name="android:fontFamily">@font/lato_bold</item>
         <item name="fontFamily">@font/lato_bold</item>

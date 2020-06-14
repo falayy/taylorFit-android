@@ -1,7 +1,21 @@
+/**
+ * Copyright (c) 2020 Falaye Iyanuoluwa.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.tailorfit.android.tailorfitapp.userdashboard
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,14 +30,11 @@ import com.tailorfit.android.base.BaseViewModel
 import com.tailorfit.android.base.BaseViewModelFragment
 import com.tailorfit.android.tailorfitapp.completedjobs.CompletedJobsFragment
 import com.tailorfit.android.databinding.FragmentDashBoardBinding
-import com.tailorfit.android.extensions.onPageChanged
 import com.tailorfit.android.tailorfitapp.pendingjobs.PendingJobsFragment
 import com.tailorfit.android.tailorfitapp.PrefsValueHelper
 import javax.inject.Inject
 
-
 class DashBoardFragment : BaseViewModelFragment() {
-
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -32,17 +43,15 @@ class DashBoardFragment : BaseViewModelFragment() {
 
     private var storeName = ""
 
-
     private lateinit var dashBoardViewModel: DashBoardViewModel
 
     private lateinit var binding: FragmentDashBoardBinding
 
-
     val tabLayoutList = listOf("Pending Jobs", "Completed Jobs")
 
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentDashBoardBinding.inflate(inflater)
@@ -84,7 +93,6 @@ class DashBoardFragment : BaseViewModelFragment() {
         binding.dashboardFab.setOnClickListener {
             findNavController().navigate(DashBoardFragmentDirections.actionDashBoardFragmentToAddCustomerNameFragment())
         }
-
     }
 
     private fun setUpToolbar() = mainActivity.run {
@@ -94,12 +102,10 @@ class DashBoardFragment : BaseViewModelFragment() {
 
     override fun getViewModel(): BaseViewModel = dashBoardViewModel
 
-
     private inner class DashBoardViewPagerAdapter(fragment: Fragment) :
         FragmentStateAdapter(fragment) {
 
         override fun getItemCount(): Int = tabLayoutList.size
-
 
         override fun createFragment(position: Int): Fragment {
 
@@ -116,9 +122,7 @@ class DashBoardFragment : BaseViewModelFragment() {
                 else -> {
                     PendingJobsFragment()
                 }
-
             }
         }
     }
-
 }

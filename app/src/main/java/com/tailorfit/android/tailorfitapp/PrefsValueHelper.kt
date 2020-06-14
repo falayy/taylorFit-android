@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2019 Cotta & Cush Limited.
+ * Copyright (c) 2020 Falaye Iyanuoluwa.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -49,13 +49,13 @@ class PrefsValueHelper @Inject constructor(private val prefsUtils: PrefsUtils) {
 
     fun getCustomerPhone() = prefsUtils.getString(CUSTOMER_PHONE, "")
 
-    fun setCustomerId(customerId : String) = prefsUtils.putString(CUSTOMER_ID, customerId)
+    fun setCustomerId(customerId: String) = prefsUtils.putString(CUSTOMER_ID, customerId)
 
     fun getCustomerId() = prefsUtils.getString(CUSTOMER_ID, "")
 
     fun getGigId() = prefsUtils.getString(GIG_ID, "")
 
-    fun setGigId(gigId : String) = prefsUtils.putString(GIG_ID, gigId)
+    fun setGigId(gigId: String) = prefsUtils.putString(GIG_ID, gigId)
 
     fun setGigTitle(gigTitle: String) = prefsUtils.putString(GIG_TITLE, gigTitle)
 
@@ -72,6 +72,4 @@ class PrefsValueHelper @Inject constructor(private val prefsUtils: PrefsUtils) {
     fun setGigPrice(gigPrice: String) = prefsUtils.putString(GIG_PRICE, gigPrice)
 
     fun getGigPrice() = prefsUtils.getString(GIG_PRICE, "")
-
-
 }

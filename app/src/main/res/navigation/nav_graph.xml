@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/dashBoardFragment">
+    app:startDestination="@id/demoFragment">
 
     <fragment
         android:id="@+id/signUpFragment"
@@ -15,16 +15,12 @@
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/fade_out" />
         <action
-            android:id="@+id/action_signUpFragment_to_addCustomerNameFragment"
-            app:destination="@id/addCustomerNameFragment"
-            app:enterAnim="@anim/slide_in_left" />
-        <action
             android:id="@+id/action_signUpFragment_to_demoFragment"
             app:destination="@id/demoFragment"
             app:enterAnim="@anim/fade_out" />
         <action
-            android:id="@+id/action_signUpFragment_to_customerDetailsFragment"
-            app:destination="@id/customerDetailsFragment" />
+            android:id="@+id/action_signUpFragment_to_dashBoardFragment"
+            app:destination="@id/dashBoardFragment" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
@@ -36,11 +32,8 @@
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/fade_out" />
         <action
-            android:id="@+id/action_signInFragment_to_addCustomerNameFragment"
-            app:destination="@id/addCustomerNameFragment" />
-        <action
-            android:id="@+id/action_signInFragment_to_addGigTitleFragment"
-            app:destination="@id/addGigTitleFragment" />
+            android:id="@+id/action_signInFragment_to_dashBoardFragment"
+            app:destination="@id/dashBoardFragment" />
     </fragment>
     <fragment
         android:id="@+id/addCustomerPhoneFragment"
@@ -103,7 +96,8 @@
     <fragment
         android:id="@+id/addGigPriceFragment"
         android:name="com.tailorfit.android.tailorfitapp.gig.AddGigPriceFragment"
-        android:label="AddGigPriceFragment" >
+        android:label="AddGigPriceFragment"
+        app:startDestination="@id/action_addGigPriceFragment_to_addGigDetails">
         <action
             android:id="@+id/action_addGigPriceFragment_to_addGigDetails"
             app:destination="@id/addGigDetails" />

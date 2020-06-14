@@ -1,3 +1,18 @@
+/**
+ * Copyright (c) 2020 Falaye Iyanuoluwa.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.tailorfit.android.tailorfitapp.measurement
 
 import android.os.Bundle
@@ -10,15 +25,14 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.tailorfit.android.base.BaseViewModel
 import com.tailorfit.android.base.BaseViewModelFragment
-import com.tailorfit.android.databinding.FragmentMeasurementBinding
+import com.tailorfit.android.databinding.FragmentMaleMeasurementBinding
 import com.tailorfit.android.tailorfitapp.PrefsValueHelper
 import com.tailorfit.android.tailorfitapp.models.request.MeasurementRequest
 import javax.inject.Inject
 
-
 class MaleMeasurementFragment : BaseViewModelFragment() {
 
-    private lateinit var binding: FragmentMeasurementBinding
+    private lateinit var binding: FragmentMaleMeasurementBinding
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -29,12 +43,12 @@ class MaleMeasurementFragment : BaseViewModelFragment() {
     private lateinit var measurementViewModel: MeasurementViewModel
     private val map = HashMap<String, String>()
 
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentMeasurementBinding.inflate(inflater)
+        binding = FragmentMaleMeasurementBinding.inflate(inflater)
         return binding.root
     }
 
@@ -86,9 +100,7 @@ class MaleMeasurementFragment : BaseViewModelFragment() {
                     )
                 }
             })
-
         }
-
     }
 
     private fun setUpToolbar() = mainActivity.run {
@@ -97,6 +109,4 @@ class MaleMeasurementFragment : BaseViewModelFragment() {
     }
 
     override fun getViewModel(): BaseViewModel = measurementViewModel
-
-
 }

@@ -1,12 +1,23 @@
+/**
+ * Copyright (c) 2020 Falaye Iyanuoluwa.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.tailorfit.android.tailorfitapp.repositories
 
 import android.net.Uri
-import android.util.Log
-import com.google.android.gms.tasks.Continuation
-import com.google.android.gms.tasks.Task
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import com.google.firebase.storage.UploadTask
 import com.tailorfit.android.networkutils.toResult
 import com.tailorfit.android.networkutils.Result
 import com.tailorfit.android.networkutils.toSingle
@@ -36,7 +47,7 @@ class GigsRepository @Inject constructor(private val tailorFitApIService: Tailor
 
     fun getImagePlaceHolder(): List<GigImageModel> = imagePlaceHolderList
 
-    //------uploads style images to firebase
+    // ------uploads style images to firebase
 
     fun uploadImage(imageFilePath: Uri?): Single<Result<Uri>> {
         firebaseStore = FirebaseStorage.getInstance()
@@ -54,7 +65,6 @@ class GigsRepository @Inject constructor(private val tailorFitApIService: Tailor
             Result.Success(it) as Result<Uri>
         }.observeOn(AndroidSchedulers.mainThread())
     }
-
 
     fun createGig(token: String, createGigRequest: CreateGigRequest):
             Single<Result<CreateGigResponse>> {

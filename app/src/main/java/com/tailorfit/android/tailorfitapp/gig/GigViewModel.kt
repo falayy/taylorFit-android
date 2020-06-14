@@ -1,3 +1,18 @@
+/**
+ * Copyright (c) 2020 Falaye Iyanuoluwa.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.tailorfit.android.tailorfitapp.gig
 
 import android.net.Uri
@@ -13,12 +28,9 @@ import com.tailorfit.android.tailorfitapp.models.request.GigImageModel
 import com.tailorfit.android.tailorfitapp.models.response.CreateGigResponse
 import com.tailorfit.android.tailorfitapp.repositories.GigsRepository
 import io.reactivex.rxkotlin.subscribeBy
-import timber.log.Timber
 import javax.inject.Inject
 
-
 enum class ImageUploadStatus { NOT_UPLOADED, UPLOADING, SUCCESS, FAILED }
-
 
 class GigViewModel @Inject constructor(
     private val gigsRepository: GigsRepository,
@@ -42,11 +54,9 @@ class GigViewModel @Inject constructor(
     private val _createGigResponse = MutableLiveData<CreateGigResponse>()
     val createGigResponse: LiveData<CreateGigResponse> = _createGigResponse
 
-
     fun getImagePlaceHolders() {
         _imagePlaceHolder.value = gigsRepository.getImagePlaceHolder()
     }
-
 
     fun uploadGigStyle(
         photoUri: Uri
@@ -82,12 +92,9 @@ class GigViewModel @Inject constructor(
             }.disposeBy(disposeBag)
     }
 
-
     override fun addAllLiveDataToObservablesList() {
         addAllLiveDataToObservablesList(
             createGigResponse
         )
     }
-
-
 }

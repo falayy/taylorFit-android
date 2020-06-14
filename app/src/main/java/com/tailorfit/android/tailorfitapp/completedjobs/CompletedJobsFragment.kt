@@ -1,5 +1,19 @@
+/**
+ * Copyright (c) 2020 Falaye Iyanuoluwa.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.tailorfit.android.tailorfitapp.completedjobs
-
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -19,7 +33,6 @@ import com.tailorfit.android.tailorfitapp.userdashboard.DashBoardFragmentDirecti
 import com.tailorfit.android.tailorfitapp.userdashboard.DashBoardViewModel
 import javax.inject.Inject
 
-
 class CompletedJobsFragment : BaseViewModelFragment() {
 
     private lateinit var binding: FragmentCompletedJobsBinding
@@ -29,7 +42,6 @@ class CompletedJobsFragment : BaseViewModelFragment() {
     lateinit var prefsValueHelper: PrefsValueHelper
 
     private lateinit var dashBoardViewModel: DashBoardViewModel
-
 
     private val dashBoardAdapter by lazy {
         DashBoardAdapter(DashBoardAdapter.OnclickListener {
@@ -41,9 +53,9 @@ class CompletedJobsFragment : BaseViewModelFragment() {
         })
     }
 
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentCompletedJobsBinding.inflate(inflater)
@@ -54,12 +66,15 @@ class CompletedJobsFragment : BaseViewModelFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         daggerAppComponent.inject(this)
+
         dashBoardViewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(DashBoardViewModel::class.java)
+
         dashBoardViewModel.getCustomerCompletedJobsInfo(
             prefsValueHelper.getAccessToken(),
             prefsValueHelper.getUserId()
         )
+
         dashBoardViewModel.completedCustomerInfoResponse.observe(
             viewLifecycleOwner,
             Observer {
@@ -76,12 +91,8 @@ class CompletedJobsFragment : BaseViewModelFragment() {
                         }
                     }
                 }
-
             })
-
     }
 
     override fun getViewModel(): BaseViewModel = dashBoardViewModel
-
-
 }
