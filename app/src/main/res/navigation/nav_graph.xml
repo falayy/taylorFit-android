@@ -15,16 +15,12 @@
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/fade_out" />
         <action
-            android:id="@+id/action_signUpFragment_to_addCustomerNameFragment"
-            app:destination="@id/addCustomerNameFragment"
-            app:enterAnim="@anim/slide_in_left" />
-        <action
             android:id="@+id/action_signUpFragment_to_demoFragment"
             app:destination="@id/demoFragment"
             app:enterAnim="@anim/fade_out" />
         <action
-            android:id="@+id/action_signUpFragment_to_customerDetailsFragment"
-            app:destination="@id/customerDetailsFragment" />
+            android:id="@+id/action_signUpFragment_to_dashBoardFragment"
+            app:destination="@id/dashBoardFragment" />
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
@@ -36,11 +32,8 @@
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/fade_out" />
         <action
-            android:id="@+id/action_signInFragment_to_addCustomerNameFragment"
-            app:destination="@id/addCustomerNameFragment" />
-        <action
-            android:id="@+id/action_signInFragment_to_addGigTitleFragment"
-            app:destination="@id/addGigTitleFragment" />
+            android:id="@+id/action_signInFragment_to_dashBoardFragment"
+            app:destination="@id/dashBoardFragment" />
     </fragment>
     <fragment
         android:id="@+id/addCustomerPhoneFragment"

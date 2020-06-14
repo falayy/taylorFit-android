@@ -1,5 +1,19 @@
+/**
+ * Copyright (c) 2020 Falaye Iyanuoluwa.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.tailorfit.android.tailorfitapp.intro
-
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -26,14 +40,24 @@ class DemoFragment : BaseFragment() {
     private var currentPageNumber = 0
 
     private val dataModels = listOf(
-        PageDataModel(R.string.create_shop, R.string.create_shop_description, R.drawable.ic_group_82),
-        PageDataModel(R.string.take_measurement, R.string.take_measurement_description, R.drawable.ic_group_83),
+        PageDataModel(
+            R.string.create_shop,
+            R.string.create_shop_description,
+            R.drawable.ic_group_82
+        ),
+        PageDataModel(
+            R.string.take_measurement,
+            R.string.take_measurement_description,
+            R.drawable.ic_group_83
+        ),
         PageDataModel(R.string.save_gig, R.string.save_gig_description, R.drawable.ic_group_84)
     )
 
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         binding = FragmentDemoBinding.inflate(layoutInflater)
         return binding.root
     }
@@ -47,7 +71,7 @@ class DemoFragment : BaseFragment() {
         binding.viewPager.onPageChanged { currentPageNumber = it }
         binding.slideActionButton.setOnClickListener {
             if (currentPageNumber >= dataModels.size - 1) {
-               findNavController().navigate(DemoFragmentDirections.actionDemoFragmentToSignUpFragment())
+                findNavController().navigate(DemoFragmentDirections.actionDemoFragmentToSignUpFragment())
             } else {
                 viewPager.currentItem = currentPageNumber + 1
             }
@@ -67,7 +91,7 @@ class DemoFragment : BaseFragment() {
 
         override fun getItemCount() = dataModels.size
 
-        override fun createFragment(position: Int): Fragment = DemoPagerFragment.newInstance(dataModels[position])
+        override fun createFragment(position: Int): Fragment =
+            DemoPagerFragment.newInstance(dataModels[position])
     }
-
 }

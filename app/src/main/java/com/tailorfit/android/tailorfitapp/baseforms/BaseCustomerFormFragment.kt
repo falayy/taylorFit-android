@@ -1,7 +1,21 @@
+/**
+ * Copyright (c) 2020 Falaye Iyanuoluwa.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.tailorfit.android.tailorfitapp.baseforms
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,9 +47,9 @@ abstract class BaseCustomerFormFragment : BaseViewModelFragment() {
     private lateinit var binding: FragmentBaseFormBinding
     private lateinit var createCustomerRequest: CreateCustomerRequest
 
-
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentBaseFormBinding.inflate(layoutInflater)
@@ -60,8 +74,8 @@ abstract class BaseCustomerFormFragment : BaseViewModelFragment() {
 //                        prefsValueHelper.setCustomerName(name)
                         createCustomerRequest.name = name
                         findNavController().navigate(
-                            AddCustomerNameFragmentDirections.
-                                actionAddCustomerNameFragmentToAddCustomerPhoneFragment(createCustomerRequest)
+                            AddCustomerNameFragmentDirections
+                                .actionAddCustomerNameFragmentToAddCustomerPhoneFragment(createCustomerRequest)
                         )
                     } else {
                         return@setOnClickListener
@@ -89,7 +103,7 @@ abstract class BaseCustomerFormFragment : BaseViewModelFragment() {
                     if (validateTextLayouts(binding.editText)) {
                         var gender = binding.editText.stringContent()
                         val args = AddCustomerGenderFragmentArgs.fromBundle(arguments!!)
-                        createCustomerRequest.gender =  gender
+                        createCustomerRequest.gender = gender
                         createCustomerRequest.phoneNumber = args.createCustomer.phoneNumber
                         createCustomerRequest.name = args.createCustomer.name
                         createCustomerRequest.userId = prefsValueHelper.getUserId()
@@ -119,13 +133,9 @@ abstract class BaseCustomerFormFragment : BaseViewModelFragment() {
         })
     }
 
-
     protected abstract fun getCustomerFormType(): CustomerFormType
 
     protected abstract fun setDataHints(binding: FragmentBaseFormBinding)
 
     protected abstract fun setUpDaggerViewModel(): AddCustomerViewModel
-
-
 }
-

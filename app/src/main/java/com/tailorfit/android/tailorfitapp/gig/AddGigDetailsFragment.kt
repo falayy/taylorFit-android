@@ -1,8 +1,21 @@
+/**
+ * Copyright (c) 2020 Falaye Iyanuoluwa.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.tailorfit.android.tailorfitapp.gig
 
-
 import android.Manifest
-import android.app.Activity
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -12,8 +25,6 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.Toast
 import androidx.core.content.FileProvider
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -33,15 +44,12 @@ import com.tailorfit.android.databinding.FragmentAddGigDetailsBinding
 import com.tailorfit.android.extensions.*
 import com.tailorfit.android.tailorfitapp.PrefsValueHelper
 import com.tailorfit.android.tailorfitapp.models.request.CreateGigRequest
-import com.tailorfit.android.tailorfitapp.validateTextLayouts
 import java.io.File
 import java.lang.Exception
-import java.net.URI
 import javax.inject.Inject
 
 enum class UPLOADTYPE { GALLERY, CAMERA }
 class AddGigDetailsFragment : BaseViewModelFragment(), AddGigImageDetailsAdapter.OnclickListener {
-
 
     private lateinit var binding: FragmentAddGigDetailsBinding
 
@@ -56,7 +64,6 @@ class AddGigDetailsFragment : BaseViewModelFragment(), AddGigImageDetailsAdapter
 
     private lateinit var gigAdapterViewHolder: AddGigImageDetailsAdapter.GigImageViewHolder
 
-
     private val cameraAndStoragePermissions =
         arrayOf(
             Manifest.permission.CAMERA,
@@ -70,14 +77,14 @@ class AddGigDetailsFragment : BaseViewModelFragment(), AddGigImageDetailsAdapter
         private const val PICK_IMAGE_REQUEST = 102
     }
 
-
     private lateinit var viewModel: GigViewModel
     private val addGigImageDetailsAdapter: AddGigImageDetailsAdapter by lazy {
         AddGigImageDetailsAdapter(this)
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAddGigDetailsBinding.inflate(layoutInflater)
@@ -97,7 +104,6 @@ class AddGigDetailsFragment : BaseViewModelFragment(), AddGigImageDetailsAdapter
             createGig()
         }
     }
-
 
     private fun createGig() {
         val args = AddGigDetailsFragmentArgs.fromBundle(arguments!!)
@@ -250,7 +256,7 @@ class AddGigDetailsFragment : BaseViewModelFragment(), AddGigImageDetailsAdapter
             crossfade(true)
             transformations(CircleCropTransformation())
         }
-        observeImageUpload(uri,  null)
+        observeImageUpload(uri, null)
     }
 
     private fun setUpToolbar() = mainActivity.run {
@@ -300,7 +306,6 @@ class AddGigDetailsFragment : BaseViewModelFragment(), AddGigImageDetailsAdapter
                         indeterminateImageUploadProgressBar.hide()
                         imageUploadStatusView.show()
                     }
-
                 }
                 ImageUploadStatus.FAILED -> {
                     gigAdapterViewHolder.binding.apply {
@@ -310,12 +315,10 @@ class AddGigDetailsFragment : BaseViewModelFragment(), AddGigImageDetailsAdapter
                         imageUploadStatusView.show()
                         indeterminateImageUploadProgressBar.hide()
                     }
-
                 }
             }
         })
     }
 
     override fun getViewModel(): BaseViewModel = viewModel
-
 }
