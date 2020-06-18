@@ -330,7 +330,6 @@ class AddGigDetailsFragment : BaseViewModelFragment(), AddGigImageDetailsAdapter
                 }
             }
         })
-        viewModel.cleanUpObservables()
     }
 
     override fun getViewModel(): BaseViewModel = viewModel
