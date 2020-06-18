@@ -40,6 +40,7 @@ class SignUpViewModel @Inject constructor(
 
     fun signUp(signUpRequest: SignUpRequest) {
 //        _loadingStatus.value = LoadingStatus.Loading("Signing up, please wait...")
+        prefsValueHelper.setUserPhoneNumber(signUpRequest.phoneNumber)
         accountRepository.signUp(signUpRequest)
             .subscribeBy {
                 when (it) {
@@ -55,9 +56,14 @@ class SignUpViewModel @Inject constructor(
             }.disposeBy(disposeBag)
     }
 
+    override fun cleanUpObservables() {
+        nullifyLiveDataValues(_loadingStatus, _signUpResponse)
+    }
+
     override fun addAllLiveDataToObservablesList() {
         addAllLiveDataToObservablesList(
-            signUpResponse
+            signUpResponse,
+            loadingStatus
         )
     }
 }

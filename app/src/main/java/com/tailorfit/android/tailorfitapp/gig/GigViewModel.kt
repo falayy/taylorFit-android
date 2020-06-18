@@ -23,6 +23,7 @@ import com.tailorfit.android.networkutils.Result
 import com.tailorfit.android.networkutils.LoadingStatus
 import com.tailorfit.android.networkutils.disposeBy
 import com.tailorfit.android.tailorfitapp.PrefsValueHelper
+import com.tailorfit.android.tailorfitapp.models.local.KeyValue
 import com.tailorfit.android.tailorfitapp.models.request.CreateGigRequest
 import com.tailorfit.android.tailorfitapp.models.request.GigImageModel
 import com.tailorfit.android.tailorfitapp.models.response.CreateGigResponse
@@ -92,9 +93,23 @@ class GigViewModel @Inject constructor(
             }.disposeBy(disposeBag)
     }
 
+    override fun cleanUpObservables() {
+        nullifyLiveDataValues(
+            _loadingStatus,
+            _uriResponse,
+            _gigImageUploadStatus,
+            _imagePlaceHolder,
+            _createGigResponse
+        )
+    }
+
     override fun addAllLiveDataToObservablesList() {
         addAllLiveDataToObservablesList(
-            createGigResponse
+            createGigResponse,
+            loadingStatus,
+            createGigResponse,
+            imageUploadStatus
+
         )
     }
 }

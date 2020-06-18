@@ -104,6 +104,15 @@ class DashBoardViewModel @Inject constructor(
         }.disposeBy(disposeBag)
     }
 
+    override fun cleanUpObservables() {
+        nullifyLiveDataValues(
+            _loadingStatus,
+            _userInfoResponse,
+            _completedCustomerJobsInfoResponse,
+            _pendingCustomerJobsInfoResponse
+        )
+    }
+
     override fun addAllLiveDataToObservablesList() {
         addAllLiveDataToObservablesList(
             _userInfoResponse,

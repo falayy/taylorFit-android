@@ -85,6 +85,10 @@ class MeasurementViewModel @Inject constructor(
             }.disposeBy(disposeBag)
     }
 
+    override fun cleanUpObservables() {
+        nullifyLiveDataValues(_loadingStatus, _createMeasurementResponse, _measurementResponse)
+    }
+
     override fun addAllLiveDataToObservablesList() {
         addAllLiveDataToObservablesList(measurementResponse, loadingStatus)
     }

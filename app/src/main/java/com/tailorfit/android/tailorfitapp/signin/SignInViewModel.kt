@@ -25,8 +25,11 @@ import com.tailorfit.android.tailorfitapp.PrefsValueHelper
 import com.tailorfit.android.tailorfitapp.models.request.SignInRequest
 import com.tailorfit.android.tailorfitapp.models.response.SignUpResponse
 import com.tailorfit.android.tailorfitapp.repositories.AccountsRepository
+import com.tailorfit.android.tailorfitapp.signin.NavigationFlow.*
 import io.reactivex.rxkotlin.subscribeBy
 import javax.inject.Inject
+
+enum class NavigationFlow { NEW_USER, RETURNING_USER }
 
 class SignInViewModel @Inject constructor(
     private val accountsRepository: AccountsRepository,
@@ -37,6 +40,24 @@ class SignInViewModel @Inject constructor(
 
     val signInResponse: LiveData<SignUpResponse>
         get() = _signInResponse
+
+    private val _phoneNumber = MutableLiveData<String>()
+
+    val phoneNumber: LiveData<String>
+        get() = _phoneNumber
+
+    private val _navigationFlow = MutableLiveData<NavigationFlow>()
+    val navigationFlow: LiveData<NavigationFlow>
+        get() = _navigationFlow
+
+    init {
+        if (prefsValueHelper.getUserPhoneNumber() != null) {
+            _phoneNumber.value = prefsValueHelper.getUserPhoneNumber()
+            _navigationFlow.value = RETURNING_USER
+        } else {
+            _navigationFlow.value = NEW_USER
+        }
+    }
 
     fun signIn(signInRequest: SignInRequest) {
         _loadingStatus.value = LoadingStatus.Loading("Signing In, please wait...")
@@ -49,14 +70,22 @@ class SignInViewModel @Inject constructor(
                         _signInResponse.value = it.data
                         _loadingStatus.value = LoadingStatus.Success
                     }
-                    is Result.Error -> _loadingStatus.value = LoadingStatus.Error(it.errorCode, it.errorMessage)
+                    is Result.Error -> _loadingStatus.value =
+                        LoadingStatus.Error(it.errorCode, it.errorMessage)
                 }
             }.disposeBy(disposeBag)
+    }
+
+    override fun cleanUpObservables() {
+        nullifyLiveDataValues(_signInResponse, _navigationFlow, _phoneNumber, _loadingStatus)
     }
 
     override fun addAllLiveDataToObservablesList() {
         addAllLiveDataToObservablesList(
             signInResponse,
-            _signInResponse)
+            phoneNumber,
+            navigationFlow,
+            loadingStatus
+        )
     }
 }

@@ -3,10 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.tailorfit.android.tailorfitapp.baseforms.BaseFormFragment">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginTop="?attr/actionBarSize"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="?attr/actionBarSize">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/form_description"
@@ -15,38 +16,42 @@
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
-            android:fontFamily="@font/lato_bold"
-            android:textColor="@color/textColorDark"
-            android:textSize="27sp"
             app:layout_constraintBottom_toTopOf="@id/_form_input_text_container"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Add your customer's name here" />
+            tools:text = "Add your customer's name here"
+            android:fontFamily="@font/lato_bold"
+            android:textColor="@color/textColorDark"
+            android:textSize="27sp" />
 
         <FrameLayout
             android:id="@+id/_form_input_text_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="32dp"
             android:layout_marginRight="16dp"
             app:layout_constraintBottom_toTopOf="@id/_form_proceed_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/form_description">
+            app:layout_constraintTop_toBottomOf="@id/form_description"
+            android:layout_marginTop="32dp">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/form_value_input_layout"
-                style="@style/TextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                style="@style/AppTheme.TextAppearance.TextInputLayoutStyle.DropDown"
                 tools:hint="Hints">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edit_text"
+
+                <com.tailorfit.android.utils.KeyValueDropDownView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:id="@+id/gender_dropdown"
+                    android:focusable="false"
+                    android:padding="12dp"/>
+
 
             </com.google.android.material.textfield.TextInputLayout>
         </FrameLayout>
@@ -55,11 +60,11 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/_form_proceed_button"
             style="@style/AppTheme.HorizontalButtonAppearance"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
             android:layout_marginTop="24dp"
-            android:layout_marginRight="16dp"
             android:text="@string/proceed"
             android:textColor="@color/textColorPrimaryWhite"
             app:layout_constraintLeft_toLeftOf="parent"

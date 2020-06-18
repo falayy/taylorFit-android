@@ -75,23 +75,26 @@ class CompletedJobsFragment : BaseViewModelFragment() {
             prefsValueHelper.getUserId()
         )
 
-        dashBoardViewModel.completedCustomerInfoResponse.observe(
-            viewLifecycleOwner,
-            Observer {
-                if (it != null) {
-                    binding.recyclerViewImage.apply {
-                        visibility = View.VISIBLE
-                        layoutManager = LinearLayoutManager(
-                            context,
-                            LinearLayoutManager.VERTICAL,
-                            false
-                        )
-                        adapter = dashBoardAdapter.apply {
-                            submitList(it)
+        dashBoardViewModel.apply {
+            completedCustomerInfoResponse.observe(
+                viewLifecycleOwner,
+                Observer {
+                    if (it != null) {
+                        binding.recyclerViewImage.apply {
+                            visibility = View.VISIBLE
+                            layoutManager = LinearLayoutManager(
+                                context,
+                                LinearLayoutManager.VERTICAL,
+                                false
+                            )
+                            adapter = dashBoardAdapter.apply {
+                                submitList(it)
+                            }
                         }
                     }
-                }
-            })
+                })
+            cleanUpObservables()
+        }
     }
 
     override fun getViewModel(): BaseViewModel = dashBoardViewModel

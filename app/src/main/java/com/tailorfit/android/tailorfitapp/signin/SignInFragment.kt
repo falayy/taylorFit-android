@@ -27,15 +27,25 @@ import com.tailorfit.android.base.BaseViewModel
 import com.tailorfit.android.base.BaseViewModelFragment
 import com.tailorfit.android.databinding.FragmentSignInBinding
 import com.tailorfit.android.extensions.stringContent
+import com.tailorfit.android.tailorfitapp.PrefsValueHelper
 import com.tailorfit.android.tailorfitapp.models.request.SignInRequest
+import com.tailorfit.android.tailorfitapp.signin.NavigationFlow.*
 import com.tailorfit.android.tailorfitapp.validateTextLayouts
 import javax.inject.Inject
 
 class SignInFragment : BaseViewModelFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    @Inject
+    lateinit var prefsValueHelper: PrefsValueHelper
+
     private lateinit var viewModel: SignInViewModel
+
     private lateinit var binding: FragmentSignInBinding
+
+    private var overrideNavigationFlow = false
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,10 +59,27 @@ class SignInFragment : BaseViewModelFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         daggerAppComponent.inject(this)
+        arguments?.let {
+            overrideNavigationFlow = SignInFragmentArgs.fromBundle(arguments!!).overrideFlow
+        }
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(SignInViewModel::class.java)
         binding.signUpText.setOnClickListener {
             findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToSignUpFragment())
         }
+
+
+        viewModel.navigationFlow.observe(viewLifecycleOwner, Observer {
+            if (it == NEW_USER) {
+                if (!overrideNavigationFlow) {
+                    findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToDemoFragment())
+                }
+            }
+        })
+
+        viewModel.phoneNumber.observe(viewLifecycleOwner, Observer {
+                if (it != null) binding.phoneEditText.setText(it)
+            })
+
         binding.signinButton.setOnClickListener {
             if (validateTextLayouts(
                     binding.phoneEditText,
@@ -71,7 +98,11 @@ class SignInFragment : BaseViewModelFragment() {
         }
 
         viewModel.signInResponse.observe(this, Observer {
-            if (it != null) { findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToDashBoardFragment()) } }) }
+            if (it != null) {
+                findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToDashBoardFragment())
+            }
+        })
+    }
 
     override fun getViewModel(): BaseViewModel = viewModel
 }
