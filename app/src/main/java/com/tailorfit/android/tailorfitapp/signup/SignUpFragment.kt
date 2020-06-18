@@ -55,7 +55,11 @@ class SignUpFragment : BaseViewModelFragment() {
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(SignUpViewModel::class.java)
 
         binding.signInText.setOnClickListener {
-            findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToSignInFragment())
+            findNavController().navigate(
+                SignUpFragmentDirections.actionSignUpFragmentToSignInFragment(
+                    true
+                )
+            )
         }
         binding.signupButton.setOnClickListener {
             if (validateTextLayouts(
@@ -76,11 +80,14 @@ class SignUpFragment : BaseViewModelFragment() {
             }
         }
 
-        viewModel.signUpResponse.observe(this, Observer {
-            if (it != null) {
-                findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToDashBoardFragment())
-            }
-        })
+        viewModel.apply {
+            signUpResponse.observe(viewLifecycleOwner, Observer {
+                if (it != null) {
+                    findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToDashBoardFragment())
+                }
+            })
+            cleanUpObservables()
+        }
     }
 
     override fun getViewModel(): BaseViewModel = viewModel

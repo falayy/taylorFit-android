@@ -22,6 +22,7 @@ import com.tailorfit.android.networkutils.Result
 import com.tailorfit.android.networkutils.LoadingStatus
 import com.tailorfit.android.networkutils.disposeBy
 import com.tailorfit.android.tailorfitapp.PrefsValueHelper
+import com.tailorfit.android.tailorfitapp.models.local.KeyValue
 import com.tailorfit.android.tailorfitapp.models.request.CreateCustomerRequest
 import com.tailorfit.android.tailorfitapp.models.response.CreateCustomerResponse
 import com.tailorfit.android.tailorfitapp.repositories.CustomerRepository
@@ -38,9 +39,20 @@ class AddCustomerViewModel @Inject constructor(
 
     val createCustomerResponse: LiveData<CreateCustomerResponse> = _createCustomerResponse
 
-    fun createCustomer(token: String, createCustomerRequest: CreateCustomerRequest) {
+    private val _genderMenuList = MutableLiveData<List<KeyValue>>()
+    val genderMenuList: LiveData<List<KeyValue>>
+        get() = _genderMenuList
+
+    fun getGender() {
+        _genderMenuList.value = customerRepository.genders()
+    }
+
+    fun createCustomer(createCustomerRequest: CreateCustomerRequest) {
         _loadingStatus.value = LoadingStatus.Loading("Adding Customer, please wait")
-        customerRepository.createCustomer(token, createCustomerRequest)
+        customerRepository.createCustomer(
+            prefsValueHelper.getAccessToken()!!,
+            createCustomerRequest
+        )
             .subscribeBy {
                 when (it) {
                     is Result.Success -> {
@@ -54,9 +66,19 @@ class AddCustomerViewModel @Inject constructor(
             }.disposeBy(disposeBag)
     }
 
+    override fun cleanUpObservables() {
+        nullifyLiveDataValues(
+            _createCustomerResponse,
+            _loadingStatus,
+            _genderMenuList
+        )
+    }
+
     override fun addAllLiveDataToObservablesList() {
         addAllLiveDataToObservablesList(
-            createCustomerResponse
+            createCustomerResponse,
+            loadingStatus,
+            genderMenuList
         )
     }
 }

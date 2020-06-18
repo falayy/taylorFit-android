@@ -74,20 +74,18 @@ class DashBoardFragment : BaseViewModelFragment() {
                 }
             }).attach()
 
-        dashBoardViewModel.userInfo(prefsValueHelper.getAccessToken())
-
-        dashBoardViewModel.userInfoResponse.observe(viewLifecycleOwner, Observer {
-            binding.userNameTextView.text = it.username
-            binding.userPhoneTextView.text = it.phoneNumber
-            storeName = it.businessName!!
-            setUpToolbar()
-        })
-
         dashBoardViewModel.apply {
-            getCustomerPendingJobsInfo(
-                prefsValueHelper.getAccessToken(),
-                prefsValueHelper.getUserId()
-            )
+
+            userInfo(prefsValueHelper.getAccessToken())
+
+            userInfoResponse.observe(viewLifecycleOwner, Observer {
+                binding.userNameTextView.text = it.username
+                binding.userPhoneTextView.text = it.phoneNumber
+                storeName = it.businessName!!
+                setUpToolbar()
+            })
+
+            cleanUpObservables()
         }
 
         binding.dashboardFab.setOnClickListener {

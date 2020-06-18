@@ -52,6 +52,10 @@ class CustomerDetailsViewModel @Inject constructor(
             }.disposeBy(disposeBag)
     }
 
+    override fun cleanUpObservables() {
+        nullifyLiveDataValues(_loadingStatus, _addToDoneResponse)
+    }
+
     override fun addAllLiveDataToObservablesList() {
         addAllLiveDataToObservablesList(loadingStatus, addToDoneResponse)
     }

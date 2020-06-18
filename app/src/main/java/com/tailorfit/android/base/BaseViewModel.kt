@@ -42,6 +42,8 @@ abstract class BaseViewModel : ViewModel() {
      */
     abstract fun addAllLiveDataToObservablesList()
 
+    abstract fun cleanUpObservables()
+
     protected fun addAllLiveDataToObservablesList(vararg liveData: LiveData<*>) = observablesList.addAll(liveData)
 
     protected fun nullifyLiveDataValues(vararg liveDataValues: MutableLiveData<*>) {

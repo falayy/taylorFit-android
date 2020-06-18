@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/demoFragment">
+    app:startDestination="@id/signInFragment">
 
     <fragment
         android:id="@+id/signUpFragment"
@@ -25,7 +25,8 @@
     <fragment
         android:id="@+id/signInFragment"
         android:name="com.tailorfit.android.tailorfitapp.signin.SignInFragment"
-        android:label="SignInFragment">
+        android:label="SignInFragment"
+        app:startDestination="@id/action_signInFragment_to_demoFragment">
         <action
             android:id="@+id/action_signInFragment_to_signUpFragment"
             app:destination="@id/signUpFragment"
@@ -34,6 +35,12 @@
         <action
             android:id="@+id/action_signInFragment_to_dashBoardFragment"
             app:destination="@id/dashBoardFragment" />
+        <action
+            android:id="@+id/action_signInFragment_to_demoFragment"
+            app:destination="@id/demoFragment" />
+        <argument
+            android:name="overrideFlow"
+            app:argType="boolean" />
     </fragment>
     <fragment
         android:id="@+id/addCustomerPhoneFragment"

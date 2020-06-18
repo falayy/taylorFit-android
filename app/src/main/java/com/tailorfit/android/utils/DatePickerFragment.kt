@@ -42,6 +42,7 @@ class DatePickerFragment : AppCompatDialogFragment(), DatePickerDialog.OnDateSet
             DatePickerDialog(context!!, this@DatePickerFragment, year, month, day)
         datePickerDialog.show()
         datePickerDialog.apply {
+            datePicker.minDate = c.timeInMillis
             getButton(DatePickerDialog.BUTTON_POSITIVE)
                 .setTextColor(resources.getColor(R.color.primaryColorChocolate))
             getButton(DatePickerDialog.BUTTON_NEGATIVE)

@@ -16,6 +16,7 @@
 package com.tailorfit.android
 
 import android.os.Bundle
+import android.view.View
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
@@ -63,7 +64,7 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
             var toolbarDrawable = if (!isRootPage && !isDashBoard) {
                 R.drawable.ic_arrow_white_24dp
             } else if (isDashBoard) {
-                R.drawable.ic_store_24
+                R.drawable.store_drawable
             } else {
                 0
             }
@@ -76,6 +77,7 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
                 leftRightPaddingRes
             )
         }
+
     }
 
     fun setToolbarIcon(@DrawableRes resId: Int) {

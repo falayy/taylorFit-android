@@ -22,6 +22,7 @@ import com.tailorfit.android.networkutils.toResult
 import com.tailorfit.android.networkutils.Result
 import com.tailorfit.android.networkutils.toSingle
 import com.tailorfit.android.tailorfitapp.apis.TailorFitApIService
+import com.tailorfit.android.tailorfitapp.models.local.KeyValue
 import com.tailorfit.android.tailorfitapp.models.request.CreateGigRequest
 import com.tailorfit.android.tailorfitapp.models.request.GigImageModel
 import com.tailorfit.android.tailorfitapp.models.response.CreateGigResponse

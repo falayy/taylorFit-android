@@ -103,3 +103,4 @@ fun bindMeasurementValue(textView: TextView, string: String) {
         textView.text = it
     }
 }
+

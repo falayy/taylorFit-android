@@ -15,32 +15,100 @@
  */
 package com.tailorfit.android.tailorfitapp.customer
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.tailorfit.android.R
 import com.tailorfit.android.base.BaseViewModel
-import com.tailorfit.android.databinding.FragmentBaseFormBinding
-import com.tailorfit.android.tailorfitapp.baseforms.BaseCustomerFormFragment
-import com.tailorfit.android.tailorfitapp.baseforms.CustomerFormType
+import com.tailorfit.android.base.BaseViewModelFragment
+import com.tailorfit.android.databinding.FragmentAddCustomerGenderBinding
+import com.tailorfit.android.tailorfitapp.PrefsValueHelper
+import com.tailorfit.android.tailorfitapp.models.request.CreateCustomerRequest
+import com.tailorfit.android.tailorfitapp.validateDropdownViews
+import javax.inject.Inject
 
-class AddCustomerGenderFragment : BaseCustomerFormFragment() {
+class AddCustomerGenderFragment : BaseViewModelFragment() {
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    @Inject
+    lateinit var prefsValueHelper: PrefsValueHelper
+
+    private lateinit var binding: FragmentAddCustomerGenderBinding
     private lateinit var customerViewModel: AddCustomerViewModel
 
-    override fun setUpDaggerViewModel(): AddCustomerViewModel {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentAddCustomerGenderBinding.inflate(inflater)
+        binding.lifecycleOwner = this
+        return binding.root
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         daggerAppComponent.inject(this)
-        customerViewModel = ViewModelProviders.of(
-            this,
-            viewModelFactory
-        ).get(AddCustomerViewModel::class.java)
-        return customerViewModel
+        customerViewModel =
+            ViewModelProviders.of(this, viewModelFactory).get(AddCustomerViewModel::class.java)
+        customerViewModel.getGender()
+        binding.formDescription.text = getString(R.string.customer_gender_message)
+        binding.formValueInputLayout.hint = getString(R.string.gender)
+
+        customerViewModel.apply {
+            genderMenuList.observe(viewLifecycleOwner, Observer {
+                binding.genderDropdown.setAdapter(
+                    ArrayAdapter(
+                        binding.genderDropdown.context,
+                        R.layout.dropdown_menu_item,
+                        it
+                    )
+                )
+            })
+            cleanUpObservables()
+        }
+
+
+        binding.FormProceedButton.setOnClickListener {
+            if (
+                validateDropdownViews(binding.genderDropdown)
+            ) {
+                val args = AddCustomerGenderFragmentArgs.fromBundle(arguments!!)
+                customerViewModel.createCustomer(
+                    CreateCustomerRequest(
+                        binding.genderDropdown.getSelectedItemKey(),
+                        args.createCustomer.name,
+                        args.createCustomer.phoneNumber,
+                        prefsValueHelper.getUserId()
+                    )
+                )
+                customerViewModel.apply {
+                    createCustomerResponse.observe(viewLifecycleOwner, Observer {
+                        if (it != null) {
+                            findNavController().navigate(
+                                AddCustomerGenderFragmentDirections
+                                    .actionAddCustomerGenderFragmentToAddGigTitleFragment()
+                            )
+                        }
+                    })
+                    cleanUpObservables()
+                }
+            } else {
+                return@setOnClickListener
+            }
+        }
     }
 
     override fun getViewModel(): BaseViewModel = customerViewModel
 
-    override fun getCustomerFormType() = CustomerFormType.AddCustomerGenderFragment
 
-    override fun setDataHints(binding: FragmentBaseFormBinding) {
-        binding.formDescription.text = getString(R.string.customer_gender_message)
-        binding.formValueInputLayout.hint = getString(R.string.gender)
-    }
 }

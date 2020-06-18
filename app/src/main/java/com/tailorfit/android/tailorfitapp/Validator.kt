@@ -17,10 +17,26 @@ package com.tailorfit.android.tailorfitapp
 
 import android.widget.TextView
 import com.tailorfit.android.extensions.validate
+import com.tailorfit.android.utils.KeyValueDropDownView
 
 fun validateTextLayouts(vararg textLayouts: TextView): Boolean {
     for (textLayout in textLayouts) {
         if (!textLayout.validate()) return false
+    }
+    return true
+}
+
+fun clearTextLayoutError(vararg textLayouts: TextView) {
+    for (textLayout in textLayouts) textLayout.error = null
+}
+
+fun validateDropdownViews(vararg autoCompleteTextViews: KeyValueDropDownView): Boolean {
+    clearTextLayoutError(*autoCompleteTextViews)
+    for (autoCompleteTextView in autoCompleteTextViews) {
+        if (!autoCompleteTextView.isSelectionValid()) {
+            autoCompleteTextView.error = "This field is required"
+            return false
+        }
     }
     return true
 }
