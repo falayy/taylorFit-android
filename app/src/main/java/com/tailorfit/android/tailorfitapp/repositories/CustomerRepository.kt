@@ -26,7 +26,7 @@ import javax.inject.Inject
 
 class CustomerRepository @Inject constructor(private val tailorFitApIService: TailorFitApIService) {
 
-    private val genderLists = mutableListOf<KeyValue>(
+    private val genderLists = mutableListOf(
         KeyValue("Male", "male", "1"),
         KeyValue("Female", "female", "2"),
         KeyValue("Others", "others", "3")

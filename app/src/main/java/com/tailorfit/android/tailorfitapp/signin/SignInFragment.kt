@@ -76,14 +76,9 @@ class SignInFragment : BaseViewModelFragment() {
             }
         })
 
-        viewModel.apply {
-
-            phoneNumber.observe(viewLifecycleOwner, Observer {
+        viewModel.phoneNumber.observe(viewLifecycleOwner, Observer {
                 if (it != null) binding.phoneEditText.setText(it)
             })
-
-            cleanUpObservables()
-        }
 
         binding.signinButton.setOnClickListener {
             if (validateTextLayouts(

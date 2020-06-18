@@ -80,14 +80,12 @@ class SignUpFragment : BaseViewModelFragment() {
             }
         }
 
-        viewModel.apply {
-            signUpResponse.observe(viewLifecycleOwner, Observer {
+        viewModel.signUpResponse.observe(viewLifecycleOwner, Observer {
                 if (it != null) {
                     findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToDashBoardFragment())
                 }
             })
-            cleanUpObservables()
-        }
+
     }
 
     override fun getViewModel(): BaseViewModel = viewModel

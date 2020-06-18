@@ -74,8 +74,8 @@ class AddCustomerGenderFragment : BaseViewModelFragment() {
                     )
                 )
             })
-            cleanUpObservables()
         }
+
 
 
         binding.FormProceedButton.setOnClickListener {

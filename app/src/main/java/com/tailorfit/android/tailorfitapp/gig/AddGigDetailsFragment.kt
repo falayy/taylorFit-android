@@ -48,7 +48,6 @@ import java.io.File
 import java.lang.Exception
 import javax.inject.Inject
 
-enum class UPLOADTYPE { GALLERY, CAMERA }
 class AddGigDetailsFragment : BaseViewModelFragment(), AddGigImageDetailsAdapter.OnclickListener {
 
     private lateinit var binding: FragmentAddGigDetailsBinding
@@ -127,15 +126,28 @@ class AddGigDetailsFragment : BaseViewModelFragment(), AddGigImageDetailsAdapter
         viewModel.createGigResponse.observe(viewLifecycleOwner, Observer {
             if (it != null) {
                 when (it.gender) {
+
                     Constants.Gender.FEMALE -> {
-                        findNavController().navigate(AddGigDetailsFragmentDirections.actionAddGigDetailsToFemaleMeasurementFragment())
+                        findNavController().navigate(
+                            AddGigDetailsFragmentDirections.actionAddGigDetailsToFemaleMeasurementFragment()
+                        )
                     }
+
                     Constants.Gender.MALE -> {
-                        findNavController().navigate(AddGigDetailsFragmentDirections.actionAddGigDetailsToMaleMeasurementFragment())
+                        findNavController().navigate(
+                            AddGigDetailsFragmentDirections.actionAddGigDetailsToMaleMeasurementFragment()
+                        )
+                    }
+
+                    else -> {
+                        findNavController().navigate(
+                            AddGigDetailsFragmentDirections.actionAddGigDetailsToFemaleMeasurementFragment()
+                        )
                     }
                 }
             }
         })
+        viewModel.cleanUpObservables()
     }
 
     private fun getImagePlaceHolder() {
@@ -244,7 +256,7 @@ class AddGigDetailsFragment : BaseViewModelFragment(), AddGigImageDetailsAdapter
             crossfade(true)
             transformations(CircleCropTransformation())
         }
-        observeImageUpload(null, photoFile)
+        observeImageUpload()
     }
 
     private fun prepareHolderForUpload(
@@ -256,7 +268,7 @@ class AddGigDetailsFragment : BaseViewModelFragment(), AddGigImageDetailsAdapter
             crossfade(true)
             transformations(CircleCropTransformation())
         }
-        observeImageUpload(uri, null)
+        observeImageUpload()
     }
 
     private fun setUpToolbar() = mainActivity.run {
@@ -283,7 +295,7 @@ class AddGigDetailsFragment : BaseViewModelFragment(), AddGigImageDetailsAdapter
         }
     }
 
-    private fun observeImageUpload(uri: Uri?, file: File?) {
+    private fun observeImageUpload() {
         viewModel.imageUploadStatus.observe(viewLifecycleOwner, Observer {
             when (it) {
                 ImageUploadStatus.NOT_UPLOADED -> {
@@ -318,6 +330,7 @@ class AddGigDetailsFragment : BaseViewModelFragment(), AddGigImageDetailsAdapter
                 }
             }
         })
+        viewModel.cleanUpObservables()
     }
 
     override fun getViewModel(): BaseViewModel = viewModel
