@@ -27,6 +27,8 @@ import com.tailorfit.android.databinding.FragmentStyleImagesPagerBinding
 
 class StyleImagesPagerFragment : BaseFragment() {
 
+    private lateinit var binding: FragmentStyleImagesPagerBinding
+
     companion object {
         private const val IMAGE_LIST_KEY = "images"
         fun newInstance(image: String?): StyleImagesPagerFragment =
@@ -35,7 +37,6 @@ class StyleImagesPagerFragment : BaseFragment() {
             }
     }
 
-    private lateinit var binding: FragmentStyleImagesPagerBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,7 +51,6 @@ class StyleImagesPagerFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val image = arguments!!.getString(IMAGE_LIST_KEY)
-        Log.d("TAG", " here here $image")
         binding.styleImages.load(image) {
             crossfade(true)
             transformations(CircleCropTransformation())

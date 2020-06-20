@@ -60,8 +60,11 @@ class GigsRepository @Inject constructor(private val tailorFitApIService: Tailor
                     throw it
                 }
             }
-            imageStyle.add(task.result.toString())
             photoRef.downloadUrl
+        }?.addOnCompleteListener {
+            if (it.isSuccessful) {
+                imageStyle.add(it.result.toString())
+            }
         }?.toSingle()!!.map {
             Result.Success(it) as Result<Uri>
         }.observeOn(AndroidSchedulers.mainThread())
