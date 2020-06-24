@@ -15,17 +15,20 @@
  */
 package com.tailorfit.android.extensions
 
+import android.content.Context
 import android.text.InputFilter
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.annotation.DimenRes
 import androidx.core.view.children
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.textfield.TextInputEditText
 
 fun View.show() {
     visibility = VISIBLE
@@ -74,6 +77,7 @@ fun View.setViewPadding(@DimenRes topBottomPaddingRes: Int, @DimenRes leftRightP
     setPadding(leftRightPadding, topBottomPadding, leftRightPadding, topBottomPadding)
 }
 
-fun EditText.setMaxLength(length: Int) {
+fun TextInputEditText.setMaxLength(length: Int) {
     this.filters = arrayOf(InputFilter.LengthFilter(length))
 }
+

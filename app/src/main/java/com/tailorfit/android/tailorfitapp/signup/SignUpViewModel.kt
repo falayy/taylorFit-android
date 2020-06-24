@@ -39,7 +39,7 @@ class SignUpViewModel @Inject constructor(
         get() = _signUpResponse
 
     fun signUp(signUpRequest: SignUpRequest) {
-//        _loadingStatus.value = LoadingStatus.Loading("Signing up, please wait...")
+        _loadingStatus.value = LoadingStatus.Loading("Signing up, please wait...")
         prefsValueHelper.setUserPhoneNumber(signUpRequest.phoneNumber)
         accountRepository.signUp(signUpRequest)
             .subscribeBy {
@@ -48,7 +48,7 @@ class SignUpViewModel @Inject constructor(
                         prefsValueHelper.setAccessToken(it.data.token)
                         prefsValueHelper.setUserId(it.data.id)
                         _signUpResponse.value = it.data
-//                        _loadingStatus.value = LoadingStatus.Success
+                        _loadingStatus.value = LoadingStatus.Success
                     }
                     is Result.Error -> _loadingStatus.value =
                         LoadingStatus.Error(it.errorCode, it.errorMessage)

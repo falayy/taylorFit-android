@@ -68,9 +68,13 @@ class CustomerDetailsFragment : BaseViewModelFragment() {
         daggerAppComponent.inject(this)
         customerDetailsViewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(CustomerDetailsViewModel::class.java)
+
         binding.imagesViewpager.adapter = StyleImagePagerAdapter(this)
+
         TabLayoutMediator(binding.tabLayout, binding.imagesViewpager) { _, _ -> }.attach()
+
         binding.imagesViewpager.onPageChanged { imageIndex = it }
+
         val customerDetailsResponseArgs = args.customerDetailsResponse
 
         if (!customerDetailsResponseArgs.isDone!!) binding.isDoneButton.show()
@@ -118,8 +122,10 @@ class CustomerDetailsFragment : BaseViewModelFragment() {
 
         override fun getItemCount() = args.customerDetailsResponse.style!!.size
 
-        override fun createFragment(position: Int): Fragment = StyleImagesPagerFragment.newInstance(
-            args.customerDetailsResponse.style?.get(imageIndex)
-        )
+
+        override fun createFragment(position: Int): Fragment =
+            StyleImagesPagerFragment.newInstance(
+                args.customerDetailsResponse.style?.get(imageIndex)
+            )
     }
 }

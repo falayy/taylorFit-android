@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="?actionBarSize"
-    android:background="?colorPrimary"
-
+    android:background="@color/backgroundPrimaryWhite"
     android:gravity="center">
 
     <androidx.appcompat.widget.Toolbar
@@ -27,6 +26,6 @@
         android:textColor="@color/secondaryColorChocolate"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
         android:textSize="24sp"
-        tools:text="BaseProj" />
+        tools:text="TaylorFit" />
 
 </FrameLayout>

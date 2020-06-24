@@ -63,7 +63,7 @@ class DashBoardViewModel @Inject constructor(
         token: String?,
         userId: String?
     ) {
-        _loadingStatus.value = LoadingStatus.Loading("Loading DashBoard, Please Wait")
+        _loadingStatus.value = LoadingStatus.Loading("Loading DashBoard, Please Wait...")
         dashBoardDataRepository.getCustomersPendingJobsInfo(
             token!!, userId!!
         ).subscribeBy {
@@ -85,7 +85,7 @@ class DashBoardViewModel @Inject constructor(
         token: String?,
         userId: String?
     ) {
-        _loadingStatus.value = LoadingStatus.Loading("Loading DashBoard, Please Wait")
+        _loadingStatus.value = LoadingStatus.Loading("Loading DashBoard, Please Wait...")
         dashBoardDataRepository.getCustomersCompletedJobsInfo(
             token!!, userId!!
         ).subscribeBy {

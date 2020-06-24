@@ -13,12 +13,11 @@
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/images_viewpager"
-                android:layout_width="0dp"
-                android:layout_height="500dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 app:layout_constraintBottom_toTopOf="@+id/full_name_constant_text_view"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

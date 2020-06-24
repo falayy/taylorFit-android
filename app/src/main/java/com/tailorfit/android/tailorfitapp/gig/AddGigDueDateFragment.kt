@@ -15,6 +15,9 @@
  */
 package com.tailorfit.android.tailorfitapp.gig
 
+import android.os.Build
+import android.view.View
+import androidx.annotation.RequiresApi
 import com.tailorfit.android.R
 import com.tailorfit.android.databinding.FragmentBaseFormBinding
 import com.tailorfit.android.tailorfitapp.baseforms.BaseGigFormFragment
@@ -24,8 +27,10 @@ class AddGigDueDateFragment : BaseGigFormFragment() {
 
     override fun getGigFormType(): GigFormType = GigFormType.AddGigDueDateFragment
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun setDataHints(binding: FragmentBaseFormBinding) {
         binding.formDescription.text = getString(R.string.gig_due_date_message)
         binding.formValueInputLayout.hint = getString(R.string.due_date)
+        binding.editText.focusable = View.NOT_FOCUSABLE
     }
 }

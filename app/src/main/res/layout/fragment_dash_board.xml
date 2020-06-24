@@ -90,7 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:srcCompat= "@drawable/ic_add_black_24dp"
+            app:srcCompat= "@drawable/ic_create_measurement_24dp"
             app:rippleColor="@color/gold"
             app:tint = "@color/backgroundPrimaryWhite"
             app:backgroundTint = "@color/secondaryColorChocolate"
