@@ -308,6 +308,7 @@ class AddGigDetailsFragment : BaseViewModelFragment(), AddGigImageDetailsAdapter
                     gigAdapterViewHolder.binding.apply {
                         indeterminateImageUploadProgressBar.show()
                         imageUploadStatusView.hide()
+                        mainActivity.disableTouch()
                     }
                 }
                 ImageUploadStatus.SUCCESS -> {
@@ -317,6 +318,7 @@ class AddGigDetailsFragment : BaseViewModelFragment(), AddGigImageDetailsAdapter
                         }
                         indeterminateImageUploadProgressBar.hide()
                         imageUploadStatusView.show()
+                        mainActivity.enableTouch()
                     }
                 }
                 ImageUploadStatus.FAILED -> {
@@ -326,6 +328,7 @@ class AddGigDetailsFragment : BaseViewModelFragment(), AddGigImageDetailsAdapter
                         }
                         imageUploadStatusView.show()
                         indeterminateImageUploadProgressBar.hide()
+                        mainActivity.enableTouch()
                     }
                 }
             }

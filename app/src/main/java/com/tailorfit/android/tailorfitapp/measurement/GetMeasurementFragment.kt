@@ -16,6 +16,7 @@
 package com.tailorfit.android.tailorfitapp.measurement
 
 import android.os.Bundle
+import android.util.Log
 import com.tailorfit.android.base.BaseViewModel
 import android.view.LayoutInflater
 import android.view.View
@@ -76,17 +77,18 @@ class GetMeasurementFragment : BaseViewModelFragment() {
         viewModel.measurementResponse.observe(
             viewLifecycleOwner,
             Observer {
-                binding.measurementRc.apply {
-                    layoutManager = LinearLayoutManager(
-                        context,
-                        LinearLayoutManager.VERTICAL,
-                        false
-                    )
-                    adapter = getMeasurementAdapter.apply {
-                        submitList(it)
+                    binding.measurementRc.apply {
+                        layoutManager = LinearLayoutManager(
+                            context,
+                            LinearLayoutManager.VERTICAL,
+                            false
+                        )
+                        adapter = getMeasurementAdapter.apply {
+                            submitList(it)
+                        }
                     }
-                }
-            })
+            }
+        )
     }
 
     override fun getViewModel(): BaseViewModel = viewModel
