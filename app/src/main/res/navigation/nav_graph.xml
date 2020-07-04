@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/dashBoardFragment">
+    app:startDestination="@id/signInFragment">
 
     <fragment
         android:id="@+id/signUpFragment"
@@ -75,6 +75,11 @@
             android:id="@+id/action_addGigTitleFragment_to_addGigStyleFragment"
             app:destination="@id/addGigStyleFragment"
             app:enterAnim="@anim/nav_default_pop_enter_anim" />
+        <action
+            android:id="@+id/action_addGigTitleFragment_to_addCustomerGenderFragment"
+            app:destination="@id/addCustomerGenderFragment"
+            app:popUpTo="@+id/signInFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/addGigStyleFragment"
@@ -149,7 +154,8 @@
         tools:layout="@layout/fragment_female_measurement" >
         <action
             android:id="@+id/action_femaleMeasurementFragment_to_dashBoardFragment"
-            app:destination="@id/dashBoardFragment" />
+            app:destination="@id/dashBoardFragment"
+            app:popUpTo="@+id/dashBoardFragment" />
         <action
             android:id="@+id/action_femaleMeasurementFragment_to_maleMeasurementFragment"
             app:destination="@id/maleMeasurementFragment" />
@@ -160,13 +166,14 @@
         android:label="MaleMeasurementFragment" >
         <action
             android:id="@+id/action_maleMeasurementFragment_to_dashBoardFragment"
-            app:destination="@id/dashBoardFragment" />
+            app:destination="@id/dashBoardFragment"
+            app:popUpTo="@+id/dashBoardFragment" />
     </fragment>
     <fragment
         android:id="@+id/dashBoardFragment"
         android:name="com.tailorfit.android.tailorfitapp.userdashboard.DashBoardFragment"
         android:label="DashBoardFragment"
-        app:startDestination="@id/action_dashBoardFragment_to_addCustomerNameFragment">
+        app:startDestination="@id/action_dashBoardFragment_to_signInFragment">
         <action
             android:id="@+id/action_dashBoardFragment_to_completedJobsFragment"
             app:destination="@id/completedJobsFragment" />
@@ -179,6 +186,11 @@
         <action
             android:id="@+id/action_dashBoardFragment_to_customerDetailsFragment"
             app:destination="@id/customerDetailsFragment" />
+        <action
+            android:id="@+id/action_dashBoardFragment_to_signInFragment"
+            app:destination="@id/signInFragment"
+            app:popUpTo="@+id/signInFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/pendingJobsFragment"
@@ -228,4 +240,8 @@
             android:name="customerInfo"
             app:argType="com.tailorfit.android.tailorfitapp.models.response.CustomerInfoResponseModel" />
     </fragment>
+    <fragment
+        android:id="@+id/testyFragment"
+        android:name="com.tailorfit.android.tailorfitapp.test.TestyFragment"
+        android:label="TestyFragment" />
 </navigation>

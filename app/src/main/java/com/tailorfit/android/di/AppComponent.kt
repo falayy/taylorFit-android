@@ -29,8 +29,10 @@ import com.tailorfit.android.tailorfitapp.signin.SignInFragment
 import com.tailorfit.android.tailorfitapp.signup.SignUpFragment
 import com.tailorfit.android.tailorfitapp.completedjobs.CompletedJobsFragment
 import com.tailorfit.android.tailorfitapp.customerdetails.CustomerDetailsFragment
+import com.tailorfit.android.tailorfitapp.customerdetails.StyleImagesPagerFragment
 import com.tailorfit.android.tailorfitapp.measurement.GetMeasurementFragment
 import com.tailorfit.android.tailorfitapp.pendingjobs.PendingJobsFragment
+import com.tailorfit.android.tailorfitapp.test.TestyFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -54,6 +56,8 @@ interface AppComponent {
     fun inject(target: PendingJobsFragment)
     fun inject(target: CustomerDetailsFragment)
     fun inject(target: GetMeasurementFragment)
+    fun inject(target: StyleImagesPagerFragment)
+    fun inject(target: TestyFragment)
 
     @Component.Builder
     interface Builder {

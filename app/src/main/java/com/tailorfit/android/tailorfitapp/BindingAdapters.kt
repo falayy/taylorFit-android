@@ -20,6 +20,7 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
+import com.google.android.material.textfield.TextInputEditText
 import com.tailorfit.android.Constants
 import com.tailorfit.android.R
 import com.tailorfit.android.tailorfitapp.models.response.CustomerInfoResponseModel
@@ -98,9 +99,9 @@ fun bindMeasurementKey(textView: TextView, string: String) {
 }
 
 @BindingAdapter("measurementValue")
-fun bindMeasurementValue(textView: TextView, string: String) {
+fun bindMeasurementValue(textInputEditText: TextInputEditText, string: String) {
     string.let {
-        textView.text = it
+        textInputEditText.setText(it)
     }
 }
 

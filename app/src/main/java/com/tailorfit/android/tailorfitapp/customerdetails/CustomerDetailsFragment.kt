@@ -19,12 +19,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.afollestad.materialdialogs.MaterialDialog
 import com.google.android.material.tabs.TabLayoutMediator
 import com.tailorfit.android.R
 import com.tailorfit.android.base.BaseViewModel
@@ -34,6 +36,7 @@ import com.tailorfit.android.extensions.onPageChanged
 import com.tailorfit.android.extensions.show
 import com.tailorfit.android.tailorfitapp.PrefsValueHelper
 import com.tailorfit.android.tailorfitapp.models.request.AddGigToDoneRequest
+import kotlinx.android.synthetic.main.toolbar_layout.*
 import javax.inject.Inject
 
 class CustomerDetailsFragment : BaseViewModelFragment() {
@@ -97,6 +100,19 @@ class CustomerDetailsFragment : BaseViewModelFragment() {
                 )
             }
 
+            viewAddInfoTextView.setOnClickListener {
+                MaterialDialog(context!!).show {
+                    title(R.string.addtional_note)
+                    message(
+                        text = if (customerDetailsResponseArgs.notes != null)
+                            customerDetailsResponseArgs.notes else getString
+                            (
+                            R.string.no_add_note
+                        )
+                    )
+                }
+            }
+
             isDoneButton.setOnClickListener {
                 customerDetailsViewModel.addGigToDone(
                     prefsValueHelper.getAccessToken(),
@@ -113,6 +129,11 @@ class CustomerDetailsFragment : BaseViewModelFragment() {
                 }
             })
         }
+//
+//        customerDetailsViewModel.imagePallete.observe(viewLifecycleOwner, Observer {
+//            toolbar.setBackgroundColor(it?.rgb ?:
+//            ContextCompat.getColor(context!!, R.color.colorPrimary))
+//        })
     }
 
     override fun getViewModel(): BaseViewModel = customerDetailsViewModel
