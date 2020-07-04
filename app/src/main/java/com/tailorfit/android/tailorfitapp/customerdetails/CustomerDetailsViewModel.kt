@@ -15,8 +15,13 @@
  */
 package com.tailorfit.android.tailorfitapp.customerdetails
 
+import android.graphics.Bitmap
+import androidx.core.graphics.drawable.toBitmap
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.palette.graphics.Palette
+import coil.Coil
+import coil.api.get
 import com.tailorfit.android.base.BaseViewModel
 import com.tailorfit.android.networkutils.LoadingStatus
 import com.tailorfit.android.networkutils.Result
@@ -24,7 +29,15 @@ import com.tailorfit.android.networkutils.disposeBy
 import com.tailorfit.android.tailorfitapp.models.request.AddGigToDoneRequest
 import com.tailorfit.android.tailorfitapp.models.response.AddToDoneResponse
 import com.tailorfit.android.tailorfitapp.repositories.MeasurementRepository
+import io.reactivex.Observable
+import io.reactivex.ObservableOnSubscribe
+import io.reactivex.Scheduler
+import io.reactivex.rxkotlin.Observables
 import io.reactivex.rxkotlin.subscribeBy
+import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import java.util.*
 import javax.inject.Inject
 
 class CustomerDetailsViewModel @Inject constructor(
@@ -35,6 +48,10 @@ class CustomerDetailsViewModel @Inject constructor(
 
     val addToDoneResponse: LiveData<AddToDoneResponse>
         get() = _addToDoneResponse
+
+    private var _imagePallete = MutableLiveData<Palette.Swatch?>()
+
+    val imagePallete = _imagePallete
 
     fun addGigToDone(token: String?, addGigToDoneRequest: AddGigToDoneRequest) {
         _loadingStatus.value = LoadingStatus.Loading("Completing Jobs, Please Wait...")
@@ -50,6 +67,25 @@ class CustomerDetailsViewModel @Inject constructor(
                     }
                 }
             }.disposeBy(disposeBag)
+    }
+
+    suspend fun createPalette(imageUrl : String) {
+       var imageBitMap : Bitmap? = null
+        withContext(Dispatchers.IO) {
+            imageBitMap = Coil.get(imageUrl).toBitmap()
+        }
+        Observable.create(
+            ObservableOnSubscribe<Palette.Swatch> { e ->
+                e.onNext(Palette.from(imageBitMap!!).generate().vibrantSwatch!!)
+                e.onComplete()
+            })
+            .subscribeOn(
+                Schedulers.computation()
+            )
+            .subscribeBy {
+            _imagePallete.value = it
+        }
+            .disposeBy(disposeBag)
     }
 
     override fun cleanUpObservables() {

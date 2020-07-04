@@ -162,6 +162,7 @@ dependencies {
     implementation(Config.Libs.Misc.coil)
     implementation(Config.Libs.Misc.googlePlayServices)
     implementation(Config.Libs.Misc.firebaseStorage)
+    implementation(Config.Libs.Misc.pallete)
 
     //Rx
     implementation(Config.Libs.Reactive.rxJava)
