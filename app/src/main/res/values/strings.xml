@@ -84,4 +84,7 @@
     <string name="here_are_your_measurements">Here are your Measurements</string>
     <string name="gender">Gender</string>
     <string name="gig_completed">Gig Completed, Well-done</string>
+    <string name="view_additional_info"><u>View Additional Info</u></string>
+    <string name="addtional_note">Additional Note</string>
+    <string name="no_add_note">No additional Note</string>
 </resources>
