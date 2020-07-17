@@ -16,8 +16,10 @@
 package com.tailorfit.android.tailorfitapp.gig
 
 import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.tailorfit.android.Constants
 import com.tailorfit.android.base.BaseViewModel
 import com.tailorfit.android.networkutils.Result
 import com.tailorfit.android.networkutils.LoadingStatus
@@ -55,8 +57,17 @@ class GigViewModel @Inject constructor(
     private val _createGigResponse = MutableLiveData<CreateGigResponse>()
     val createGigResponse: LiveData<CreateGigResponse> = _createGigResponse
 
+    private val _styleMenuList = MutableLiveData<List<KeyValue>>()
+    val styleMenuList: LiveData<List<KeyValue>>
+        get() = _styleMenuList
+
     fun getImagePlaceHolders() {
         _imagePlaceHolder.value = gigsRepository.getImagePlaceHolder()
+    }
+
+    fun getStyleList(gender : String) {
+        Log.d("TAG", "style ${gigsRepository.getStyles(gender)}" )
+      _styleMenuList.value = gigsRepository.getStyles(gender)
     }
 
     fun uploadGigStyle(

@@ -163,6 +163,8 @@ dependencies {
     implementation(Config.Libs.Misc.googlePlayServices)
     implementation(Config.Libs.Misc.firebaseStorage)
     implementation(Config.Libs.Misc.pallete)
+    implementation(Config.Libs.Misc.lottie)
+
 
     //Rx
     implementation(Config.Libs.Reactive.rxJava)

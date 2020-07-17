@@ -31,7 +31,6 @@ class CustomerRepository @Inject constructor(private val tailorFitApIService: Ta
         KeyValue("Female", "female", "2"),
         KeyValue("Others", "others", "3")
     )
-
     fun genders(): List<KeyValue> = genderLists
 
     fun createCustomer(token: String, createCustomerRequest: CreateCustomerRequest):

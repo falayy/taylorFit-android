@@ -123,6 +123,9 @@ class CustomerDetailsFragment : BaseViewModelFragment() {
                 )
             }
 
+            isDoneButton.visibility = View.GONE
+
+
             customerDetailsViewModel.addToDoneResponse.observe(viewLifecycleOwner, Observer {
                 if (it != null) {
                     showSnackBar(context!!.getString(R.string.gig_completed))

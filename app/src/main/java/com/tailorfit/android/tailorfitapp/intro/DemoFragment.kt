@@ -69,11 +69,14 @@ class DemoFragment : BaseFragment() {
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { _, _ -> }.attach()
         binding.viewPager.onPageChanged { currentPageNumber = it }
+        if (currentPageNumber == dataModels.lastIndex) binding.slideActionButton.text = getString(R.string.go)
         binding.slideActionButton.setOnClickListener {
-            if (currentPageNumber >= dataModels.size - 1) {
+            if (currentPageNumber >= dataModels.lastIndex) {
                 findNavController().navigate(DemoFragmentDirections.actionDemoFragmentToSignUpFragment())
             } else {
                 viewPager.currentItem = currentPageNumber + 1
+                if (currentPageNumber == dataModels.lastIndex)
+                    binding.slideActionButton.text = getString(R.string.go)
             }
         }
     }

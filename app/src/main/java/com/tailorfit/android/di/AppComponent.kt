@@ -30,6 +30,7 @@ import com.tailorfit.android.tailorfitapp.signup.SignUpFragment
 import com.tailorfit.android.tailorfitapp.completedjobs.CompletedJobsFragment
 import com.tailorfit.android.tailorfitapp.customerdetails.CustomerDetailsFragment
 import com.tailorfit.android.tailorfitapp.customerdetails.StyleImagesPagerFragment
+import com.tailorfit.android.tailorfitapp.gig.AddGigStyleFragment
 import com.tailorfit.android.tailorfitapp.measurement.GetMeasurementFragment
 import com.tailorfit.android.tailorfitapp.pendingjobs.PendingJobsFragment
 import com.tailorfit.android.tailorfitapp.test.TestyFragment
@@ -57,6 +58,7 @@ interface AppComponent {
     fun inject(target: CustomerDetailsFragment)
     fun inject(target: GetMeasurementFragment)
     fun inject(target: StyleImagesPagerFragment)
+    fun inject(target: AddGigStyleFragment)
     fun inject(target: TestyFragment)
 
     @Component.Builder

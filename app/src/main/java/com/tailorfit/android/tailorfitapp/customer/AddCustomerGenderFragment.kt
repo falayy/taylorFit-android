@@ -64,7 +64,7 @@ class AddCustomerGenderFragment : BaseViewModelFragment() {
         binding.formDescription.text = getString(R.string.customer_gender_message)
         binding.formValueInputLayout.hint = getString(R.string.gender)
 
-        customerViewModel.apply {
+        customerViewModel.
             genderMenuList.observe(viewLifecycleOwner, Observer {
                 binding.genderDropdown.setAdapter(
                     ArrayAdapter(
@@ -74,7 +74,7 @@ class AddCustomerGenderFragment : BaseViewModelFragment() {
                     )
                 )
             })
-        }
+
 
 
 
@@ -82,6 +82,7 @@ class AddCustomerGenderFragment : BaseViewModelFragment() {
             if (
                 validateDropdownViews(binding.genderDropdown)
             ) {
+                prefsValueHelper.setCustomerGender(binding.genderDropdown.getSelectedItemKey())
                 val args = AddCustomerGenderFragmentArgs.fromBundle(arguments!!)
                 customerViewModel.createCustomer(
                     CreateCustomerRequest(
