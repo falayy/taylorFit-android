@@ -16,6 +16,7 @@
 package com.tailorfit.android.tailorfitapp.completedjobs
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,6 +28,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.tailorfit.android.base.BaseViewModel
 import com.tailorfit.android.base.BaseViewModelFragment
 import com.tailorfit.android.databinding.FragmentCompletedJobsBinding
+import com.tailorfit.android.extensions.hide
+import com.tailorfit.android.extensions.show
 import com.tailorfit.android.tailorfitapp.PrefsValueHelper
 import com.tailorfit.android.tailorfitapp.userdashboard.DashBoardAdapter
 import com.tailorfit.android.tailorfitapp.userdashboard.DashBoardFragmentDirections
@@ -81,7 +84,6 @@ class CompletedJobsFragment : BaseViewModelFragment() {
                 Observer {
                     if (it != null) {
                         binding.recyclerViewImage.apply {
-                            visibility = View.VISIBLE
                             layoutManager = LinearLayoutManager(
                                 context,
                                 LinearLayoutManager.VERTICAL,
@@ -91,6 +93,9 @@ class CompletedJobsFragment : BaseViewModelFragment() {
                                 submitList(it)
                             }
                         }
+                    } else {
+                        binding.recyclerViewImage.hide()
+                        binding.animationView.show()
                     }
                 })
             cleanUpObservables()

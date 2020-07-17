@@ -40,7 +40,6 @@ import javax.inject.Inject
 
 enum class GigFormType {
     AddGigDueDateFragment,
-    AddGigStyleFragment,
     AddGigTitleFragment,
     AddGigPriceFragment
 }
@@ -100,24 +99,6 @@ abstract class BaseGigFormFragment : BaseViewModelFragment() {
                     }
                 }
             }
-            GigFormType.AddGigStyleFragment -> {
-                binding.FormProceedButton.setOnClickListener {
-                    if (validateTextLayouts(binding.editText)) {
-                        val style = binding.editText.stringContent()
-                        val args = AddGigStyleFragmentArgs.fromBundle(arguments!!)
-                        createGigRequest.title = args.createGig.title
-                        createGigRequest.styleName = style
-                        prefsValueHelper.setGigStyleName(style)
-                        findNavController().navigate(
-                            AddGigStyleFragmentDirections.actionAddGigStyleFragmentToAddGigDueDateFragment(
-                                createGigRequest
-                            )
-                        )
-                    } else {
-                        return@setOnClickListener
-                    }
-                }
-            }
             GigFormType.AddGigDueDateFragment -> {
                 binding.editText.setOnClickListener {
                     val newFragment = DatePickerFragment()
@@ -128,7 +109,6 @@ abstract class BaseGigFormFragment : BaseViewModelFragment() {
                 createGigRequest.date = dob
                 createGigRequest.title = args.createGig.title
                 createGigRequest.styleName = args.createGig.styleName
-                Log.d("TAG", "date logged ${createGigRequest.date} $dob")
                 binding.FormProceedButton.setOnClickListener {
                     findNavController().navigate(
                         AddGigDueDateFragmentDirections.actionAddGigDueDateFragmentToAddGigPriceFragment(

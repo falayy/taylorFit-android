@@ -25,6 +25,7 @@ class PrefsValueHelper @Inject constructor(private val prefsUtils: PrefsUtils) {
         const val USER_ID = "USER_ID"
         const val USER_PHONE = "USER_PHONE"
         const val CUSTOMER_ID = "CUSTOMER_ID"
+        const val CUSTOMER_GENDER = "CUSTOMER_GENDER"
         const val GIG_ID = "GIG_ID"
         const val GIG_TITLE = "GIG_TITLE"
         const val GIG_STYLE_NAME = "GIG_STYLE_NAME"
@@ -42,6 +43,10 @@ class PrefsValueHelper @Inject constructor(private val prefsUtils: PrefsUtils) {
     fun setCustomerId(customerId: String) = prefsUtils.putString(CUSTOMER_ID, customerId)
 
     fun getCustomerId() = prefsUtils.getString(CUSTOMER_ID, null)
+
+    fun setCustomerGender(gender: String) = prefsUtils.putString(CUSTOMER_GENDER, gender)
+
+    fun getCustomerGender() = prefsUtils.getString(CUSTOMER_GENDER, "null")
 
     fun getGigId() = prefsUtils.getString(GIG_ID, null)
 

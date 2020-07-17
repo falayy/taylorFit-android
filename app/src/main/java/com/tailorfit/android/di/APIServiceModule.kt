@@ -84,7 +84,9 @@ class APIServiceModule {
     @Singleton
     fun provideGenericOkHttpClient(interceptor: HttpLoggingInterceptor): OkHttpClient =
         OkHttpClient.Builder().addInterceptor(interceptor)
-            .connectTimeout(30, TimeUnit.SECONDS)
+            .connectTimeout(60, TimeUnit.SECONDS)
+            .callTimeout(60, TimeUnit.SECONDS)
+            .readTimeout(60, TimeUnit.SECONDS)
             .build()
 
     @Provides

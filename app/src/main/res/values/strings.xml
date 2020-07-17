@@ -87,4 +87,5 @@
     <string name="view_additional_info"><u>View Additional Info</u></string>
     <string name="addtional_note">Additional Note</string>
     <string name="no_add_note">No additional Note</string>
+    <string name="go">GO</string>
 </resources>

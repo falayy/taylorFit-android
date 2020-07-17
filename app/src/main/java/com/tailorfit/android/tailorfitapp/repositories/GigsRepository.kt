@@ -18,6 +18,7 @@ package com.tailorfit.android.tailorfitapp.repositories
 import android.net.Uri
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.tailorfit.android.Constants
 import com.tailorfit.android.networkutils.toResult
 import com.tailorfit.android.networkutils.Result
 import com.tailorfit.android.networkutils.toSingle
@@ -41,12 +42,43 @@ class GigsRepository @Inject constructor(private val tailorFitApIService: Tailor
     private val gigImageModelC = GigImageModel("3rd", "c")
     private val gigImageModelD = GigImageModel("4th", "d")
 
+    private val maleStyleLists = mutableListOf(
+        KeyValue("Shirt", "Shirt", "1"),
+        KeyValue("Pants", "Pants", "2"),
+        KeyValue("Shorts", "Shorts", "3"),
+        KeyValue("Kaftan", "Kaftan", "4"),
+        KeyValue("Shorts", "Shorts", "5"),
+        KeyValue("Native Attire", "Native Attire", "6")
+    )
+
+
+    private val femaleStyleLists = mutableListOf(
+        KeyValue("Jackets", "Jackets", "1"),
+        KeyValue("Top & Pants", "Top & Pants", "2"),
+        KeyValue("Top & Skirts", "Top & Skirts", "3"),
+        KeyValue("Kimono & Pants", "Kimono & Pants", "4"),
+        KeyValue("Jackets & Skirts", "Jackets & Skirts", "5"),
+        KeyValue("Dresses", "Dresses", "6"),
+        KeyValue("Trousers", "Trousers", "7"),
+        KeyValue("Skirts", "Skirts", "8"),
+        KeyValue("Tops", "Tops", "9"),
+        KeyValue("Traditional", "Traditional", "10")
+    )
+
     private val imageStyle = mutableListOf<String>()
 
     private val imagePlaceHolderList =
         listOf(gigImageModelA, gigImageModelB, gigImageModelC, gigImageModelD)
 
     fun getImagePlaceHolder(): List<GigImageModel> = imagePlaceHolderList
+
+    fun getStyles(gender : String) : List<KeyValue> {
+        return if (gender == Constants.Gender.MALE) {
+            maleStyleLists
+        } else {
+            femaleStyleLists
+        }
+    }
 
     // ------uploads style images to firebase
 
