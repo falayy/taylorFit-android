@@ -16,6 +16,7 @@
 package com.tailorfit.android.tailorfitapp.customerdetails
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,6 +33,7 @@ import com.tailorfit.android.R
 import com.tailorfit.android.base.BaseViewModel
 import com.tailorfit.android.base.BaseViewModelFragment
 import com.tailorfit.android.databinding.FragmentCustomerDetailsBinding
+import com.tailorfit.android.extensions.hide
 import com.tailorfit.android.extensions.onPageChanged
 import com.tailorfit.android.extensions.show
 import com.tailorfit.android.tailorfitapp.PrefsValueHelper
@@ -114,6 +116,7 @@ class CustomerDetailsFragment : BaseViewModelFragment() {
             }
 
             isDoneButton.setOnClickListener {
+                it.hide()
                 customerDetailsViewModel.addGigToDone(
                     prefsValueHelper.getAccessToken(),
                     AddGigToDoneRequest(
@@ -123,7 +126,6 @@ class CustomerDetailsFragment : BaseViewModelFragment() {
                 )
             }
 
-            isDoneButton.visibility = View.GONE
 
 
             customerDetailsViewModel.addToDoneResponse.observe(viewLifecycleOwner, Observer {

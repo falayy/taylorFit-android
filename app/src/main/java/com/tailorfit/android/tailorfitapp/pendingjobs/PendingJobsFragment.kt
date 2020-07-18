@@ -79,8 +79,14 @@ class PendingJobsFragment : BaseViewModelFragment() {
             .pendingCustomerInfoResponse.observe(
             viewLifecycleOwner,
             Observer {
+                if (it?.size == 0) {
+                        binding.recyclerViewImage.hide()
+                        binding.animationView.show()
+                }
                 if (it != null) {
                     binding.recyclerViewImage.apply {
+                        this.show()
+                        binding.animationView.hide()
                         layoutManager = LinearLayoutManager(
                             context,
                             LinearLayoutManager.VERTICAL,
@@ -90,9 +96,6 @@ class PendingJobsFragment : BaseViewModelFragment() {
                             submitList(it)
                         }
                     }
-                } else {
-                    binding.recyclerViewImage.hide()
-                    binding.animationView.show()
                 }
             })
         dashBoardViewModel.cleanUpObservables()

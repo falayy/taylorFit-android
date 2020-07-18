@@ -36,7 +36,7 @@ data class CustomerInfoResponseModel(
     @SerializedName("gig_title")
     var gigTitle: String? = null,
     @SerializedName("is_done")
-    var isDone: Boolean? = null,
+    var isDone: Boolean? = false,
     @SerializedName("notes")
     var notes: String? = null,
     @SerializedName("price")
