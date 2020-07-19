@@ -119,8 +119,8 @@ abstract class BaseGigFormFragment : BaseViewModelFragment() {
             }
             GigFormType.AddGigPriceFragment -> {
                 binding.FormProceedButton.setOnClickListener {
-                    if (validateTextLayouts(binding.editText)) {
-                        val price = binding.editText.stringContent()
+                    if (validateTextLayouts(binding.currencyEditText)) {
+                        val price = binding.currencyEditText.stringContent()
                         val args = AddGigPriceFragmentArgs.fromBundle(arguments!!)
                         createGigRequest.date = args.createGig.date
                         createGigRequest.title = args.createGig.title
