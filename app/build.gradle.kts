@@ -164,6 +164,7 @@ dependencies {
     implementation(Config.Libs.Misc.firebaseStorage)
     implementation(Config.Libs.Misc.pallete)
     implementation(Config.Libs.Misc.lottie)
+    implementation(Config.Libs.Misc.currencyEditText)
 
 
     //Rx

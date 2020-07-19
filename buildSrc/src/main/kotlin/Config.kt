@@ -86,6 +86,8 @@ object Config {
             const val firebaseStorage = "com.google.firebase:firebase-storage-ktx:19.1.1"
             const val pallete =  "com.android.support:palette-v7:28.0.0"
             const val lottie =  "com.airbnb.android:lottie:3.4.0"
+            const val currencyEditText =  "com.cottacush:CurrencyEditText:0.0.6"
+
         }
     }
 

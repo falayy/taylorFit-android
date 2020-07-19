@@ -16,6 +16,8 @@
 package com.tailorfit.android.tailorfitapp.gig
 
 import android.text.InputType
+import android.view.View
+import android.view.View.*
 import com.tailorfit.android.R
 import com.tailorfit.android.databinding.FragmentBaseFormBinding
 import com.tailorfit.android.tailorfitapp.baseforms.BaseGigFormFragment
@@ -27,7 +29,19 @@ class AddGigPriceFragment : BaseGigFormFragment() {
 
     override fun setDataHints(binding: FragmentBaseFormBinding) {
         binding.formDescription.text = getString(R.string.gig_price_message)
-        binding.formValueInputLayout.hint = getString(R.string.price)
-        binding.editText.inputType = InputType.TYPE_CLASS_NUMBER
+        binding.apply {
+            FormInputTextContainer.visibility = GONE
+            editText.visibility = GONE
+            formValueInputLayout.visibility = GONE
+        }
+        binding.apply {
+            priceFormValueInputLayout.visibility = VISIBLE
+            priceFormValueInputLayout.hint = getString(R.string.price)
+            priceFormInputTextContainer.visibility = VISIBLE
+            currencyEditText.apply {
+                visibility = VISIBLE
+                inputType = InputType.TYPE_CLASS_NUMBER
+            }
+        }
     }
 }
