@@ -42,6 +42,7 @@ class PendingJobsFragment : BaseViewModelFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+
     @Inject
     lateinit var prefsValueHelper: PrefsValueHelper
 
@@ -77,27 +78,25 @@ class PendingJobsFragment : BaseViewModelFragment() {
 
         dashBoardViewModel
             .pendingCustomerInfoResponse.observe(
-            viewLifecycleOwner,
-            Observer {
-                if (it?.size == 0) {
-                        binding.recyclerViewImage.hide()
-                        binding.animationView.show()
-                }
-                if (it != null) {
-                    binding.recyclerViewImage.apply {
-                        this.show()
-                        binding.animationView.hide()
-                        layoutManager = LinearLayoutManager(
-                            context,
-                            LinearLayoutManager.VERTICAL,
-                            false
-                        )
-                        adapter = dashBoardAdapter.apply {
-                            submitList(it)
+                viewLifecycleOwner,
+                Observer {
+                    binding.recyclerViewImage.hide()
+                    binding.animationView.show()
+                    if (it != null) {
+                        binding.recyclerViewImage.apply {
+                            this.show()
+                            binding.animationView.hide()
+                            layoutManager = LinearLayoutManager(
+                                context,
+                                LinearLayoutManager.VERTICAL,
+                                false
+                            )
+                            adapter = dashBoardAdapter.apply {
+                                submitList(it)
+                            }
                         }
                     }
-                }
-            })
+                })
         dashBoardViewModel.cleanUpObservables()
     }
 

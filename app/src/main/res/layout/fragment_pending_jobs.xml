@@ -2,6 +2,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.tailorfit.android.tailorfitapp.userdashboard.DashBoardViewModel" />
+    </data>
+
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
