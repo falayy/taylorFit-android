@@ -15,6 +15,7 @@
  */
 package com.tailorfit.android.networkutils
 
+import android.util.Log
 import androidx.annotation.CheckResult
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
@@ -33,7 +34,10 @@ fun <T : Any> Single<Response<BaseAPIResponse<T>>>.toResult(): Single<Result<T>>
     return compose { item ->
         item
             .map { getAPIResult(it) }
-            .onErrorReturn { e -> Result.Error(GENERIC_ERROR_CODE, e.message ?: GENERIC_ERROR_MESSAGE) }
+            .onErrorReturn { e ->
+                Log.d("TAG", "error $e")
+                Result.Error(GENERIC_ERROR_CODE, e.message ?: GENERIC_ERROR_MESSAGE)
+            }
             .observeOn(AndroidSchedulers.mainThread())
     }
 }

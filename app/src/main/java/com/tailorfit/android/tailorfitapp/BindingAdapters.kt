@@ -74,9 +74,9 @@ fun bindCustomerName(textView: TextView, string: String?) {
 }
 
 @BindingAdapter("stylePrice")
-fun bindPrice(textView: TextView, int: Int?) {
-    int?.let {
-        textView.text = it.toString()
+fun bindPrice(textView: TextView, string: String?) {
+    string?.let {
+        textView.text = it
     }
 }
 

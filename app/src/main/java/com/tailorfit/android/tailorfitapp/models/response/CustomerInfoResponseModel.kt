@@ -40,7 +40,7 @@ data class CustomerInfoResponseModel(
     @SerializedName("notes")
     var notes: String? = null,
     @SerializedName("price")
-    var price: Int? = null,
+    var price: String? = null,
     @SerializedName("style")
     var style: List<String?>? = null,
     @SerializedName("style_name")

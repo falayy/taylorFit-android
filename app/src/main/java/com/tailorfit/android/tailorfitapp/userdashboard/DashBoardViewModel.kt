@@ -15,6 +15,7 @@
  */
 package com.tailorfit.android.tailorfitapp.userdashboard
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.tailorfit.android.base.BaseViewModel
 import com.tailorfit.android.networkutils.LoadingStatus
@@ -34,11 +35,11 @@ class DashBoardViewModel @Inject constructor(
     val userInfoResponse = _userInfoResponse
 
     private var _pendingCustomerJobsInfoResponse =
-        MutableLiveData<List<CustomerInfoResponseModel>?>()
+        MutableLiveData<List<CustomerInfoResponseModel>>()
     val pendingCustomerInfoResponse = _pendingCustomerJobsInfoResponse
 
     private var _completedCustomerJobsInfoResponse =
-        MutableLiveData<List<CustomerInfoResponseModel>?>()
+        MutableLiveData<List<CustomerInfoResponseModel>>()
     val completedCustomerInfoResponse = _completedCustomerJobsInfoResponse
 
     fun userInfo(
@@ -69,12 +70,14 @@ class DashBoardViewModel @Inject constructor(
         ).subscribeBy {
             when (it) {
                 is Result.Success -> {
+                    Log.d("TAG", "does it work ?")
                     _pendingCustomerJobsInfoResponse.value = it.data
                         .sortedBy { fetchCustomerInfoResponse ->
                             fetchCustomerInfoResponse.isDone == false
                         }
                 }
                 is Result.Error -> {
+                    Log.d("TAG", "does it work ? ${it.errorCode}")
                     LoadingStatus.Error(it.errorCode, it.errorMessage)
                 }
             }

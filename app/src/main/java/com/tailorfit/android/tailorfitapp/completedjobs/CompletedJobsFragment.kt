@@ -82,12 +82,11 @@ class CompletedJobsFragment : BaseViewModelFragment() {
             completedCustomerInfoResponse.observe(
                 viewLifecycleOwner,
                 Observer {
-                        binding.recyclerViewImage.hide()
+                    if (it.isNullOrEmpty()){
                         binding.animationView.show()
-                    if (it != null) {
+                    } else {
+                        binding.animationView.hide()
                         binding.recyclerViewImage.apply {
-                            this.show()
-                            binding.animationView.hide()
                             layoutManager = LinearLayoutManager(
                                 context,
                                 LinearLayoutManager.VERTICAL,
